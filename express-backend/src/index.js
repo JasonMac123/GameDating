@@ -10,10 +10,12 @@ app.use(express.json());
 const chatApiRoutes = require("./routes/chat.js");
 const matchApiRoutes = require("./routes/match.js");
 const userApiRoutes = require("./routes/users.js");
+const interestApiRoutes = require("./routes/interests.js");
 
 app.use("/api/match", matchApiRoutes);
 app.use("/api/chat", chatApiRoutes);
 app.use("/api/users", userApiRoutes);
+app.use("/api/interests", interestApiRoutes);
 
 app.listen(PORT, () => {
   console.log(`Example app listening on port ${PORT}`);
