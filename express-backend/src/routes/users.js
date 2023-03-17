@@ -1,9 +1,9 @@
-const { Router } = require("express");
 const express = require("express");
 const router = express.Router();
+const { getUsers } = require("../db/queries/login");
 
 router.get("/", (req, res) => {
-  res.json("Hello");
+  res.json(getUsers);
 });
 
 module.exports = router;
