@@ -18,11 +18,12 @@ const getCurrentInterests = (userID) => {
   const queryString = 
   `SELECT *
   FROM interests
+  JOIN users ON users.id = user_id
   WHERE user_id = $1;`
 
   return db.query(queryString, [userID])
   .then(res => {
-    return res.rows[0]
+    return res.rows[0];
   })
 }
 
@@ -30,6 +31,7 @@ const getMatches = (interests) => {
 
   const queryString = 
   `SELECT interests.*,
+  users.*,
   CASE WHEN strategy_games = $1 THEN 1 ELSE 0 END +
   CASE WHEN cooking_games = $2 THEN 1 ELSE 0 END +
   CASE WHEN puzzle_games= $3 THEN 1 ELSE 0 END +
@@ -46,6 +48,7 @@ const getMatches = (interests) => {
   CASE WHEN comic_books= $14 THEN 1 ELSE 0 END
   AS rank
   FROM interests
+  JOIN users ON users.id = user_id
   WHERE user_id != $15
   AND
   (strategy_games = $1
@@ -65,10 +68,15 @@ const getMatches = (interests) => {
   ORDER BY rank DESC
   
   ;`
-  const userInterests = [interests.strategy_games, interests.cooking_games, interests.puzzle_games, interests.mmos, interests.action_games, interests.rpg_games, interests.slice_of_life_anime, interests.isekai_anime, interests.shonen_anime, interests.sports_anime, interests.romance_anime, interests.manga, interests.books, interests.comic_books, interests.user_id]
+  ;
+
+  const userInterests = [interests.strategy_games, interests.cooking_games, interests.puzzle_games, interests.mmos, interests.action_games, interests.rpg_games, interests.slice_of_life_anime, interests.isekai_anime, interests.shonen_anime, interests.sports_anime, interests.romance_anime, interests.manga, interests.books, interests.comic_books, interests.user_id];
+  /*
+    const userInterests = [interests.strategy_games, interests.cooking_games, interests.puzzle_games, interests.mmos, interests.action_games, interests.rpg_games, interests.slice_of_life_anime, interests.isekai_anime, interests.shonen_anime, interests.sports_anime, interests.romance_anime, interests.manga, interests.books, interests.comic_books, interests.user_id, interests.gender_preference, interests.gender_identity];
+  */
   return db.query(queryString, userInterests)
   .then(res => {
-    return res.rows
+    return res.rows;
   })
 }
 
