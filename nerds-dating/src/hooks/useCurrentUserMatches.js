@@ -2,29 +2,38 @@ import axios from "axios";
 import { useState, useEffect } from "react";
 
 export default function useCurrentUserMatches() {
-  const [state, setState] = useState({
+  const [matchList, setMatchList] = useState({
     matches: [],
   });
 
-  useEffect(() => {
+  // useEffect((id) => {
+  //   axios
+  //   .get(`/api/match/${id}`)
+  //   .then((res) => {
+  //     // console.log(res.data);
+  //     setMatch(prev => ({ ...prev, matches: res.data }));
+  //   })
+  //   .catch((e) => console.log(e));
+  // }, [])
+
+  useEffect((id) => {
     axios
-    .get("/api/match")
+    .get(`/api/match/1`)
     .then((res) => {
-      console.log(res.data);
-      setState(prev => ({ ...prev, matches: res.data }));
+      setMatchList(prev => ({ ...prev, matches: res.data }));
     })
     .catch((e) => console.log(e));
   }, [])
 
   const next = () => {
-    const newMatchArray = [...state.matches]
+    const newMatchArray = [...matchList.matches]
     newMatchArray.splice(0, 1);
-    setState(prev => ({ ...prev, matches: newMatchArray }))
+    setMatchList(prev => ({ ...prev, matches: newMatchArray }))
   } 
 
   return {
-    state,
-    setState, 
+    matchList,
+    setMatchList, 
     next
   }
 }

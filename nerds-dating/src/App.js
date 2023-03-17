@@ -5,7 +5,7 @@ import { useState, useEffect } from "react";
 import useCurrentUserMatches from "./hooks/useCurrentUserMatches"
 
 function App() {
-  const {state, next} = useCurrentUserMatches()
+  const {matchList, next} = useCurrentUserMatches();
 
   // axios
   //   .get("/api/users")
@@ -17,12 +17,14 @@ function App() {
   // axios.post("/api/users", { username: "hello" }).then((data) => {
   //   console.log(data);
   // });
+  console.log(matchList)
 
   return (
     <>
     <div className="text-sky-400 text-2xl underline decoration-solid">Hi</div>
     {/* <Match /> */}
-    <Profile matches={state.matches} discard={next} />
+    {<Profile matches={matchList.matches} discard={next} />}
+    
     </>
   );
 }
