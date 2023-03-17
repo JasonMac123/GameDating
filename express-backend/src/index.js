@@ -3,6 +3,8 @@ require("dotenv").config();
 const express = require("express");
 const cookieParser = require("cookie-parser");
 const logger = require("morgan");
+const app = express();
+const PORT = 8080;
 
 app.use(logger("dev"));
 app.use(express.json());
