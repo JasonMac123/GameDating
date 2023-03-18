@@ -2,7 +2,12 @@ const ChatBarItem = (props) => {
   const { user, profile, setChat } = props;
 
   return (
-    <div className="flex w-16" onClick={() => {setChat(profile)}}>
+    <div
+      className="flex w-16"
+      onClick={() => {
+        setChat(profile);
+      }}
+    >
       {user === profile.first_user_id ? (
         <>
           <img
@@ -19,7 +24,7 @@ const ChatBarItem = (props) => {
             alt=""
             className="objet-scale-down"
           />
-          <p>{profile.user1cover_picture}</p>
+          <p>{profile.user1_name}</p>
         </>
       )}
     </div>

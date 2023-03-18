@@ -18,7 +18,7 @@ const ChatDisplay = () => {
       setMatchList(res.data);
       setChat(res.data[0]);
     });
-  }, [chat]);
+  }, [id]);
 
   return (
     <div className="flex flex-row px-8">

@@ -22,7 +22,7 @@ const ChatNavBar = (props) => {
               alt=""
               className="objet-scale-down"
             />
-            <p>{chat.user1cover_picture}</p>
+            <p>{chat.user1_name}</p>
           </>
         )}
       </div>
