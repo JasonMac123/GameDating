@@ -9,7 +9,7 @@ export default function Profile(props) {
       {props.potentialMatches?.length > 0 &&
         <>
           <img
-            className="left-0"
+            className="left-0 object-scale-down h-48 w-96"
             src={props.potentialMatches[0]?.cover_picture}
             alt="Cover Pic"
           />
