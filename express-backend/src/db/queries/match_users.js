@@ -29,7 +29,8 @@ const getCurrentInterests = (userID) => {
 
 const getMatches = (interests) => {
 
-  const queryString = 
+  // console.log(interests.gender_preference)
+  let queryString = 
   `SELECT interests.*,
   users.*,
   CASE WHEN strategy_games = $1 THEN 1 ELSE 0 END +
@@ -49,7 +50,23 @@ const getMatches = (interests) => {
   AS rank
   FROM interests
   JOIN users ON users.id = user_id
-  WHERE user_id != $15
+  WHERE user_id != $15`
+  ;
+
+  // comment out the below lines for now as we do not have too much test data
+  // if (interests.gender_preference === "M") {
+  //   queryString += `
+  //   AND gender_identity = 'M' `
+  // };
+
+  // if (interests.gender_preference === "F") {
+  //   queryString += `
+  //   AND gender_identity = 'F' `
+  // };
+
+
+
+  queryString += `
   AND
   (strategy_games = $1
   OR cooking_games = $2
