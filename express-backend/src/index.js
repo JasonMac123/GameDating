@@ -15,6 +15,12 @@ app.use("/api/match", matchApiRoutes);
 app.use("/api/chat", chatApiRoutes);
 app.use("/api/users", userApiRoutes);
 
-app.listen(PORT, () => {
+const server = app.listen(PORT, () => {
   console.log(`Example app listening on port ${PORT}`);
+});
+
+const io = require("socket.io")(server);
+
+io.on("connection", function (socket) {
+  console.log("a user connected");
 });

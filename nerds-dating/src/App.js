@@ -1,19 +1,22 @@
-import axios from "axios";
+import { useState, useEffect } from "react";
+import ChatDisplay from "./components/ChatDisplay";
+import io from "socket.io-client";
 
 function App() {
-  axios
-    .get("/api/users")
-    .then((res) => {
-      console.log(res.data);
-    })
-    .catch((e) => console.log(e));
+  const [display, setDisplay] = useState(0);
 
-  axios.post("/api/users", { username: "hello" }).then((data) => {
-    console.log(data);
+  useEffect(() => {
+    const socket = io.connect("/");
+
+    return () => {
+      socket.disconnect();
+    };
   });
 
   return (
-    <div className="text-sky-400 text-2xl underline decoration-solid">Hi</div>
+    <div className="text-sky-400 text-2xl underline decoration-solid">
+      <ChatDisplay />
+    </div>
   );
 }
 
