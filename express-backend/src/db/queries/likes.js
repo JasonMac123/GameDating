@@ -11,7 +11,7 @@ const getLikes = () => {
 const addLikes = (user1ID, user2ID) => {
   let queryString = 
   `INSERT into LIKES (giving_user_id, receiving_user_id, liked_status)
-  VALUES $1, $2, false;`
+  VALUES ($1, $2, true) RETURNING *;`
 
   return db.query(queryString, [user1ID, user2ID])
   .then(res => {

@@ -3,7 +3,6 @@ const express = require("express");
 const { getLikes, addLikes } = require("../db/queries/likes");
 const router = express.Router();
 const { getUsers } = require("../db/queries/login");
-getLikes
 
 // router.get("/:id", (req, res) => {
 //   console.log(req.params.id)
@@ -11,6 +10,18 @@ getLikes
 //     res.json(data[req.params.id - 1]);
 //   });
 // });
+
+router.post("/", (req, res) => {
+  console.log(req.body)
+  res.send("a-ok!")
+  addLikes(req.body.giver, req.body.receiver).then((data) => {
+    console.log(data)
+  })
+  // getUsers().then((data) => {
+  //   res.json(data[req.params.id - 1]);
+  // });
+});
+
 
 router.get("/", (req, res) => {
   getLikes().then((data) => {
