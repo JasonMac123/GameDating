@@ -1,9 +1,9 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
 
-export default function useCurrentUserMatches() {
-  const [matchList, setMatchList] = useState({
-    matches: [],
+export default function useCurrentUserMatches(id) {
+  const [potentialMatchList, setPotentialMatchList] = useState({
+    potentialMatches: [],
   });
 
   // useEffect((id) => {
@@ -16,24 +16,24 @@ export default function useCurrentUserMatches() {
   //   .catch((e) => console.log(e));
   // }, [])
 
-  useEffect((id) => {
+  useEffect(() => {
     axios
-    .get(`/api/match/1`)
+    .get(`/api/match/${id}`)
     .then((res) => {
-      setMatchList(prev => ({ ...prev, matches: res.data }));
+      setPotentialMatchList(prev => ({ ...prev, potentialMatches: res.data }));
     })
     .catch((e) => console.log(e));
   }, [])
 
   const next = () => {
-    const newMatchArray = [...matchList.matches]
+    const newMatchArray = [...potentialMatchList.potentialMatches]
     newMatchArray.splice(0, 1);
-    setMatchList(prev => ({ ...prev, matches: newMatchArray }))
+    setPotentialMatchList(prev => ({ ...prev, potentialMatches: newMatchArray }))
   } 
 
   return {
-    matchList,
-    setMatchList, 
+    potentialMatchList,
+    setPotentialMatchList, 
     next
   }
 }
