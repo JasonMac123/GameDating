@@ -4,26 +4,24 @@ import axios from "axios";
 function Login() {
 const [email, setEmail]=useState('');
 const [password, setPassword]=useState('');
-async function submit(e){
-e.preventDefault();
 
-try{
-await axios.post("http://localhost:3000/", {
-email, password
-})
+const handleSubmit = (event) => { 
+  event.preventDefault()
+  console.log(email)
+  // axios.post("/", {
+    // email: email,
+    // password: password,
+  // })    
 }
-catch(e){
-console.log(e)
-}
-}
+
 return (
 <div>
 <h1>Login</h1>
 
-<form action="POST">
-<input type="email" onChange={(e)=>{setEmail(e.target.value)}} placeholder="Email"/>
-<input type="password" onChange={(e)=>{setPassword(e.target.value)}} placeholder="Name"/>
-<input type="submit" onClick={submit}/>
+<form autoComplete="off" onSubmit={handleSubmit} >
+<input type="email" value={email} name ="email" onChange={(e)=>{setEmail(e.target.value)}} placeholder="Email"/>
+<input type="password" value={password} name ="password" onChange={(e)=>{setPassword(e.target.value)}} placeholder="Password"/>
+<input type="submit" onClick={handleSubmit}/>
 </form>
 
 </div>
