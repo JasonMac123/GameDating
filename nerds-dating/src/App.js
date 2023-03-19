@@ -3,8 +3,9 @@ import { useState } from "react";
 import Login from './components/Login'
 import Register from "./components/Register";
 
-function App() {
+function App(props) {
   const [display, setDisplay] = useState(2)
+  const [userID, setUserID] = useState(0)
   axios
     .get("/api/users")
     .then((res) => {
@@ -19,7 +20,7 @@ function App() {
   return (
     <div className="text-sky-400 text-2xl underline decoration-solid">
       {display === 1 && <Login />}
-      {display === 2 && <Register />}
+      {display === 2 && <Register display={display} setDisplay={setDisplay} userID={userID} setUserID={setUserID}/>}
     </div>
   );
 }

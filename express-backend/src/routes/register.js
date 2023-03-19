@@ -21,7 +21,11 @@ router.post("/", (req, res) => {
     summary: req.body.summary,
    }; 
   //  res.redirect("/testingRoute")
-  return addUser(details)
+  addUser(details)
+  .then((data) => {
+    console.log(data)
+    res.json(data)
+  })
   
 });
 // router.post("/testingRoute", (req, res) => {
