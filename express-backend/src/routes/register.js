@@ -20,17 +20,15 @@ router.post("/", (req, res) => {
     gender_preference: req.body.gender_preference,
     summary: req.body.summary,
    }; 
-  //  res.redirect("/testingRoute")
+
   addUser(details)
   .then((data) => {
-    console.log(data)
+    // console.log(data)
     res.json(data)
   })
   
 });
-// router.post("/testingRoute", (req, res) => {
-//   console.log("hello")
-// })
+
 
 module.exports = router;
 // (name, email, password, phone_number, profile_picture, cover_picture, gender_identity, gender_preference, summary)

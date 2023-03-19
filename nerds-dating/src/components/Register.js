@@ -3,16 +3,6 @@ import axios from "axios";
 
 function Register(props) {
 
-// const [name, setName]=useState('');
-// const [email, setEmail]=useState('');
-// const [phoneNumber, setPhoneNumber]=useState('');
-// const [password, setPassword]=useState('');
-// const [profilePicture, setProfilePicture]=useState('');
-// const [coverPicture, setCoverPicture]=useState('');
-// const [genderIdentity, setGenderIdentity]=useState('');
-// const [genderPreference, setGenderPreference]=useState('');
-// const [summary, setSummary]=useState('');
-
 const [user, setUser]=useState({
   name: "",
   email: "",
@@ -36,14 +26,13 @@ const handleSubmit = (event) => {
   .then((result) => {
     props.setUserID(result.data.id)
     props.setDisplay(1);
-  })    
+  }) 
 }
 
 return (
 <div classname="register">
 <h1>Register</h1>
 
-{/* <form autoComplete="off" onSubmit={(event) => event.preventDefault}> */}
   <form autoComplete="off" onSubmit={handleSubmit} >
   <input type="text" value={user.name} name ="name" onChange={handleChange} placeholder="Name"/>
   <input type="email" value={user.email} name ="email" onChange={handleChange} placeholder="Email"/>
