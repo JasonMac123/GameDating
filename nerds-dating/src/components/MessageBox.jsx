@@ -1,35 +1,13 @@
 import React from "react";
-import { useEffect, useState } from "react";
-import axios from "axios";
 import ChatMessage from "./ChatMessage";
+import useMessageChat from "../hooks/useMessageChat";
 
 const MessageBox = (props) => {
   const { chat } = props;
-  const [message, setMessage] = useState("");
-  const [chatHistory, setChatHistory] = useState([]);
+  const { message, setMessage, chatHistory, addMessage } = useMessageChat(chat)
+
   const id = 1;
 
-  useEffect(() => {
-    if (!chat.id) return;
-    axios.get(`/api/chat/chatroom/${chat.id}`).then((res) => {
-      setChatHistory(res.data);
-    });
-  }, [chat]);
-
-  const addMessage = (text, first_user, second_user, chatroomID) => {
-    if (!text) return;
-    axios
-      .post("/api/chat/send", {
-        first_user,
-        second_user,
-        chatroomID,
-        message: text,
-      })
-      .then((res) => {
-        setChatHistory([...chatHistory, res.data[0]]);
-        setMessage("");
-      });
-  };
 
   return (
     <div>

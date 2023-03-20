@@ -13,6 +13,7 @@ const server = app.listen(PORT, () => {
 
 const io = require("socket.io")(server);
 let userList = [];
+
 io.on("connection", (socket) => {
   socket.on("user_connected", (message) => {
     userList.push({ id: socket.id, user: message.id });
