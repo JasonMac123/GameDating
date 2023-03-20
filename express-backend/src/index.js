@@ -33,9 +33,13 @@ app.use(function (req, res, next) {
 const chatApiRoutes = require("./routes/chat.js");
 const matchApiRoutes = require("./routes/match.js");
 const userApiRoutes = require("./routes/users.js");
+const interestApiRoutes = require("./routes/interests.js");
+const likeApiRoutes = require("./routes/likes.js");
 
 app.use("/api/match", matchApiRoutes);
 app.use("/api/chat", chatApiRoutes);
 app.use("/api/users", userApiRoutes);
+app.use("/api/interests", interestApiRoutes);
+app.use("/api/likes", likeApiRoutes);
 
 module.exports = app;
