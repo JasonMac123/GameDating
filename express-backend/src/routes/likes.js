@@ -12,11 +12,11 @@ const { getUsers } = require("../db/queries/login");
 // });
 
 router.post("/", (req, res) => {
-  console.log(req.body)
-  res.send("a-ok!")
+  console.log(req.body);
+  res.send("a-ok!");
   addLikes(req.body.giver, req.body.receiver, req.body.status).then((data) => {
-    console.log(data)
-  })
+    console.log(data);
+  });
   // getUsers().then((data) => {
   //   res.json(data[req.params.id - 1]);
   // });
@@ -27,7 +27,6 @@ router.get("/:id", (req, res) => {
     res.json(data);
   });
 });
-
 
 router.get("/", (req, res) => {
   getLikes().then((data) => {

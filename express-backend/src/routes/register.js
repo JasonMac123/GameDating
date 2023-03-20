@@ -19,16 +19,13 @@ router.post("/", (req, res) => {
     gender_identity: req.body.gender_identity,
     gender_preference: req.body.gender_preference,
     summary: req.body.summary,
-   }; 
+  };
 
-  addUser(details)
-  .then((data) => {
+  addUser(details).then((data) => {
     // console.log(data)
-    res.json(data)
-  })
-  
+    res.json(data);
+  });
 });
-
 
 module.exports = router;
 // (name, email, password, phone_number, profile_picture, cover_picture, gender_identity, gender_preference, summary)

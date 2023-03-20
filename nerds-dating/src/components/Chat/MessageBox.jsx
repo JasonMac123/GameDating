@@ -1,6 +1,6 @@
 import React from "react";
 import ChatMessage from "./ChatMessage";
-import useMessageChat from "../hooks/useMessageChat";
+import useMessageChat from "../../hooks/useMessageChat";
 
 const MessageBox = (props) => {
   const { chat } = props;
