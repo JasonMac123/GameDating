@@ -31,14 +31,14 @@ function App() {
   return (
     <>
       <div className="text-sky-400 text-2xl underline decoration-solid">Hi</div>
-      <Match
+      {/* <Match
         potentialMatches={potentialMatchList.potentialMatches}
         discard={next}
         addLike={addNewLike}
         checkMatch={checkForMatch}
-      />
+      /> */}
       {/* {<Profile currentUser={testUser} />} */}
-      <ChatDisplay />
+      {/* <ChatDisplay /> */}
       {display === 1 && (
         <Login
           display={display}
