@@ -25,8 +25,8 @@ const MessageBox = (props) => {
         chatroomID,
         message: text,
       })
-      .then((data) => {
-        console.log(data);
+      .then((res) => {
+        setChatHistory([...chatHistory, res.data[0]]);
         setMessage("");
       });
   };

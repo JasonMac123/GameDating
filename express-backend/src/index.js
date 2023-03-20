@@ -18,7 +18,6 @@ io.on("connection", (socket) => {
     userList.push({ id: socket.id, user: message.id });
   });
   socket.on("disconnect", () => {
-    console.log("user disconnect");
     const newList = userDisconnects(userList, socket.id);
     userList = newList;
   });
