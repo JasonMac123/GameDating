@@ -37,6 +37,7 @@ function Interests(props) {
   return (
     <div>
       <h1>Interests</h1>
+      <p>{props.userID}</p>
       <form autoComplete="off" onSubmit={handleSubmit}>
         <fieldset>
           <legend>Choose your interests:</legend>

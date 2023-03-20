@@ -5,8 +5,8 @@ import Register from "./components/Register";
 import Interests from "./components/Interests";
 
 function App(props) {
-  const [display, setDisplay] = useState(3)
-  const [userID, setUserID] = useState(4)
+  const [display, setDisplay] = useState(1)
+  const [userID, setUserID] = useState(0)
   // axios
   //   .get("/api/users")
   //   .then((res) => {

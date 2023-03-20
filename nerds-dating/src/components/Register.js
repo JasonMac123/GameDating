@@ -25,7 +25,7 @@ const handleSubmit = (event) => {
   return axios.post("/api/register", user)
   .then((result) => {
     props.setUserID(result.data.id)
-    props.setDisplay(1);
+    props.setDisplay(3);
   }) 
 }
 

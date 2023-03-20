@@ -18,9 +18,8 @@ const handleSubmit = (event) => {
   event.preventDefault()
   return axios.post("/api/login", user)
   .then((result) => {
-    console.log("***", result)
     props.setUserID(result.data.id)
-    props.setDisplay(2);
+    props.setDisplay(3);
   })  
  
 }
