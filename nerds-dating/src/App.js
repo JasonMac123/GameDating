@@ -8,6 +8,7 @@ import ChatDisplay from "./components/Chat/ChatDisplay";
 import Login from "./components/Profile/Login";
 import Register from "./components/Profile/Register";
 import Interests from "./components/Profile/Interests";
+import SideBar from "./components/SideBar/SideBar";
 
 function App() {
   const [display, setDisplay] = useState(1);
@@ -63,6 +64,9 @@ function App() {
           setUserID={setUserID}
         />
       )}
+      <div className="flex">
+        <SideBar setDisplay={setDisplay} />
+      </div>
     </>
   );
 }
