@@ -5,12 +5,17 @@ const {
 } = require("../db/queries/match_users");
 const router = express.Router();
 const { checkChatExists, addChat } = require("../db/queries/create_chat");
+const { addNotification } = require("../db/queries/create_notifications")
 
 router.post("/", (req, res) => {
-  checkChatExists(req.body.user1, req.body.user2).then((res) => {
-    if (res === false) {
-      addChat(req.body.user1, req.body.user2).then(
-        console.log("new chatroom created")
+  checkChatExists(req.body.user1, req.body.user2).then((exists) => {
+    if (exists === false) {
+      addChat(req.body.user1, req.body.user2).then((response) => {
+        console.log("new chatroom created");
+        addNotification(req.body.user1);
+        addNotification(req.body.user2);
+        res.send(`${response[0].second_user_id}`);
+      }
       );
     }
   });

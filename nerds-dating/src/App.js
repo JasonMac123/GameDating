@@ -8,11 +8,14 @@ import ChatDisplay from "./components/Chat/ChatDisplay";
 import Login from "./components/Profile/Login";
 import Register from "./components/Profile/Register";
 import Interests from "./components/Profile/Interests";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function App() {
   const [display, setDisplay] = useState(1);
   const [userID, setUserID] = useState(0);
-  const { potentialMatchList, next } = useCurrentUserMatches(1);
+  const { potentialMatchList, next } = useCurrentUserMatches(userID);
+  const notify = (user) => toast(`You have a new match with ${user}!`)
   const testUser = {
     id: 1,
     name: "Jason",
@@ -36,9 +39,12 @@ function App() {
         discard={next}
         addLike={addNewLike}
         checkMatch={checkForMatch}
+        notify ={notify}
       />
+      <button onClick={()=>console.log(userID)}>Notify!</button>
+      <ToastContainer />
       {/* {<Profile currentUser={testUser} />} */}
-      <ChatDisplay />
+      {/* <ChatDisplay />
       {display === 1 && (
         <Login
           display={display}
@@ -62,7 +68,7 @@ function App() {
           userID={userID}
           setUserID={setUserID}
         />
-      )}
+      )} */}
     </>
   );
 }

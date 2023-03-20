@@ -37,7 +37,7 @@ export default function Profile(props) {
                 onClick={() => {
                   console.log("gg");
                   props.addLike(1, props.potentialMatches[0]?.id, true);
-                  props.checkMatch(1, props.potentialMatches[0]?.id);
+                  props.checkMatch(1, props.potentialMatches[0], props.notify)
                   props.discard();
                 }}
               >

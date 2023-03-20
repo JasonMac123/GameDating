@@ -26,7 +26,7 @@ export default function useCurrentUserMatches(id) {
         }));
       })
       .catch((e) => console.log(e));
-  }, []);
+  }, [id]);
 
   const next = () => {
     const newMatchArray = [...potentialMatchList.potentialMatches];
