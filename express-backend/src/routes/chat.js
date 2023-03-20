@@ -1,6 +1,6 @@
 const { Router } = require("express");
-const express = require("express");
-const router = express.Router();
+const app = require("express");
+const router = app.Router();
 const {
   getChatroomsFromUserID,
   getMessagesFromUsers,
@@ -29,6 +29,8 @@ router.post("/send", (req, res) => {
     req.body.message
   ).then((data) => {
     res.json(data);
+    req.io.sockets.emit("hello", data);
+    console.log(req.list);
   });
 });
 

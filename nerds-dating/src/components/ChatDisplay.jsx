@@ -1,8 +1,9 @@
 import { useState, useEffect } from "react";
 import ChatBar from "./ChatBar";
 import MessageBox from "./MessageBox";
-import axios from "axios";
 import ChatNavBar from "./ChatNavBar";
+import axios from "axios";
+import io from "socket.io-client";
 
 const ChatDisplay = () => {
   const [chat, setChat] = useState({});
@@ -19,6 +20,18 @@ const ChatDisplay = () => {
       setChat(res.data[0]);
     });
   }, [id]);
+
+  useEffect(() => {
+    const socket = io.connect("/");
+    socket.emit("user_connected", { id });
+    socket.on("hello", (arg) => {
+      console.log("helloworld");
+    });
+
+    return () => {
+      socket.disconnect();
+    };
+  });
 
   return (
     <div className="flex flex-row px-8">
