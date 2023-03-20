@@ -64,6 +64,11 @@ const getMatches = (interests) => {
   //   AND gender_identity = 'F' `
   // };
 
+  // queryString += `
+  // AND user_id NOT in (SELECT likes.receiving_user_id FROM likes WHERE giving_user_id = $15)
+  
+  // `
+
 
 
   queryString += `
