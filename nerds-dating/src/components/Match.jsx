@@ -1,5 +1,7 @@
 // import axios from "axios";
 // import { useState, useEffect } from "react";
+import { AiTwotoneHeart } from "react-icons/ai";
+import { ImCross } from "react-icons/im";
 
 export default function Profile(props) {
   console.log(props);
@@ -22,17 +24,17 @@ export default function Profile(props) {
             </div>
             <div className="flex  justify-between">
               <button
-                className="bg-gray-300 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded"
+                className="bg-gray-300 hover:text-red-700 text-white font-bold py-2 px-4 rounded"
                 onClick={() => {
                   console.log("bye now");
                   props.addLike(1, props.potentialMatches[0]?.id, false);
                   props.discard();
                 }}
               >
-                ⛔
+                <ImCross />
               </button>
               <button
-                className="bg-red-300 hover:bg-red-700 text-white font-bold py-2 px-4 rounded"
+                className="bg-red-300 text-white hover:text-red-700 font-bold py-2 px-4 rounded"
                 onClick={() => {
                   console.log("gg");
                   props.addLike(1, props.potentialMatches[0]?.id, true);
@@ -40,7 +42,7 @@ export default function Profile(props) {
                   props.discard();
                 }}
               >
-                ❤️
+                <AiTwotoneHeart />
               </button>
             </div>
           </div>
