@@ -1,4 +1,3 @@
-
 import Match from "./components/Match";
 import Profile from "./components/Profile";
 import addNewLike from "./helpers/addNewLikes";
