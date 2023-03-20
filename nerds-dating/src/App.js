@@ -7,16 +7,7 @@ import Interests from "./components/Interests";
 function App(props) {
   const [display, setDisplay] = useState(1)
   const [userID, setUserID] = useState(0)
-  // axios
-  //   .get("/api/users")
-  //   .then((res) => {
-  //     console.log(res.data);
-  //   })
-  //   .catch((e) => console.log(e));
 
-  // axios.post("/api/users", { username: "hello" }).then((data) => {
-  //   console.log(data);
-  // });
 
   return (
     <div className="text-sky-400 text-2xl underline decoration-solid">
