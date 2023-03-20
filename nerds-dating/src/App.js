@@ -11,9 +11,10 @@ import Interests from "./components/Profile/Interests";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import lookUpUser from "./helpers/lookUpUser";
+import useProfile from "./hooks/useProfile";
 
 function App() {
-  const [display, setDisplay] = useState(66);
+  const [display, setDisplay] = useState(77);
   const testUser = {
     id: 1,
     name: "Jason",
@@ -30,6 +31,7 @@ function App() {
   };
   const [userID, setUserID] = useState(0);
   const { potentialMatchList, next } = useCurrentUserMatches(1);
+  const { profile, setProfile} = useProfile(3)
   const notify = (name) => toast(`You have a new match with ${name}!`)
 
   return (
@@ -44,6 +46,7 @@ function App() {
       />}
       {/* <button onClick={()=>console.log(userID)}>Notify!</button> */}
       <ToastContainer />
+      {display === 77 && <Profile currentUser={profile} />}
       {display === 55 && <Profile currentUser={testUser} />}
       {/* <ChatDisplay /> */}
       {display === 1 && (
