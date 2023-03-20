@@ -10,12 +10,10 @@ import Register from "./components/Profile/Register";
 import Interests from "./components/Profile/Interests";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import lookUpUser from "./helpers/lookUpUser";
 
 function App() {
-  const [display, setDisplay] = useState(1);
-  const [userID, setUserID] = useState(0);
-  const { potentialMatchList, next } = useCurrentUserMatches(userID);
-  const notify = (user) => toast(`You have a new match with ${user}!`)
+  const [display, setDisplay] = useState(66);
   const testUser = {
     id: 1,
     name: "Jason",
@@ -30,21 +28,24 @@ function App() {
     summary: "testing",
     password: "password",
   };
+  const [userID, setUserID] = useState(0);
+  const { potentialMatchList, next } = useCurrentUserMatches(1);
+  const notify = (name) => toast(`You have a new match with ${name}!`)
 
   return (
     <>
-      <div className="text-sky-400 text-2xl underline decoration-solid">Hi</div>
-      <Match
+      {/* <div className="text-sky-400 text-2xl underline decoration-solid">Hi</div> */}
+      {display === 66 && <Match
         potentialMatches={potentialMatchList.potentialMatches}
         discard={next}
         addLike={addNewLike}
         checkMatch={checkForMatch}
         notify ={notify}
-      />
-      <button onClick={()=>console.log(userID)}>Notify!</button>
+      />}
+      {/* <button onClick={()=>console.log(userID)}>Notify!</button> */}
       <ToastContainer />
-      {/* {<Profile currentUser={testUser} />} */}
-      {/* <ChatDisplay />
+      {display === 55 && <Profile currentUser={testUser} />}
+      {/* <ChatDisplay /> */}
       {display === 1 && (
         <Login
           display={display}
@@ -68,7 +69,7 @@ function App() {
           userID={userID}
           setUserID={setUserID}
         />
-      )} */}
+      )}
     </>
   );
 }

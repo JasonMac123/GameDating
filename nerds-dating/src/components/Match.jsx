@@ -5,23 +5,22 @@ export default function Profile(props) {
   console.log(props);
 
   return (
-    <>
+    <div className="flex h-screen">
       {props.potentialMatches?.length > 0 && (
         <>
           <img
-            className="left-0 object-scale-down h-48 w-96"
+            className="left-0 w-1/2"
             src={props.potentialMatches[0]?.cover_picture}
             alt="Cover Pic"
           />
-          <div className="bg-blue-100">
-            <div className="right-0 bg-yellow-200">
+          <div className="flex flex-col bg-blue-200 w-1/2 gap-2" >
+            <div className="bg-yellow-200">
               {props.potentialMatches[0]?.name}
             </div>
-            <br></br>
-            <div className="bg-green-300">
+            <div className="bg-green-300 grow">
               {props.potentialMatches[0]?.summary}
             </div>
-            <div>
+            <div className="flex  justify-between">
               <button
                 className="bg-gray-300 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded"
                 onClick={() => {
@@ -57,6 +56,6 @@ export default function Profile(props) {
           check back periodically for new potential matches
         </div>
       )}
-    </>
+    </div>
   );
 }

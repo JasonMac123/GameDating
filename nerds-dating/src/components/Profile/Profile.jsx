@@ -7,19 +7,18 @@ export default function Profile(props) {
   const user = props.currentUser;
 
   return (
-    <>
+    <div className="flex h-screen">
       <>
         <img
-          className="left-0 object-scale-down h-48 w-96"
-          src={user.cover_picture}
+          className="left-0 flex h-screen w-1/2"
+          src={user?.cover_picture}
           alt="Cover Pic"
         />
-        <div className="bg-blue-100">
-          <div className="right-0 bg-yellow-200">{user.name}</div>
-          <br></br>
-          <div className="bg-green-300">{user.summary}</div>
+        <div className="flex flex-col bg-blue-200 right-0 w-1/2 gap-2">
+          <div className=" bg-yellow-200">{user?.name}</div>
+          <div className="flex bg-green-300 grow">{user?.summary}</div>
         </div>
       </>
-    </>
+    </div>
   );
 }
