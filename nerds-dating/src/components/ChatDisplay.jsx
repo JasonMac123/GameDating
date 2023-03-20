@@ -24,7 +24,7 @@ const ChatDisplay = () => {
   useEffect(() => {
     const socket = io.connect("/");
     socket.emit("user_connected", { id });
-    socket.on("hello", (arg) => {
+    socket.on("update_chat", (arg) => {
       console.log("helloworld");
     });
 

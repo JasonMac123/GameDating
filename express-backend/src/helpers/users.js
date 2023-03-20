@@ -5,7 +5,7 @@ const userDisconnects = (list, id) => {
 
 const findUser = (list, id) => {
   for (const user of list) {
-    if (list.id === id) {
+    if (user.user === id) {
       return user;
     }
   }
