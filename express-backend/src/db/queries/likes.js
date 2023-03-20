@@ -8,6 +8,14 @@ const getLikes = () => {
   })
 }
 
+const getLikesForUsers = (user1) => {
+  const queryString = `select * from likes WHERE giving_user_id = $1;`
+  return db.query(queryString, [user1])
+  .then(res => {
+    return res.rows;
+  })
+}
+
 const addLikes = (user1ID, user2ID, status) => {
   let queryString = 
   `INSERT into LIKES (giving_user_id, receiving_user_id, liked_status)
@@ -21,4 +29,4 @@ const addLikes = (user1ID, user2ID, status) => {
 
 
 
-module.exports = { getLikes, addLikes };
+module.exports = { getLikes, addLikes, getLikesForUsers};

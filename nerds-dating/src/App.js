@@ -4,6 +4,7 @@ import Profile from "./components/Profile";
 import addNewLike from "./helpers/addNewLikes";
 // import { useState, useEffect } from "react";
 import useCurrentUserMatches from "./hooks/useCurrentUserMatches"
+import checkForMatch from "./helpers/checkForMatch";
 
 function App() {
   const {potentialMatchList, next} = useCurrentUserMatches(1);
@@ -12,7 +13,7 @@ function App() {
   return (
     <>
     <div className="text-sky-400 text-2xl underline decoration-solid">Hi</div>
-    <Match potentialMatches={potentialMatchList.potentialMatches} discard={next} addLike={addNewLike} />
+    <Match potentialMatches={potentialMatchList.potentialMatches} discard={next} addLike={addNewLike} checkMatch={checkForMatch} />
     {/* {<Profile currentUser={testUser} />} */}
     
     </>

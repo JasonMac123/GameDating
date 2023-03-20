@@ -1,6 +1,6 @@
 const { json } = require("body-parser");
 const express = require("express");
-const { getLikes, addLikes } = require("../db/queries/likes");
+const { getLikes, addLikes, getLikesForUsers } = require("../db/queries/likes");
 const router = express.Router();
 const { getUsers } = require("../db/queries/login");
 
@@ -20,6 +20,12 @@ router.post("/", (req, res) => {
   // getUsers().then((data) => {
   //   res.json(data[req.params.id - 1]);
   // });
+});
+
+router.get("/:id", (req, res) => {
+  getLikesForUsers(req.params.id).then((data) => {
+    res.json(data);
+  });
 });
 
 
