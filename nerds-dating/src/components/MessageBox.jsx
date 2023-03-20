@@ -4,10 +4,8 @@ import useMessageChat from "../hooks/useMessageChat";
 
 const MessageBox = (props) => {
   const { chat } = props;
-  const { message, setMessage, chatHistory, addMessage } = useMessageChat(chat)
-
+  const { message, setMessage, chatHistory, addMessage } = useMessageChat(chat);
   const id = 1;
-
 
   return (
     <div>

@@ -1,25 +1,13 @@
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import ChatBar from "./ChatBar";
 import MessageBox from "./MessageBox";
 import ChatNavBar from "./ChatNavBar";
-import axios from "axios";
 import io from "socket.io-client";
+import useChatList from "../hooks/useChatList";
 
 const ChatDisplay = () => {
-  const [chat, setChat] = useState({});
-  const [matchList, setMatchList] = useState([]);
   const id = 1;
-
-  useEffect(() => {
-    if (!id) {
-      setMatchList([]);
-      return;
-    }
-    axios.get(`/api/chat/${id}`).then((res) => {
-      setMatchList(res.data);
-      setChat(res.data[0]);
-    });
-  }, [id]);
+  const { chat, setChat, matchList } = useChatList(id);
 
   useEffect(() => {
     const socket = io.connect("/");
@@ -31,7 +19,7 @@ const ChatDisplay = () => {
     return () => {
       socket.disconnect();
     };
-  },[]);
+  }, []);
 
   return (
     <div className="flex flex-row px-8">
