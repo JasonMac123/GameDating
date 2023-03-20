@@ -10,7 +10,14 @@ const MessageBox = (props) => {
   return (
     <div>
       {chatHistory.map((item) => {
-        return <ChatMessage key={item.id} message={item.message} />;
+        return (
+          <ChatMessage
+            key={item.id}
+            message={item.message}
+            details={item}
+            users={chat}
+          />
+        );
       })}
       <div>
         <form

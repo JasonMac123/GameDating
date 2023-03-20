@@ -24,7 +24,7 @@ const ChatDisplay = () => {
   return (
     <div className="flex flex-row px-8">
       <ChatBar matchList={matchList} setChat={setChat} />
-      <div className="px-32">
+      <div className="px-32 w-full">
         <ChatNavBar chat={chat} />
         <MessageBox chat={chat} />
       </div>
