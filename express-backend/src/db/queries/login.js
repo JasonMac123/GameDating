@@ -12,7 +12,7 @@ const getUserWithEmail = function (email) {
     .query("SELECT * FROM users WHERE email = $1", [email])
     .then((result) => {
       return result.rows[0];
-    })
+    });
 };
 
 module.exports = { getUsers, getUserWithEmail };

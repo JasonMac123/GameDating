@@ -18,22 +18,28 @@ export default function useCurrentUserMatches(id) {
 
   useEffect(() => {
     axios
-    .get(`/api/match/${id}`)
-    .then((res) => {
-      setPotentialMatchList(prev => ({ ...prev, potentialMatches: res.data }));
-    })
-    .catch((e) => console.log(e));
-  }, [])
+      .get(`/api/match/${id}`)
+      .then((res) => {
+        setPotentialMatchList((prev) => ({
+          ...prev,
+          potentialMatches: res.data,
+        }));
+      })
+      .catch((e) => console.log(e));
+  }, []);
 
   const next = () => {
-    const newMatchArray = [...potentialMatchList.potentialMatches]
+    const newMatchArray = [...potentialMatchList.potentialMatches];
     newMatchArray.splice(0, 1);
-    setPotentialMatchList(prev => ({ ...prev, potentialMatches: newMatchArray }))
-  } 
+    setPotentialMatchList((prev) => ({
+      ...prev,
+      potentialMatches: newMatchArray,
+    }));
+  };
 
   return {
     potentialMatchList,
-    setPotentialMatchList, 
-    next
-  }
+    setPotentialMatchList,
+    next,
+  };
 }

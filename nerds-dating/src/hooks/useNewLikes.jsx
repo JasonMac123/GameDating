@@ -5,7 +5,6 @@ export default function useNewLikes(id) {
   // const [newLikes, setPotentialMatchList] = useState({
   //   potentialMatches: [],
   // });
-
   // // useEffect((id) => {
   // //   axios
   // //   .get(`/api/match/${id}`)
@@ -15,7 +14,6 @@ export default function useNewLikes(id) {
   // //   })
   // //   .catch((e) => console.log(e));
   // // }, [])
-
   // useEffect(() => {
   //   axios
   //   .get(`/api/match/${id}`)
@@ -24,16 +22,14 @@ export default function useNewLikes(id) {
   //   })
   //   .catch((e) => console.log(e));
   // }, [])
-
   // const next = () => {
   //   const newMatchArray = [...potentialMatchList.potentialMatches]
   //   newMatchArray.splice(0, 1);
   //   setPotentialMatchList(prev => ({ ...prev, potentialMatches: newMatchArray }))
-  // } 
-
+  // }
   // return {
   //   potentialMatchList,
-  //   setPotentialMatchList, 
+  //   setPotentialMatchList,
   //   next
   // }
 }

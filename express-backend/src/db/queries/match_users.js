@@ -1,7 +1,7 @@
-const db = require("../index")
-const { getInterests } = require("./get_interests");
+const db = require("../index");
+const { getInterests } = require("./interests");
 
-// SELECT   interests.*           
+// SELECT   interests.*
 // FROM     interests
 // JOIN users
 // ON interests.user_id = users.id
@@ -10,28 +10,23 @@ const { getInterests } = require("./get_interests");
 //    OR    `type` = "limo"
 // ORDER BY (   (`color` = "black")
 //            + (`weight` = "heavy")
-//            + (`type` = "limo") 
+//            + (`type` = "limo")
 //          ) DESC
 
 const getCurrentInterests = (userID) => {
-
-  const queryString = 
-  `SELECT *
+  const queryString = `SELECT *
   FROM interests
   JOIN users ON users.id = user_id
-  WHERE user_id = $1;`
+  WHERE user_id = $1;`;
 
-  return db.query(queryString, [userID])
-  .then(res => {
+  return db.query(queryString, [userID]).then((res) => {
     return res.rows[0];
-  })
-}
+  });
+};
 
 const getMatches = (interests) => {
-
   // console.log(interests.gender_preference)
-  let queryString = 
-  `SELECT interests.*,
+  let queryString = `SELECT interests.*,
   users.*,
   CASE WHEN strategy_games = $1 THEN 1 ELSE 0 END +
   CASE WHEN cooking_games = $2 THEN 1 ELSE 0 END +
@@ -50,9 +45,7 @@ const getMatches = (interests) => {
   AS rank
   FROM interests
   JOIN users ON users.id = user_id
-  WHERE user_id != $15`
-  ;
-
+  WHERE user_id != $15`;
   // comment out the below lines for now as we do not have too much test data
   // if (interests.gender_preference === "M") {
   //   queryString += `
@@ -66,10 +59,8 @@ const getMatches = (interests) => {
 
   // queryString += `
   // AND user_id NOT in (SELECT likes.receiving_user_id FROM likes WHERE giving_user_id = $15)
-  
+
   // `
-
-
 
   queryString += `
   AND
@@ -89,17 +80,31 @@ const getMatches = (interests) => {
   OR comic_books= $14)
   ORDER BY rank DESC
   
-  ;`
-  ;
+  ;`;
 
-  const userInterests = [interests.strategy_games, interests.cooking_games, interests.puzzle_games, interests.mmos, interests.action_games, interests.rpg_games, interests.slice_of_life_anime, interests.isekai_anime, interests.shonen_anime, interests.sports_anime, interests.romance_anime, interests.manga, interests.books, interests.comic_books, interests.user_id];
+  const userInterests = [
+    interests.strategy_games,
+    interests.cooking_games,
+    interests.puzzle_games,
+    interests.mmos,
+    interests.action_games,
+    interests.rpg_games,
+    interests.slice_of_life_anime,
+    interests.isekai_anime,
+    interests.shonen_anime,
+    interests.sports_anime,
+    interests.romance_anime,
+    interests.manga,
+    interests.books,
+    interests.comic_books,
+    interests.user_id,
+  ];
   /*
     const userInterests = [interests.strategy_games, interests.cooking_games, interests.puzzle_games, interests.mmos, interests.action_games, interests.rpg_games, interests.slice_of_life_anime, interests.isekai_anime, interests.shonen_anime, interests.sports_anime, interests.romance_anime, interests.manga, interests.books, interests.comic_books, interests.user_id, interests.gender_preference, interests.gender_identity];
   */
-  return db.query(queryString, userInterests)
-  .then(res => {
+  return db.query(queryString, userInterests).then((res) => {
     return res.rows;
-  })
-}
+  });
+};
 
 module.exports = { getCurrentInterests, getMatches };

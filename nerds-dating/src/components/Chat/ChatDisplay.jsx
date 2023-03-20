@@ -3,7 +3,7 @@ import ChatBar from "./ChatBar";
 import MessageBox from "./MessageBox";
 import ChatNavBar from "./ChatNavBar";
 import io from "socket.io-client";
-import useChatList from "../hooks/useChatList";
+import useChatList from "../../hooks/useChatList";
 
 const ChatDisplay = () => {
   const id = 1;
