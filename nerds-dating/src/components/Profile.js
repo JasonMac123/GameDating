@@ -29,7 +29,7 @@ export default function Profile(props) {
                 className="bg-gray-300 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded"
                 onClick={() => {
                   console.log("bye now")
-                  console.log(props.potentialMatches[0]?.id)
+                  props.addLike(1, props.potentialMatches[0]?.id, false)
                   props.discard()
                 }}>
                 ⛔
@@ -38,7 +38,7 @@ export default function Profile(props) {
                 className="bg-red-300 hover:bg-red-700 text-white font-bold py-2 px-4 rounded"
                 onClick={() => {
                   console.log("gg")
-                  props.addLike(1, props.potentialMatches[0]?.id)
+                  props.addLike(1, props.potentialMatches[0]?.id, true)
                   props.discard()
                   
                 }} >

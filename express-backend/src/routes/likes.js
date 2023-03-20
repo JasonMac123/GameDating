@@ -14,7 +14,7 @@ const { getUsers } = require("../db/queries/login");
 router.post("/", (req, res) => {
   console.log(req.body)
   res.send("a-ok!")
-  addLikes(req.body.giver, req.body.receiver).then((data) => {
+  addLikes(req.body.giver, req.body.receiver, req.body.status).then((data) => {
     console.log(data)
   })
   // getUsers().then((data) => {
