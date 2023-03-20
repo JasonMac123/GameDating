@@ -2,11 +2,11 @@ const { Router } = require("express");
 const express = require("express");
 const router = express.Router();
 const { changeInterests, getInterests} = require("../db/queries/interests");
+const { json } = require("body-parser");
 
 router.get("/", (req, res) => {
-  getInterests().then((data) => {
-    res.json(data);
-  });
+  getInterests()
+  .then(data => res.json(data[0]))
 });
 
 router.post("/", (req, res) => {
@@ -35,7 +35,5 @@ router.post("/", (req, res) => {
   })
   
 });
-
-
 
 module.exports = router;
