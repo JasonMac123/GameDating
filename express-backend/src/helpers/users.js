@@ -3,4 +3,13 @@ const userDisconnects = (list, id) => {
   return newList;
 };
 
-module.exports = { userDisconnects };
+const findUser = (list, id) => {
+  for (const user of list) {
+    if (list.id === id) {
+      return user;
+    }
+  }
+  return;
+};
+
+module.exports = { userDisconnects, findUser };

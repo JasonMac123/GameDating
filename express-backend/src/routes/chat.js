@@ -6,6 +6,7 @@ const {
   getMessagesFromUsers,
   createMessage,
 } = require("../db/queries/messages");
+const { findUser } = require("../helpers/users");
 
 router.get("/:id", (req, res) => {
   const userID = req.params.id;
@@ -29,8 +30,10 @@ router.post("/send", (req, res) => {
     req.body.message
   ).then((data) => {
     res.json(data);
-    req.io.sockets.emit("hello", data);
-    console.log(req.list);
+    const findUserSocketID = findUser(req.list, data.receiving_user_id);
+    if (findUserSocketID) {
+      req.io.sockets.emit("update_chat", data);
+    }
   });
 });
 
