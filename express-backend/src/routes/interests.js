@@ -1,10 +1,10 @@
 const { Router } = require("express");
 const express = require("express");
 const router = express.Router();
-const { changeInterests, getInterests } = require("../db/queries/interests");
+const { changeInterests, getInterests, getInterestsByUserID, makeInterests } = require("../db/queries/interests");
 
 router.get("/", (req, res) => {
-  getInterests().then((data) => res.json(data[0]));
+  getInterests().then((data) => res.json(data));
 });
 
 router.post("/", (req, res) => {
@@ -26,10 +26,22 @@ router.post("/", (req, res) => {
     comic_books: req.body.comic_books,
   };
 
-  changeInterests(details).then((data) => {
-    // console.log(data)
-    res.json(data);
-  });
+ getInterestsByUserID(req.body.userID).then((data) => {
+  if (data) {
+    changeInterests(details).then((data) => {
+      // console.log(data)
+      res.json(data);
+    });
+  }
+
+  else{
+    makeInterests(details).then((data) => {
+      // console.log(data)
+      res.json(data);
+    });
+  }
+ })
+
 });
 
 module.exports = router;
