@@ -33,7 +33,7 @@ const NavBar = ({ setDisplay }) => {
             icon={<RiDoorOpenFill />}
             text="Log out"
             setDisplay={() => {
-              setDisplay(1);
+              setDisplay(6);
             }}
           />
           <SideBarIcon icon={<BsFillBellFill />} text="Notifcations" />
