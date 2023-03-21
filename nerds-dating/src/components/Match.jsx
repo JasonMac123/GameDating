@@ -8,9 +8,9 @@ export default function Profile(props) {
     <div className="flex h-screen bg-pink-200">
       {props.potentialMatches?.length > 0 && (
         <>
-          <div className="left-0 flex h-screen w-1/2 justify-center items-center">
+          <div className="left-0 flex h-screen w-1/2 justify-center items-center ">
             <img
-              className="object-scale-down max-w-5xl max-h-96 p-8"
+              className="object-scale-down max-w-lg max-h-96 p-10 "
               src={props.potentialMatches[0]?.cover_picture}
               alt="Cover Pic"
               
@@ -25,9 +25,8 @@ export default function Profile(props) {
             </div>
             <div className="flex  justify-between">
               <button
-                className="bg-rose-400 hover:text-red-700 text-white font-bold py-2 px-4 rounded"
+                className="bg-orange-400 hover:text-red-500 text-white font-bold py-2 px-4 rounded"
                 onClick={() => {
-                  console.log("bye now");
                   props.addLike(1, props.potentialMatches[0]?.id, false);
                   props.discard();
                 }}
@@ -35,9 +34,8 @@ export default function Profile(props) {
                 <ImCross />
               </button>
               <button
-                className="bg-rose-400 text-white hover:text-red-700 font-bold py-2 px-4 rounded"
+                className="bg-orange-400 text-white hover:text-red-500 font-bold py-2 px-4 rounded"
                 onClick={() => {
-                  console.log("gg");
                   props.addLike(1, props.potentialMatches[0]?.id, true);
                   props.checkMatch(1, props.potentialMatches[0], props.notify)
                   props.discard();

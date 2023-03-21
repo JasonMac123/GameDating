@@ -8,7 +8,7 @@ export default function Profile(props) {
       <>
       <div className="left-0 flex h-screen w-1/2 justify-center items-center">
         <img
-          className="object-scale-down max-w-5xl max-h-96 p-8"
+          className="object-scale-down w-2/3 h-2/3"
           src={user?.cover_picture}
           alt="Cover Pic"
         />
