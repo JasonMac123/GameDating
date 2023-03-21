@@ -1,5 +1,3 @@
-// import axios from "axios";
-// import { useState, useEffect } from "react";
 import { AiTwotoneHeart } from "react-icons/ai";
 import { ImCross } from "react-icons/im";
 
@@ -19,15 +17,15 @@ export default function Profile(props) {
             />
           </div>
           <div className="flex flex-col  w-1/2 gap-2 " >
-            <div className="bg-red-300">
+            <div className="bg-rose-400">
               {props.potentialMatches[0]?.name}
             </div>
-            <div className="bg-red-300 grow">
+            <div className="bg-rose-400 grow">
               {props.potentialMatches[0]?.summary}
             </div>
             <div className="flex  justify-between">
               <button
-                className="bg-gray-300 hover:text-red-700 text-white font-bold py-2 px-4 rounded"
+                className="bg-rose-400 hover:text-red-700 text-white font-bold py-2 px-4 rounded"
                 onClick={() => {
                   console.log("bye now");
                   props.addLike(1, props.potentialMatches[0]?.id, false);
@@ -37,7 +35,7 @@ export default function Profile(props) {
                 <ImCross />
               </button>
               <button
-                className="bg-red-300 text-white hover:text-red-700 font-bold py-2 px-4 rounded"
+                className="bg-rose-400 text-white hover:text-red-700 font-bold py-2 px-4 rounded"
                 onClick={() => {
                   console.log("gg");
                   props.addLike(1, props.potentialMatches[0]?.id, true);
@@ -58,7 +56,7 @@ export default function Profile(props) {
             alt="Sad Jigglypuff"
           ></img>
           We do not have anymore potential matches for you at the moment, please
-          check back periodically for new potential matches
+          check back periodically for new potential matches.
         </div>
       )}
     </div>

@@ -1,6 +1,3 @@
-// import axios from "axios";
-// import { useState, useEffect } from "react";
-
 export default function Profile(props) {
   console.log(props);
 
@@ -17,8 +14,8 @@ export default function Profile(props) {
         />
       </div>
         <div className="flex flex-col right-0 w-1/2 gap-2">
-          <div className=" bg-red-300">{user?.name}</div>
-          <div className="flex bg-red-300 grow">{user?.summary}</div>
+          <div className=" bg-rose-400">{user?.name}</div>
+          <div className="flex bg-rose-400 grow">{user?.summary}</div>
         </div>
       </>
     </div>
