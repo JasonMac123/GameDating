@@ -2,10 +2,8 @@ import React from "react";
 import ChatMessage from "./ChatMessage";
 import useMessageChat from "../../hooks/useMessageChat";
 
-const MessageBox = (props) => {
-  const { chat } = props;
+const MessageBox = ({ chat, userID }) => {
   const { message, setMessage, chatHistory, addMessage } = useMessageChat(chat);
-  const id = 1;
 
   return (
     <div>
@@ -25,8 +23,8 @@ const MessageBox = (props) => {
             e.preventDefault();
             addMessage(
               message,
-              id,
-              chat.first_user_id === id
+              userID,
+              chat.first_user_id === userID
                 ? chat.second_user_id
                 : chat.first_user_id,
               chat.id
@@ -35,6 +33,7 @@ const MessageBox = (props) => {
         >
           <input
             type="text"
+            placeholder="Say something!"
             value={message}
             onChange={(event) => setMessage(event.target.value)}
           />

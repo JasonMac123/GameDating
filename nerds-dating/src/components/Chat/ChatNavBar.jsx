@@ -1,12 +1,10 @@
 import React from "react";
 
-const ChatNavBar = (props) => {
-  const { chat } = props;
-  const user = 1;
+const ChatNavBar = ({chat, userID}) => {
   return (
     <div>
       <div className="flex w-16">
-        {user === chat.first_user_id ? (
+        {userID === chat.first_user_id ? (
           <>
             <img
               src={chat.user2_coverpicture}

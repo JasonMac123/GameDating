@@ -15,7 +15,7 @@ function Login(props) {
     event.preventDefault();
     return axios.post("/api/login", user).then((result) => {
       props.setUserID(result.data.id);
-      props.setDisplay(3);
+      props.setDisplay(5);
     });
   };
 
