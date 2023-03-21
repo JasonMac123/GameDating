@@ -7,17 +7,18 @@ export default function Profile(props) {
   console.log(props);
 
   return (
-    <div className="flex h-screen">
+    <div className="flex h-screen bg-blue-200">
       {props.potentialMatches?.length > 0 && (
         <>
-          <div className="left-0 flex h-screen w-1/2 bg-blue-200 justify-center">
+          <div className="left-0 flex h-screen w-1/2 justify-center items-center">
             <img
-              className="object-scale-down"
+              className="object-scale-down max-w-5xl max-h-96 p-8"
               src={props.potentialMatches[0]?.cover_picture}
               alt="Cover Pic"
+              
             />
           </div>
-          <div className="flex flex-col bg-blue-200 w-1/2 gap-2 " >
+          <div className="flex flex-col  w-1/2 gap-2 " >
             <div className="bg-yellow-200">
               {props.potentialMatches[0]?.name}
             </div>

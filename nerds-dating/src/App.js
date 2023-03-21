@@ -30,8 +30,9 @@ function App() {
   };
   const [userID, setUserID] = useState(0);
   const { potentialMatchList, next } = useCurrentUserMatches(1);
-  const { profile, setProfile} = useProfile(1)
+  const { profile, setProfile} = useProfile(3)
   const notify = (name) => toast(`You have a new match with ${name}!`)
+  const testToast = (name) => toast(`You have a new match with ${name}!`)
 
   return (
     <>
@@ -43,11 +44,11 @@ function App() {
         checkMatch={checkForMatch}
         notify ={notify}
       />}
-      {/* <button onClick={()=>console.log(userID)}>Notify!</button> */}
+      <button onClick={()=>testToast(userID)}>Notify!</button>
       <ToastContainer />
       {display === 77 && <Profile currentUser={profile} />}
       {display === 55 && <Profile currentUser={testUser} />}
-      {/* <ChatDisplay /> */}
+      {display === 5 && <ChatDisplay />}
       {display === 1 && (
         <Login
           display={display}
