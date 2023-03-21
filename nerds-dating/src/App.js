@@ -13,7 +13,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import useProfile from "./hooks/useProfile";
 
 function App() {
-  const [display, setDisplay] = useState(77);
+  const [display, setDisplay] = useState(66);
   const testUser = {
     id: 1,
     name: "Jason",

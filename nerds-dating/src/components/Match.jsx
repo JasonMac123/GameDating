@@ -7,7 +7,7 @@ export default function Profile(props) {
   console.log(props);
 
   return (
-    <div className="flex h-screen bg-blue-200">
+    <div className="flex h-screen bg-pink-200">
       {props.potentialMatches?.length > 0 && (
         <>
           <div className="left-0 flex h-screen w-1/2 justify-center items-center">
@@ -19,10 +19,10 @@ export default function Profile(props) {
             />
           </div>
           <div className="flex flex-col  w-1/2 gap-2 " >
-            <div className="bg-yellow-200">
+            <div className="bg-red-300">
               {props.potentialMatches[0]?.name}
             </div>
-            <div className="bg-green-300 grow">
+            <div className="bg-red-300 grow">
               {props.potentialMatches[0]?.summary}
             </div>
             <div className="flex  justify-between">
