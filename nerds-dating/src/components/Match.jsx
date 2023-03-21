@@ -10,12 +10,14 @@ export default function Profile(props) {
     <div className="flex h-screen">
       {props.potentialMatches?.length > 0 && (
         <>
-          <img
-            className="left-0 w-1/2"
-            src={props.potentialMatches[0]?.cover_picture}
-            alt="Cover Pic"
-          />
-          <div className="flex flex-col bg-blue-200 w-1/2 gap-2" >
+          <div className="left-0 flex h-screen w-1/2 bg-blue-200 justify-center">
+            <img
+              className="object-scale-down"
+              src={props.potentialMatches[0]?.cover_picture}
+              alt="Cover Pic"
+            />
+          </div>
+          <div className="flex flex-col bg-blue-200 w-1/2 gap-2 " >
             <div className="bg-yellow-200">
               {props.potentialMatches[0]?.name}
             </div>
