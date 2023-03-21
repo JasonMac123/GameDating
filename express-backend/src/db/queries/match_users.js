@@ -1,17 +1,4 @@
 const db = require("../index");
-const { getInterests } = require("./interests");
-
-// SELECT   interests.*
-// FROM     interests
-// JOIN users
-// ON interests.user_id = users.id
-// WHERE    `color` = "black"
-//    OR    `weight` = "heavy"
-//    OR    `type` = "limo"
-// ORDER BY (   (`color` = "black")
-//            + (`weight` = "heavy")
-//            + (`type` = "limo")
-//          ) DESC
 
 const getCurrentInterests = (userID) => {
   const queryString = `SELECT *

@@ -9,8 +9,6 @@ const checkChatExists = (user1ID, user2ID) => {
     AND second_user_id = $1)
   `;
   return db.query(queryString, [user1ID, user2ID]).then((res) => {
-    console.log("14");
-    console.log(res.rows.length);
     if (res.rows.length > 0) {
       return true;
     }
