@@ -31,6 +31,7 @@ function App() {
 
   return (
     <>
+      {userID !== 0 && <SideBar setDisplay={setDisplay} />}
       {/* {<Profile currentUser={testUser} />} */}
       {display === 1 && (
         <Login

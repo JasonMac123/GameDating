@@ -23,7 +23,7 @@ const ChatDisplay = ({ userID }) => {
   return (
     <div className="flex flex-row px-8">
       <ChatBar matchList={matchList} setChat={setChat} userID={userID} />
-      <div className="px-32 w-full">
+      <div className="px-32 w-screen h-screen">
         <ChatNavBar chat={chat} userID={userID} />
         <MessageBox chat={chat} userID={userID} />
       </div>
