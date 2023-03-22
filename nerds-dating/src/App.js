@@ -31,8 +31,16 @@ function App() {
 
   return (
     <>
+
       {userID !== 0 && <SideBar setDisplay={setDisplay} />}
+      {/* <Match
+        potentialMatches={potentialMatchList.potentialMatches}
+        discard={next}
+        addLike={addNewLike}
+        checkMatch={checkForMatch}
+      /> */}
       {/* {<Profile currentUser={testUser} />} */}
+
       {display === 1 && (
         <Login
           display={display}
