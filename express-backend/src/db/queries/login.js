@@ -1,7 +1,7 @@
 const db = require("../index");
 
 const getUsers = function () {
-  const queryString = "SELECT * FROM users";
+  const queryString = "SELECT * FROM users ORDER BY id";
   return db.query(queryString).then((data) => {
     return data.rows;
   });

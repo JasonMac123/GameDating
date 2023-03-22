@@ -2,18 +2,20 @@ import Match from "./components/Match";
 import Profile from "./components/Profile/Profile";
 import addNewLike from "./helpers/addNewLikes";
 import useCurrentUserMatches from "./hooks/useCurrentUserMatches";
-import checkForMatch from "./helpers/checkForMatch";
 import { useState } from "react";
 import ChatDisplay from "./components/Chat/ChatDisplay";
 import Login from "./components/Profile/Login";
 import Register from "./components/Profile/Register";
 import Interests from "./components/Profile/Interests";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import useProfile from "./hooks/useProfile";
+import notify from "./helpers/notifyMatch";
+import lookUpUser from "./helpers/lookUpUser"; 
 import SideBar from "./components/SideBar/SideBar";
 
 function App() {
-  const [display, setDisplay] = useState(1);
-  const [userID, setUserID] = useState(0);
-  const { potentialMatchList, next } = useCurrentUserMatches(1);
+  const [display, setDisplay] = useState(77);
   const testUser = {
     id: 1,
     name: "Jason",
@@ -28,18 +30,33 @@ function App() {
     summary: "testing",
     password: "password",
   };
+  const [userID, setUserID] = useState(0);
+  const { potentialMatchList, setPotentialMatchList, next } = useCurrentUserMatches(1);
+  const { profile, setProfile} = useProfile(3)
+  const testToast = (name) => toast(`You have a new match with ${name}!`)
 
   return (
     <>
-
-      {userID !== 0 && <SideBar setDisplay={setDisplay} />}
-      {/* <Match
-        potentialMatches={potentialMatchList.potentialMatches}
+      {/* <div className="text-sky-400 text-2xl underline decoration-solid">Hi</div> */}
+      {/* several buttons for ease of testing and switching between profiles */}
+      <button onClick={()=>notify("Nate River")}>Notify!</button>
+      <button onClick={()=>lookUpUser(2).then(res=> setProfile(res))}>Left!</button>
+      <button onClick={()=>lookUpUser(3).then(res=> setProfile(res))}>Right!</button>
+      <button onClick={()=>display === 66? setDisplay(77) : setDisplay(66)}>switch!</button>
+      <button onClick={()=>setPotentialMatchList([])}>empty matches!</button>
+      <ToastContainer />
+      {display === 66 && <Match
+        potentialMatches={potentialMatchList}
         discard={next}
         addLike={addNewLike}
-        checkMatch={checkForMatch}
-      /> */}
-      {/* {<Profile currentUser={testUser} />} */}
+        notify ={notify}
+      />}
+      {display === 77 && <Profile currentUser={profile} />}
+      {display === 55 && <Profile currentUser={testUser} />}
+      {display === 5 && <ChatDisplay />}
+
+
+      {userID !== 0 && <SideBar setDisplay={setDisplay} />}
 
       {display === 1 && (
         <Login

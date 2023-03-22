@@ -1,17 +1,4 @@
 const db = require("../index");
-const { getInterests } = require("./interests");
-
-// SELECT   interests.*
-// FROM     interests
-// JOIN users
-// ON interests.user_id = users.id
-// WHERE    `color` = "black"
-//    OR    `weight` = "heavy"
-//    OR    `type` = "limo"
-// ORDER BY (   (`color` = "black")
-//            + (`weight` = "heavy")
-//            + (`type` = "limo")
-//          ) DESC
 
 const getCurrentInterests = (userID) => {
   const queryString = `SELECT *
@@ -100,7 +87,7 @@ const getMatches = (interests) => {
     interests.user_id,
   ];
   /*
-    const userInterests = [interests.strategy_games, interests.cooking_games, interests.puzzle_games, interests.mmos, interests.action_games, interests.rpg_games, interests.slice_of_life_anime, interests.isekai_anime, interests.shonen_anime, interests.sports_anime, interests.romance_anime, interests.manga, interests.books, interests.comic_books, interests.user_id, interests.gender_preference, interests.gender_identity];
+    userInterests.push(interests.gender_preference, interests.gender_identity)
   */
   return db.query(queryString, userInterests).then((res) => {
     return res.rows;
