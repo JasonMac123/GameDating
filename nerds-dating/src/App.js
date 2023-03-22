@@ -38,6 +38,7 @@ function App() {
   return (
     <>
       {/* <div className="text-sky-400 text-2xl underline decoration-solid">Hi</div> */}
+
       {/* several buttons for ease of testing and switching between profiles */}
       <button onClick={()=>notify("Nate River")}>Notify!</button>
       <button onClick={()=>lookUpUser(2).then(res=> setProfile(res))}>Left!</button>
@@ -47,6 +48,7 @@ function App() {
       <ToastContainer />
       {display === 66 && <Match
         potentialMatches={potentialMatchList}
+
         discard={next}
         addLike={addNewLike}
         notify ={notify}
