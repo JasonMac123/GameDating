@@ -12,6 +12,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import useProfile from "./hooks/useProfile";
 import notify from "./helpers/notifyMatch";
 import lookUpUser from "./helpers/lookUpUser"; 
+import SideBar from "./components/SideBar/SideBar";
 
 function App() {
   const [display, setDisplay] = useState(77);
@@ -53,6 +54,10 @@ function App() {
       {display === 77 && <Profile currentUser={profile} />}
       {display === 55 && <Profile currentUser={testUser} />}
       {display === 5 && <ChatDisplay />}
+
+
+      {userID !== 0 && <SideBar setDisplay={setDisplay} />}
+
       {display === 1 && (
         <Login
           display={display}
@@ -77,6 +82,15 @@ function App() {
           setUserID={setUserID}
         />
       )}
+      {display === 6 && (
+        <Match
+          potentialMatches={potentialMatchList.potentialMatches}
+          discard={next}
+          addLike={addNewLike}
+          checkMatch={checkForMatch}
+        />
+      )}
+      {display === 5 && <ChatDisplay userID={userID} />}
     </>
   );
 }

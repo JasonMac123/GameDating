@@ -14,8 +14,15 @@ function Login(props) {
   const handleSubmit = (event) => {
     event.preventDefault();
     return axios.post("/api/login", user).then((result) => {
-      props.setUserID(result.data.id);
-      props.setDisplay(3);
+      if (!result.data) {
+        console.log("no data")
+      }
+      else {
+        console.log(result)
+        props.setUserID(result.data.id);
+        props.setDisplay(3);
+      }
+
     });
   };
 
