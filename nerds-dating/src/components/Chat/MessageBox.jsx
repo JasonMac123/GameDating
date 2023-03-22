@@ -2,9 +2,26 @@ import React from "react";
 import ChatMessage from "./ChatMessage";
 import useMessageChat from "../../hooks/useMessageChat";
 import { FaLongArrowAltRight } from "react-icons/fa";
+import io from "socket.io-client";
+import { useEffect } from "react";
 
 const MessageBox = ({ chat, userID }) => {
-  const { message, setMessage, chatHistory, addMessage } = useMessageChat(chat);
+  const { message, setMessage, chatHistory, setChatHistory, addMessage } =
+    useMessageChat(chat);
+
+  useEffect(() => {
+    const socket = io.connect("/");
+    socket.emit("user_connected", { userID });
+    socket.on("update_chat", (arg) => {
+      if (chat.id === arg[0].chat_room_id) {
+        setChatHistory((prev) => [...prev, arg[0]]);
+      }
+    });
+
+    return () => {
+      socket.disconnect();
+    };
+  });
 
   return (
     <div className="h-2/3">
