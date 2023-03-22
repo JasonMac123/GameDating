@@ -333,6 +333,7 @@ function Interests(props) {
               </label>
             </div>
           </ul>
+
         </fieldset>
         <div class="mb-12 p-3 text-center">
           <button

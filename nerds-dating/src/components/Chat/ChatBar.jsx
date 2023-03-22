@@ -1,18 +1,15 @@
 import ChatBarItem from "./ChatBarItem";
 
-const ChatBar = (props) => {
-  const id = 1;
-  const { matchList, setChat } = props;
-
+const ChatBar = ({ matchList, setChat, userID }) => {
   return (
-    <div className="flex flex-col">
+    <div className="flex flex-col bg-red-100 w-1/3 h-screen pl-36 pr-12 pt-8 space-y-4 overflow-y-auto">
       {matchList &&
         matchList.map((item) => {
           return (
             <ChatBarItem
               key={item.id}
               profile={item}
-              user={id}
+              userID={userID}
               setChat={setChat}
             ></ChatBarItem>
           );

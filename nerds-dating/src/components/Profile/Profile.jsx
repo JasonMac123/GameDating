@@ -1,25 +1,23 @@
-// import axios from "axios";
-// import { useState, useEffect } from "react";
-
 export default function Profile(props) {
   console.log(props);
 
   const user = props.currentUser;
 
   return (
-    <>
+    <div className="flex h-screen bg-pink-200">
       <>
+      <div className="left-0 flex h-screen w-1/2 justify-center items-center">
         <img
-          className="left-0 object-scale-down h-48 w-96"
-          src={user.cover_picture}
+          className="object-scale-down w-2/3 h-2/3"
+          src={user?.cover_picture}
           alt="Cover Pic"
         />
-        <div className="bg-blue-100">
-          <div className="right-0 bg-yellow-200">{user.name}</div>
-          <br></br>
-          <div className="bg-green-300">{user.summary}</div>
+      </div>
+        <div className="flex flex-col right-0 w-1/2 gap-2">
+          <div className=" bg-rose-400">{user?.name}</div>
+          <div className="flex bg-rose-400 grow">{user?.summary}</div>
         </div>
       </>
-    </>
+    </div>
   );
 }
