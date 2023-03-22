@@ -8,6 +8,7 @@ import ChatDisplay from "./components/Chat/ChatDisplay";
 import Login from "./components/Profile/Login";
 import Register from "./components/Profile/Register";
 import Interests from "./components/Profile/Interests";
+import SideBar from "./components/SideBar/SideBar";
 
 function App() {
   const [display, setDisplay] = useState(1);
@@ -30,7 +31,8 @@ function App() {
 
   return (
     <>
-      <div className="text-sky-400 text-2xl underline decoration-solid">Hi</div>
+
+      {userID !== 0 && <SideBar setDisplay={setDisplay} />}
       {/* <Match
         potentialMatches={potentialMatchList.potentialMatches}
         discard={next}
@@ -38,7 +40,7 @@ function App() {
         checkMatch={checkForMatch}
       /> */}
       {/* {<Profile currentUser={testUser} />} */}
-      {/* <ChatDisplay /> */}
+
       {display === 1 && (
         <Login
           display={display}
@@ -63,6 +65,15 @@ function App() {
           setUserID={setUserID}
         />
       )}
+      {display === 6 && (
+        <Match
+          potentialMatches={potentialMatchList.potentialMatches}
+          discard={next}
+          addLike={addNewLike}
+          checkMatch={checkForMatch}
+        />
+      )}
+      {display === 5 && <ChatDisplay userID={userID} />}
     </>
   );
 }

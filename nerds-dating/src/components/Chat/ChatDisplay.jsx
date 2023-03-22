@@ -5,13 +5,12 @@ import ChatNavBar from "./ChatNavBar";
 import io from "socket.io-client";
 import useChatList from "../../hooks/useChatList";
 
-const ChatDisplay = () => {
-  const id = 1;
-  const { chat, setChat, matchList } = useChatList(id);
+const ChatDisplay = ({ userID }) => {
+  const { chat, setChat, matchList } = useChatList(userID);
 
   useEffect(() => {
     const socket = io.connect("/");
-    socket.emit("user_connected", { id });
+    socket.emit("user_connected", { userID });
     socket.on("update_chat", (arg) => {
       console.log("helloworld");
     });
@@ -19,16 +18,16 @@ const ChatDisplay = () => {
     return () => {
       socket.disconnect();
     };
-  }, []);
+  }, [userID]);
 
   return (
-    <div className="flex flex-row px-8">
-      <ChatBar matchList={matchList} setChat={setChat} />
-      <div className="px-32 w-full">
-        <ChatNavBar chat={chat} />
-        <MessageBox chat={chat} />
+    <section className="flex flex-row px-8">
+      <ChatBar matchList={matchList} setChat={setChat} userID={userID} />
+      <div className="px-32 w-screen h-screen">
+        <ChatNavBar chat={chat} userID={userID} />
+        <MessageBox chat={chat} userID={userID} />
       </div>
-    </div>
+    </section>
   );
 };
 

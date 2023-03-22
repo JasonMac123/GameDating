@@ -49,7 +49,7 @@ function Interests(props) {
               value="true"
               onClick={handleChange}
             />
-            <label for="strategy_games">Strategy Games</label>
+            <label htmlFor="strategy_games">Strategy Games</label>
           </div>
 
           <div>
@@ -60,7 +60,7 @@ function Interests(props) {
               value="true"
               onClick={handleChange}
             />
-            <label for="cooking_games">Cooking Games</label>
+            <label htmlFor="cooking_games">Cooking Games</label>
           </div>
 
           <div>
@@ -71,7 +71,7 @@ function Interests(props) {
               value="true"
               onClick={handleChange}
             />
-            <label for="puzzle_games">Puzzle Games</label>
+            <label htmlFor="puzzle_games">Puzzle Games</label>
           </div>
 
           <div>
@@ -82,7 +82,7 @@ function Interests(props) {
               value="true"
               onClick={handleChange}
             />
-            <label for="mmos">Massive Multiplayer Online Games</label>
+            <label htmlFor="mmos">Massive Multiplayer Online Games</label>
           </div>
 
           <div>
@@ -93,7 +93,7 @@ function Interests(props) {
               value="true"
               onClick={handleChange}
             />
-            <label for="action_games">Action Games</label>
+            <label htmlFor="action_games">Action Games</label>
           </div>
 
           <div>
@@ -104,7 +104,7 @@ function Interests(props) {
               value="true"
               onClick={handleChange}
             />
-            <label for="rpg_games">Role Playing Games</label>
+            <label htmlFor="rpg_games">Role Playing Games</label>
           </div>
           <br />
           <legend>Anime:</legend>
@@ -117,7 +117,7 @@ function Interests(props) {
               value="true"
               onClick={handleChange}
             />
-            <label for="slice_of_life_anime">Slice of Life Anime</label>
+            <label htmlFor="slice_of_life_anime">Slice of Life Anime</label>
           </div>
 
           <div>
@@ -128,7 +128,7 @@ function Interests(props) {
               value="true"
               onClick={handleChange}
             />
-            <label for="isekai_anime">Isekai Anime</label>
+            <label htmlFor="isekai_anime">Isekai Anime</label>
           </div>
 
           <div>
@@ -139,7 +139,7 @@ function Interests(props) {
               value="true"
               onClick={handleChange}
             />
-            <label for="shonen_anime">Shonen Anime</label>
+            <label htmlFor="shonen_anime">Shonen Anime</label>
           </div>
 
           <div>
@@ -150,7 +150,7 @@ function Interests(props) {
               value="true"
               onClick={handleChange}
             />
-            <label for="sports_anime">Sports Anime</label>
+            <label htmlFor="sports_anime">Sports Anime</label>
           </div>
 
           <div>
@@ -161,7 +161,7 @@ function Interests(props) {
               value="true"
               onClick={handleChange}
             />
-            <label for="romance_anime">Romance Anime</label>
+            <label htmlFor="romance_anime">Romance Anime</label>
           </div>
           <br />
           <legend>Reading:</legend>
@@ -174,7 +174,7 @@ function Interests(props) {
               value="true"
               onClick={handleChange}
             />
-            <label for="manga">Manga</label>
+            <label htmlFor="manga">Manga</label>
           </div>
 
           <div>
@@ -185,7 +185,7 @@ function Interests(props) {
               value="true"
               onClick={handleChange}
             />
-            <label for="books">Books</label>
+            <label htmlFor="books">Books</label>
           </div>
 
           <div>
@@ -196,7 +196,7 @@ function Interests(props) {
               value="true"
               onClick={handleChange}
             />
-            <label for="comic_books">Comic Books</label>
+            <label htmlFor="comic_books">Comic Books</label>
           </div>
         </fieldset>
         <input type="submit" onClick={handleSubmit} />
