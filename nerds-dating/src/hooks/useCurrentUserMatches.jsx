@@ -6,16 +6,6 @@ export default function useCurrentUserMatches(id) {
     potentialMatches: [],
   });
 
-  // useEffect((id) => {
-  //   axios
-  //   .get(`/api/match/${id}`)
-  //   .then((res) => {
-  //     // console.log(res.data);
-  //     setMatch(prev => ({ ...prev, matches: res.data }));
-  //   })
-  //   .catch((e) => console.log(e));
-  // }, [])
-
   useEffect(() => {
     axios
       .get(`/api/match/${id}`)
