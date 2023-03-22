@@ -21,13 +21,13 @@ const ChatDisplay = ({ userID }) => {
   }, [userID]);
 
   return (
-    <div className="flex flex-row px-8">
+    <section className="flex flex-row px-8">
       <ChatBar matchList={matchList} setChat={setChat} userID={userID} />
       <div className="px-32 w-screen h-screen">
         <ChatNavBar chat={chat} userID={userID} />
         <MessageBox chat={chat} userID={userID} />
       </div>
-    </div>
+    </section>
   );
 };
 
