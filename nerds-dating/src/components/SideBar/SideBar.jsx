@@ -17,7 +17,7 @@ const NavBar = ({ setDisplay }) => {
             icon={<BsFillPeopleFill />}
             text="Match with others!"
             setDisplay={() => {
-              setDisplay(4);
+              setDisplay(66);
             }}
           />
           <SideBarIcon
@@ -33,7 +33,7 @@ const NavBar = ({ setDisplay }) => {
             icon={<RiDoorOpenFill />}
             text="Log out"
             setDisplay={() => {
-              setDisplay(6);
+              setDisplay(1);
             }}
           />
           <SideBarIcon icon={<BsFillBellFill />} text="Notifcations" />
