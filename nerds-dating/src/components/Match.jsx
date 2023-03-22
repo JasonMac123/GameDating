@@ -1,5 +1,7 @@
 import { AiTwotoneHeart } from "react-icons/ai";
 import { ImCross } from "react-icons/im";
+import checkForMatch from "../helpers/checkForMatch";
+
 
 export default function Profile(props) {
   console.log(props);
@@ -37,7 +39,7 @@ export default function Profile(props) {
                 className="bg-orange-400 text-white hover:text-red-500 font-bold py-2 px-4 rounded"
                 onClick={() => {
                   props.addLike(1, props.potentialMatches[0]?.id, true);
-                  props.checkMatch(1, props.potentialMatches[0], props.notify)
+                  checkForMatch(1, props.potentialMatches[0], props.notify)
                   props.discard();
                 }}
               >

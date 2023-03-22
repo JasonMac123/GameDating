@@ -2,7 +2,6 @@ import Match from "./components/Match";
 import Profile from "./components/Profile/Profile";
 import addNewLike from "./helpers/addNewLikes";
 import useCurrentUserMatches from "./hooks/useCurrentUserMatches";
-import checkForMatch from "./helpers/checkForMatch";
 import { useState } from "react";
 import ChatDisplay from "./components/Chat/ChatDisplay";
 import Login from "./components/Profile/Login";
@@ -49,7 +48,6 @@ function App() {
         potentialMatches={potentialMatchList}
         discard={next}
         addLike={addNewLike}
-        checkMatch={checkForMatch}
         notify ={notify}
       />}
       {display === 77 && <Profile currentUser={profile} />}
