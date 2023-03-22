@@ -5,7 +5,7 @@ const ChatBarItem = (props) => {
     <>
       {userID === profile.first_user_id ? (
         <div
-          className="flex flex-row bg-red-400 hover:bg-red-600 w-full h-24 space-x-10 justify-start items-center rounded-md transition-all pl-2"
+          className="flex flex-row bg-teal-100 hover:bg-cyan-600 w-full h-24 space-x-10 justify-start items-center rounded-md transition-all pl-2"
           onClick={() => {
             setChat(profile);
           }}
@@ -21,7 +21,7 @@ const ChatBarItem = (props) => {
         </div>
       ) : (
         <div
-          className="flex flex-row bg-red-400 hover:bg-red-600 w-full h-24 space-x-10 justify-start items-center rounded-md transition-all pl-2"
+          className="flex flex-row bg-teal-100 hover:bg-cyan-600 w-full h-24 space-x-10 justify-start items-center rounded-md transition-all pl-2"
           onClick={() => {
             setChat(profile);
           }}
