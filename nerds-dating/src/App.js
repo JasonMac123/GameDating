@@ -15,7 +15,7 @@ import lookUpUser from "./helpers/lookUpUser";
 import SideBar from "./components/SideBar/SideBar";
 
 function App() {
-  const [display, setDisplay] = useState(77);
+  const [display, setDisplay] = useState(1);
   const testUser = {
     id: 1,
     name: "Jason",
@@ -82,14 +82,6 @@ function App() {
           setDisplay={setDisplay}
           userID={userID}
           setUserID={setUserID}
-        />
-      )}
-      {display === 6 && (
-        <Match
-          potentialMatches={potentialMatchList.potentialMatches}
-          discard={next}
-          addLike={addNewLike}
-          checkMatch={checkForMatch}
         />
       )}
       {display === 5 && <ChatDisplay userID={userID} />}
