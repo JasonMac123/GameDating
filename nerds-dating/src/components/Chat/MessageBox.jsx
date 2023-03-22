@@ -8,7 +8,7 @@ const MessageBox = ({ chat, userID }) => {
 
   return (
     <div className="h-2/3">
-      <div className="overflow-y-auto space-y-8 bg-slate-200 p-4 h-full rounded-lg scroll-smooth">
+      <div className="overflow-y-auto space-y-1 bg-slate-200 p-4 h-full rounded-lg scroll-smooth">
         {chatHistory.map((item) => {
           return (
             <ChatMessage
