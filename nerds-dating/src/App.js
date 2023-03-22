@@ -31,18 +31,19 @@ function App() {
     password: "password",
   };
   const [userID, setUserID] = useState(0);
-  const { potentialMatchList, next } = useCurrentUserMatches(1);
+  const { potentialMatchList, setPotentialMatchList, next } = useCurrentUserMatches(1);
   const { profile, setProfile} = useProfile(3)
   const testToast = (name) => toast(`You have a new match with ${name}!`)
 
   return (
     <>
       {/* <div className="text-sky-400 text-2xl underline decoration-solid">Hi</div> */}
-      {/* three buttons for ease of testing and switching between profiles */}
+      {/* several buttons for ease of testing and switching between profiles */}
       <button onClick={()=>notify("Nate River")}>Notify!</button>
       <button onClick={()=>lookUpUser(2).then(res=> setProfile(res))}>Left!</button>
       <button onClick={()=>lookUpUser(3).then(res=> setProfile(res))}>Right!</button>
       <button onClick={()=>display === 66? setDisplay(77) : setDisplay(66)}>switch!</button>
+      <button onClick={()=>setPotentialMatchList([])}>empty matches!</button>
       <ToastContainer />
       {display === 66 && <Match
         potentialMatches={potentialMatchList}
