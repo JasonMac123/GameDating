@@ -45,7 +45,7 @@ function App() {
       <button onClick={()=>display === 66? setDisplay(77) : setDisplay(66)}>switch!</button>
       <ToastContainer />
       {display === 66 && <Match
-        potentialMatches={potentialMatchList.potentialMatches}
+        potentialMatches={potentialMatchList}
         discard={next}
         addLike={addNewLike}
         checkMatch={checkForMatch}

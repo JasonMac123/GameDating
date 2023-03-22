@@ -48,7 +48,9 @@ export default function Profile(props) {
         </>
       )}
       {props.potentialMatches.length === 0 && (
-        <div>
+        <div
+        className="flex flex-col justify-center items-center w-full"
+        >
           <img
             src="https://media.tenor.com/n6XKuq5mXkIAAAAC/jigglypuff-sad.gif"
             alt="Sad Jigglypuff"
