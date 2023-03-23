@@ -44,7 +44,7 @@ function Login(props) {
   }
 
   return (
-    <section class="gradient-form h-screen bg-black">
+    <section class="gradient-form h-screen bg-zinc-300">
       <div class="container h-full p-10">
         <div class="g-6 flex h-full flex-wrap items-center justify-center text-neutral-800 dark:text-neutral-200">
           <div class="w-full">
@@ -88,7 +88,7 @@ function Login(props) {
                             placeholder="Password"
                           />
                         </div>
-                        <div class="mb-12 pt-1 pb-1 text-center">
+                        <div class="mb-4 pt-1 pb-1 text-center">
                           {/* <input type="submit" onClick={handleSubmit} /> */}
                           <button
                             class="mb-3 inline-block w-full rounded px-6 pt-2.5 pb-2 text-xs font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_rgba(0,0,0,0.2)] transition duration-150 ease-in-out hover:shadow-[0_8px_9px_-4px_rgba(0,0,0,0.1),0_4px_18px_0_rgba(0,0,0,0.2)] focus:shadow-[0_8px_9px_-4px_rgba(0,0,0,0.1),0_4px_18px_0_rgba(0,0,0,0.2)] focus:outline-none focus:ring-0 active:shadow-[0_8px_9px_-4px_rgba(0,0,0,0.1),0_4px_18px_0_rgba(0,0,0,0.2)]"
@@ -103,8 +103,8 @@ function Login(props) {
                           {error === 2 && (<NotAValidUser />)}
                           {error === 3 && (<IncorrectPassword />)}
                         </div>
-                        <div class="flex items-center justify-between pb-6">
-                          <p class="mb-0 mr-2">Don't have an account?</p>
+                        <div class="items-center">
+                          <p class="mb-4">Don't have an account?</p>
                           <button
                             type="button"
                             class="mb-3 inline-block w-full rounded px-6 pt-2.5 pb-2 text-xs font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_rgba(0,0,0,0.2)] transition duration-150 ease-in-out hover:shadow-[0_8px_9px_-4px_rgba(0,0,0,0.1),0_4px_18px_0_rgba(0,0,0,0.2)] focus:shadow-[0_8px_9px_-4px_rgba(0,0,0,0.1),0_4px_18px_0_rgba(0,0,0,0.2)] focus:outline-none focus:ring-0 active:shadow-[0_8px_9px_-4px_rgba(0,0,0,0.1),0_4px_18px_0_rgba(0,0,0,0.2)]"

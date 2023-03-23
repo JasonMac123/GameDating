@@ -44,14 +44,14 @@ function Register(props) {
   }
 
   return (
-    <section class="gradient-form h-full bg-black dark:bg-neutral-700">
+    <section class="gradient-form h-full bg-zinc-300">
       <div class="container h-full p-10">
         <div
           class="g-6 flex h-full flex-wrap items-center justify-center text-neutral-800 dark:text-neutral-200">
           <div class="w-full">
             <div
               class="block rounded-lg bg-white shadow-lg dark:bg-neutral-800">
-              <div class="g-0 lg:flex lg:flex-wrap bg-sky-600">
+              <div class="g-0 rounded lg:flex lg:flex-wrap bg-stone-500">
                 <div class="px-4 md:px-0 lg:w-6/12">
                   <div class="md:mx-6 md:p-12">
                     <div class="text-center">
