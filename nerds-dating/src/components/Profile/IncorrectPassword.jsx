@@ -1,6 +1,6 @@
 function IncorrectPassword(props) {
   return (
-    <section>
+    <section className="bg-red-600">
       <p>Incorrect password</p>
     </section>
   );

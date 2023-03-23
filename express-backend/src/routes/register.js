@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 const { addUser } = require("../db/queries/register");
 const bcrypt = require('bcryptjs');
+const { getUserWithEmail } = require("../db/queries/login");
 
 
 // ('Randy', 'games@testing.com', 'password', '333-333-3333', 'https://i.kinja-img.com/gawker-media/image/upload/c_fill,f_auto,fl_progressive,g_center,h_675,pg_1,q_80,w_1200/8b43d3f6ca573fd85afe0c6df608062c.jpg', 'https://www.hindustantimes.com/ht-img/img/2023/02/15/1600x900/Death_Note_is_usually_the_first_anime__1676437361142_1676437361490_1676437361490.jpg', 'F', 'M', 'hello, there anime is my anme');
@@ -24,10 +25,20 @@ router.post("/", (req, res) => {
     summary: req.body.summary,
   };
 
-  addUser(details).then((data) => {
-    // console.log(data)
-    res.json(data);
+  if (!details.name|| !details.email || !details.password || !details.phone_number || !details.profile_picture || !details.cover_picture || !details.gender_identity || !details.gender_preference || !details.summary) {
+    console.log(req.body.name)
+    return res.json(1);
+  }
+
+  getUserWithEmail(req.body.email).then((data) => {
+    if (data) {
+      console.log("juniper")
+      return res.json(2)
+    }
+
+    else {return res.json(details)}
   });
+
 });
 
 module.exports = router;

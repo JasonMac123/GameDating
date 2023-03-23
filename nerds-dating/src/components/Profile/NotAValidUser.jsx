@@ -1,6 +1,6 @@
 function NotAValidUser(props) {
   return (
-    <section>
+    <section className="bg-red-600">
       <p>Not a valid user</p>
     </section>
   );

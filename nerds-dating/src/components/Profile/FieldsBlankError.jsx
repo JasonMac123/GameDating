@@ -4,8 +4,8 @@
 
 function FieldBlankError(props) {
   return (
-    <section>
-      <p>Password and email fields cannot be blank</p>
+    <section className="bg-red-600">
+      <p>All fields must be filled out</p>
     </section>
   );
 }

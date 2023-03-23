@@ -64,9 +64,6 @@ function Login(props) {
                     </div>
                     <div class="bg-stone-500 rounded border-white border-8">
                       <form autoComplete="off" onSubmit={handleSubmit} class="md:mx-6 md:p-12">
-                        {error === 1 && (<FieldBlankError />)}
-                        {error === 2 && (<NotAValidUser />)}
-                        {error === 3 && (<IncorrectPassword />)}
                         <p class="mb-4">Please login to your account:</p>
                         <div class="relative mb-4" data-te-input-wrapper-init>
                           <input
@@ -102,6 +99,9 @@ function Login(props) {
                             style={{ background: "linear-gradient(to right, #ee7724, #d8363a, #dd3675, #b44593)" }}>
                             Login
                           </button>
+                          {error === 1 && (<FieldBlankError />)}
+                          {error === 2 && (<NotAValidUser />)}
+                          {error === 3 && (<IncorrectPassword />)}
                         </div>
                         <div class="flex items-center justify-between pb-6">
                           <p class="mb-0 mr-2">Don't have an account?</p>

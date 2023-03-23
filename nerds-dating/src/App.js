@@ -15,7 +15,7 @@ import lookUpUser from "./helpers/lookUpUser";
 import SideBar from "./components/SideBar/SideBar";
 
 function App() {
-  const [display, setDisplay] = useState(1);
+  const [display, setDisplay] = useState(2);
   const testUser = {
     id: 1,
     name: "Jason",
