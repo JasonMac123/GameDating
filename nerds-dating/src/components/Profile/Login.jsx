@@ -32,7 +32,7 @@ function Login(props) {
   }
 
   return (
-    <section class="gradient-form h-screen bg-gradient-to-br from-amber-200 via-violet-600 to-sky-900 dark:bg-neutral-700">
+    <section class="gradient-form h-screen bg-black">
       <div class="container h-full p-10">
         <div class="g-6 flex h-full flex-wrap items-center justify-center text-neutral-800 dark:text-neutral-200">
           <div class="w-full">
@@ -50,7 +50,7 @@ function Login(props) {
                         Gamers Only
                       </h4>
                     </div>
-                    <div class="bg-gradient-to-l from-purple-200 via-purple-400 to-purple-800 rounded">
+                    <div class="bg-stone-500 rounded border-white border-8">
                       <form autoComplete="off" onSubmit={handleSubmit} class="md:mx-6 md:p-12">
                         <p class="mb-4">Please login to your account:</p>
                         <div class="relative mb-4" data-te-input-wrapper-init>
