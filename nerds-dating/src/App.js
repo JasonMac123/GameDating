@@ -37,10 +37,12 @@ function App() {
       {/* <div className="text-sky-400 text-2xl underline decoration-solid">Hi</div> */}
 
       {/* several buttons for ease of testing and switching between profiles */}
-      <button onClick={()=>lookUpUser(2).then(res=> setProfile(res))}>Left!</button>
-      <button onClick={()=>lookUpUser(3).then(res=> setProfile(res))}>Right!</button>
-      <button onClick={()=>display === 66? setDisplay(77) : setDisplay(66)}>switch!</button>
-      <button onClick={()=>setPotentialMatchList([])}>empty matches!</button>
+      {/* <div>
+        <button onClick={()=>lookUpUser(2).then(res=> setProfile(res))}>Left!</button>
+        <button onClick={()=>lookUpUser(3).then(res=> setProfile(res))}>Right!</button>
+        <button onClick={()=>display === 66? setDisplay(77) : setDisplay(66)}>switch!</button>
+        <button onClick={()=>setPotentialMatchList([])}>empty matches!</button>
+      </div> */}
       <ToastContainer />
       {display === 66 && <Match
         potentialMatches={potentialMatchList}
