@@ -19,16 +19,16 @@ export default function Profile(props) {
               
             />
           </div>
-          <div className="flex flex-col  w-1/2 gap-2 " >
-            <div className="bg-fuchsia-200">
+          <div className="flex flex-col  w-1/2 gap-2 py-16" >
+            <div className="flex bg-fuchsia-200 rounded-3xl justify-center text-6xl">
               {props.potentialMatches[0]?.name}
             </div>
-            <div className="bg-fuchsia-200 grow">
+            <div className="flex bg-fuchsia-200 grow rounded-3xl justify-center text-3xl">
               {props.potentialMatches[0]?.summary}
             </div>
             <div className="flex  justify-between">
               <button
-                className="bg-orange-400 hover:text-red-500 text-white font-bold py-2 px-4 rounded"
+                className="bg-orange-400 hover:text-red-500 text-white font-bold py-2 px-4 rounded-3xl text-4xl"
                 onClick={() => {
                   addNewLike(1, props.potentialMatches[0]?.id, false);
                   props.discard();
@@ -37,7 +37,7 @@ export default function Profile(props) {
                 <ImCross />
               </button>
               <button
-                className="bg-orange-400 text-white hover:text-red-500 font-bold py-2 px-4 rounded"
+                className="bg-orange-400 text-white hover:text-red-500 font-bold py-2 px-4 rounded-3xl text-4xl"
                 onClick={() => {
                   addNewLike(1, props.potentialMatches[0]?.id, true);
                   checkForMatch(1, props.potentialMatches[0], notify)

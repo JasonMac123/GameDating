@@ -12,9 +12,9 @@ export default function Profile(props) {
           alt="Cover Pic"
         />
       </div>
-        <div className="flex flex-col right-0 w-1/2 gap-2">
-          <div className=" bg-pink-200">{user?.name}</div>
-          <div className="flex bg-pink-200 grow">{user?.summary}</div>
+        <div className="flex flex-col  w-1/2 gap-2 py-16">
+          <div className="flex bg-fuchsia-200 rounded-3xl justify-center text-6xl">{user?.name}</div>
+          <div className="flex bg-fuchsia-200 grow rounded-3xl justify-center text-3xl">{user?.summary}</div>
         </div>
       </>
     </div>
