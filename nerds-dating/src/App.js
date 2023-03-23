@@ -6,10 +6,9 @@ import ChatDisplay from "./components/Chat/ChatDisplay";
 import Login from "./components/Profile/Login";
 import Register from "./components/Profile/Register";
 import Interests from "./components/Profile/Interests";
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import useProfile from "./hooks/useProfile";
-import lookUpUser from "./helpers/lookUpUser"; 
 import SideBar from "./components/SideBar/SideBar";
 
 function App() {
@@ -32,6 +31,7 @@ function App() {
   const { potentialMatchList, setPotentialMatchList, next } = useCurrentUserMatches(1);
   const { profile, setProfile} = useProfile(3)
 
+
   return (
     <>
       {/* <div className="text-sky-400 text-2xl underline decoration-solid">Hi</div> */}
@@ -50,7 +50,7 @@ function App() {
       />}
       {display === 77 && <Profile currentUser={profile} />}
       {display === 55 && <Profile currentUser={testUser} />}
-      {userID !== 0 && <SideBar setDisplay={setDisplay} />}
+      {userID !== 0 && <SideBar setDisplay={setDisplay} userID={userID} />}
       {display === 1 && (
         <Login
           display={display}

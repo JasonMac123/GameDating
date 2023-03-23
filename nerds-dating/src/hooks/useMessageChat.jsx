@@ -27,7 +27,7 @@ const useMessageChat = (chat) => {
       });
   };
 
-  return { message, setMessage, chatHistory, addMessage };
+  return { message, setMessage, chatHistory, setChatHistory, addMessage };
 };
 
 export default useMessageChat;
