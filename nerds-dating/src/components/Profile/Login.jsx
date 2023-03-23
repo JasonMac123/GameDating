@@ -1,5 +1,8 @@
 import React, { useState } from "react";
 import axios from "axios";
+import FieldBlankError from "./FieldsBlankError";
+import NotAValidUser from "./NotAValidUser";
+import IncorrectPassword from "./IncorrectPassword";
 
 function Login(props) {
   const [user, setUser] = useState({
@@ -11,17 +14,28 @@ function Login(props) {
     setUser({ ...user, [event.target.name]: event.target.value });
   };
 
+  const [error, setError] = useState(0);
+
   const handleSubmit = (event) => {
     event.preventDefault();
     return axios.post("/api/login", user).then((result) => {
-      if (!result.data) {
-        console.log("no data");
-      } else {
-        console.log(result);
+      console.log("hey")
+      if (result.data === 1) {
+        setError(1)
+      }
+      else if (result.data === 2) {
+        setError(2)
+      }
+      else if (result.data === 3) {
+        setError(3)
+      }
+      else {
         props.setUserID(result.data.id);
         props.setDisplay(3);
       }
-    });
+
+    })
+
   };
 
   const handleRegister = (event) => {
@@ -30,15 +44,16 @@ function Login(props) {
   };
 
   return (
-    <section className="gradient-form h-screen bg-gradient-to-br from-amber-200 via-violet-600 to-sky-900 dark:bg-neutral-700">
-      <div className="container h-full p-10">
-        <div className="g-6 flex h-full flex-wrap items-center justify-center text-neutral-800 dark:text-neutral-200">
-          <div className="w-full">
-            <div className="block rounded-lg bg-white shadow-lg dark:bg-neutral-800">
-              <div className="g-0 lg:flex lg:flex-wrap">
-                <div className="px-4 md:px-0 lg:w-6/12">
-                  <div className="">
-                    <div className="text-center">
+    <section class="gradient-form h-screen bg-zinc-300">
+      <div class="container h-full p-10">
+        <div class="g-6 flex h-full flex-wrap items-center justify-center text-neutral-800 dark:text-neutral-200">
+          <div class="w-full">
+            <div
+              class="block rounded-lg bg-white shadow-lg dark:bg-neutral-800">
+              <div class="g-0 lg:flex lg:flex-wrap">
+                <div class="px-4 md:px-0 lg:w-6/12">
+                  <div class="">
+                    <div class="text-center">
                       <img
                         className="mx-auto w-48"
                         src="https://cdn-icons-png.flaticon.com/512/188/188932.png"
@@ -48,17 +63,10 @@ function Login(props) {
                         Gamers Only
                       </h4>
                     </div>
-                    <div className="bg-gradient-to-l from-purple-200 via-purple-400 to-purple-800 rounded">
-                      <form
-                        autoComplete="off"
-                        onSubmit={handleSubmit}
-                        className="md:mx-6 md:p-12"
-                      >
-                        <p className="mb-4">Please login to your account:</p>
-                        <div
-                          className="relative mb-4"
-                          data-te-input-wrapper-init
-                        >
+                    <div class="bg-stone-500 rounded border-white border-8">
+                      <form autoComplete="off" onSubmit={handleSubmit} class="md:mx-6 md:p-12">
+                        <p class="mb-4">Please login to your account:</p>
+                        <div class="relative mb-4" data-te-input-wrapper-init>
                           <input
                             type="email"
                             className="peer block min-h-[auto] bg-white w-full rounded bg-transparent py-[0.32rem] px-3 leading-[1.6] outline-red-600 transition-all duration-200 ease-linear"
@@ -83,7 +91,7 @@ function Login(props) {
                             placeholder="Password"
                           />
                         </div>
-                        <div className="mb-12 pt-1 pb-1 text-center">
+                        <div class="mb-4 pt-1 pb-1 text-center">
                           {/* <input type="submit" onClick={handleSubmit} /> */}
                           <button
                             className="mb-3 inline-block w-full rounded px-6 pt-2.5 pb-2 text-xs font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_rgba(0,0,0,0.2)] transition duration-150 ease-in-out hover:shadow-[0_8px_9px_-4px_rgba(0,0,0,0.1),0_4px_18px_0_rgba(0,0,0,0.2)] focus:shadow-[0_8px_9px_-4px_rgba(0,0,0,0.1),0_4px_18px_0_rgba(0,0,0,0.2)] focus:outline-none focus:ring-0 active:shadow-[0_8px_9px_-4px_rgba(0,0,0,0.1),0_4px_18px_0_rgba(0,0,0,0.2)]"
@@ -98,9 +106,12 @@ function Login(props) {
                           >
                             Login
                           </button>
+                          {error === 1 && (<FieldBlankError />)}
+                          {error === 2 && (<NotAValidUser />)}
+                          {error === 3 && (<IncorrectPassword />)}
                         </div>
-                        <div className="flex items-center justify-between pb-6">
-                          <p className="mb-0 mr-2">Don't have an account?</p>
+                        <div class="items-center">
+                          <p class="mb-4">Don't have an account?</p>
                           <button
                             type="button"
                             className="mb-3 inline-block w-full rounded px-6 pt-2.5 pb-2 text-xs font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_rgba(0,0,0,0.2)] transition duration-150 ease-in-out hover:shadow-[0_8px_9px_-4px_rgba(0,0,0,0.1),0_4px_18px_0_rgba(0,0,0,0.2)] focus:shadow-[0_8px_9px_-4px_rgba(0,0,0,0.1),0_4px_18px_0_rgba(0,0,0,0.2)] focus:outline-none focus:ring-0 active:shadow-[0_8px_9px_-4px_rgba(0,0,0,0.1),0_4px_18px_0_rgba(0,0,0,0.2)]"
