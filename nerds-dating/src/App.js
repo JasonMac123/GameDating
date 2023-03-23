@@ -41,7 +41,7 @@ function App() {
       {/* <div className="text-sky-400 text-2xl underline decoration-solid">Hi</div> */}
 
       {/* several buttons for ease of testing and switching between profiles */}
-      {/* <button onClick={() => notify("Nate River")}>Notify!</button>
+      <button onClick={() => notify("Nate River")}>Notify!</button>
       <button onClick={() => lookUpUser(2).then((res) => setProfile(res))}>
         Left!
       </button>
@@ -53,7 +53,7 @@ function App() {
       >
         switch!
       </button>
-      <button onClick={() => setPotentialMatchList([])}>empty matches!</button> */}
+      <button onClick={() => setPotentialMatchList([])}>empty matches!</button>
       <ToastContainer />
       {display === 6 && (
         <Match
@@ -65,7 +65,9 @@ function App() {
       )}
       {display === 77 && <Profile currentUser={profile} />}
       {display === 55 && <Profile currentUser={testUser} />}
-      {userID !== 0 && <SideBar setDisplay={setDisplay} />}
+      {display === 5 && <ChatDisplay />}
+
+      {userID !== 0 && <SideBar setDisplay={setDisplay} userID={userID} />}
 
       {display === 1 && (
         <Login
