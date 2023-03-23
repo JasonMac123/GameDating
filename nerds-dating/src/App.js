@@ -65,7 +65,6 @@ function App() {
       )}
       {display === 77 && <Profile currentUser={profile} />}
       {display === 55 && <Profile currentUser={testUser} />}
-      {display === 5 && <ChatDisplay />}
 
       {userID !== 0 && <SideBar setDisplay={setDisplay} userID={userID} />}
 
