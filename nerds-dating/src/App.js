@@ -13,23 +13,9 @@ import SideBar from "./components/SideBar/SideBar";
 
 function App() {
   const [display, setDisplay] = useState(1);
-  const testUser = {
-    id: 1,
-    name: "Jason",
-    email: "testing@gmail.com",
-    phone_number: "111-111-1111",
-    profile_picture:
-      "https://cdn.pixabay.com/photo/2017/02/20/18/03/cat-2083492__340.jpg",
-    cover_picture:
-      "https://images.unsplash.com/photo-1608848461950-0fe51dfc41cb?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxleHBsb3JlLWZlZWR8NHx8fGVufDB8fHx8&w=1000&q=80",
-    gender_identity: "M",
-    gender_preference: "M",
-    summary: "testing",
-    password: "password",
-  };
   const [userID, setUserID] = useState(0);
-  const { potentialMatchList, setPotentialMatchList, next } = useCurrentUserMatches(1);
-  const { profile, setProfile} = useProfile(3)
+  const { potentialMatchList, setPotentialMatchList, next } = useCurrentUserMatches(userID);
+  const { profile, setProfile} = useProfile(userID)
 
 
   return (
@@ -42,14 +28,15 @@ function App() {
         <button onClick={()=>lookUpUser(3).then(res=> setProfile(res))}>Right!</button>
         <button onClick={()=>display === 66? setDisplay(77) : setDisplay(66)}>switch!</button>
         <button onClick={()=>setPotentialMatchList([])}>empty matches!</button>
+              <button className="flex px-64" onClick={()=>display === 6? setDisplay(77) : setDisplay(6)}>switch!</button>
       </div> */}
       <ToastContainer />
-      {display === 66 && <Match
+      {display === 6 && <Match
         potentialMatches={potentialMatchList}
         discard={next}
+        currentUser={userID}
       />}
-      {display === 77 && <Profile currentUser={profile} />}
-      {display === 55 && <Profile currentUser={testUser} />}
+      {/* {display === 77 && <Profile currentUserID={userID} />} */}
       {userID !== 0 && <SideBar setDisplay={setDisplay} userID={userID} />}
       {display === 1 && (
         <Login
