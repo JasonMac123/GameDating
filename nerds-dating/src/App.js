@@ -55,7 +55,7 @@ function App() {
       </button>
       <button onClick={() => setPotentialMatchList([])}>empty matches!</button>
       <ToastContainer />
-      {display === 66 && (
+      {display === 6 && (
         <Match
           potentialMatches={potentialMatchList}
           discard={next}
