@@ -30,7 +30,7 @@ export default function Profile(props) {
               <button
                 className="bg-orange-400 hover:text-red-500 text-white font-bold py-2 px-4 rounded-full text-4xl"
                 onClick={() => {
-                  addNewLike(1, props.potentialMatches[0]?.id, false);
+                  addNewLike(props.currentUser, props.potentialMatches[0]?.id, false);
                   props.discard();
                 }}
               >
@@ -39,8 +39,8 @@ export default function Profile(props) {
               <button
                 className="bg-orange-400 text-white hover:text-red-500 font-bold py-2 px-4 rounded-full text-4xl"
                 onClick={() => {
-                  addNewLike(1, props.potentialMatches[0]?.id, true);
-                  checkForMatch(1, props.potentialMatches[0], notify)
+                  addNewLike(props.currentUser, props.potentialMatches[0]?.id, true);
+                  checkForMatch(props.currentUser, props.potentialMatches[0], notify)
                   props.discard();
                 }}
               >
