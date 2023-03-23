@@ -23,12 +23,13 @@ router.post("/", (req, res) => {
 
 router.get("/:id", (req, res) => {
   let interestsSet = {};
-  getCurrentInterests(req.params.id).then((data) => {
-    interestsSet = data;
-    getMatches(interestsSet).then((results) => {
-      res.json(results);
+    getCurrentInterests(req.params.id).then((data) => {
+      interestsSet = data;
+      getMatches(interestsSet).then((results) => {
+        res.json(results);
+      });
     });
-  });
+
 });
 
 router.get("/", (req, res) => {

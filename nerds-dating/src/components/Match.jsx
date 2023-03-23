@@ -3,9 +3,20 @@ import { ImCross } from "react-icons/im";
 import checkForMatch from "../helpers/checkForMatch";
 import addNewLike from "../helpers/addNewLikes";
 import notify from "../helpers/notifyMatch";
+import {
+  motion,
+  useMotionValue,
+  useTransform,
+} from "framer-motion"
 
 export default function Profile(props) {
   console.log(props);
+  const x = useMotionValue(0)
+  const background = useTransform(
+    x,
+    [-100, 0, 100],
+    ["#ff008c", "#7700ff", "rgb(230, 255, 0)"]
+  )
 
   return (
     <div className="flex h-screen bg-stone-100  pl-16">
@@ -16,7 +27,7 @@ export default function Profile(props) {
               className="object-scale-down max-w-lg max-h-96 p-2"
               src={props.potentialMatches[0]?.cover_picture}
               alt="Cover Pic"
-              
+
             />
           </div>
           <div className="flex flex-col  w-1/2 gap-2 py-16 pr-16" >
@@ -47,12 +58,15 @@ export default function Profile(props) {
                 <AiTwotoneHeart />
               </button>
             </div>
+            <div>
+
+            </div>
           </div>
         </>
       )}
       {props.potentialMatches.length === 0 && (
         <div
-        className="flex flex-col justify-center items-center w-full"
+          className="flex flex-col justify-center items-center w-full"
         >
           <img
             src="https://media.tenor.com/n6XKuq5mXkIAAAAC/jigglypuff-sad.gif"

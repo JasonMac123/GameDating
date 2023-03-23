@@ -14,7 +14,7 @@ import SideBar from "./components/SideBar/SideBar";
 function App() {
   const [display, setDisplay] = useState(1);
   const [userID, setUserID] = useState(0);
-  const { potentialMatchList, setPotentialMatchList, next } = useCurrentUserMatches(userID);
+  const { potentialMatchList, setPotentialMatchList, next } = useCurrentUserMatches(userID || 1);
   const { profile, setProfile} = useProfile(userID)
 
 
@@ -31,7 +31,7 @@ function App() {
               <button className="flex px-64" onClick={()=>display === 6? setDisplay(77) : setDisplay(6)}>switch!</button>
       </div> */}
       <ToastContainer />
-      {display === 6 && <Match
+      {userID !== 0 && display === 6 && <Match
         potentialMatches={potentialMatchList}
         discard={next}
         currentUser={userID}
