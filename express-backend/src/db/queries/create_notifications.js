@@ -8,8 +8,16 @@ const addNotification = (userID) => {
   return db.query(queryString, [userID]).then((res) => {
     return res.rows;
   });
+};
 
-}
+const getNotifications = (userID) => {
+  let queryString = `SELECT * FROM notifications 
+  WHERE user_id = $1
+  ORDER BY created_date DESC;`;
 
+  return db.query(queryString, [userID]).then((res) => {
+    return res.rows;
+  });
+};
 
-module.exports = { addNotification };
+module.exports = { addNotification, getNotifications };

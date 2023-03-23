@@ -7,8 +7,12 @@ import {
 import { IconContext } from "react-icons/lib";
 import { RiDoorOpenFill } from "react-icons/ri";
 import SideBarIcon from "./SideBarIcon";
+import { useState } from "react";
+import NotificationBox from "./NotificationBox";
 
-const NavBar = ({ setDisplay }) => {
+const NavBar = ({ setDisplay, userID }) => {
+  const [show, setShow] = useState(false);
+
   return (
     <div className="fixed top-0 left-0 h-screen w-32 m-0 flex flex-col justify-between bg-red-500 text-red-500">
       <IconContext.Provider value={{ className: "shared-class", size: 55 }}>
@@ -17,12 +21,12 @@ const NavBar = ({ setDisplay }) => {
             icon={<BsFillPeopleFill />}
             text="Match with others!"
             setDisplay={() => {
-              setDisplay(4);
+              setDisplay(6);
             }}
           />
           <SideBarIcon
             icon={<BsFillChatFill />}
-            text="Chat with your matchs!"
+            text="Chat with your matches!"
             setDisplay={() => {
               setDisplay(5);
             }}
@@ -33,10 +37,17 @@ const NavBar = ({ setDisplay }) => {
             icon={<RiDoorOpenFill />}
             text="Log out"
             setDisplay={() => {
-              setDisplay(6);
+              setDisplay(1);
             }}
           />
-          <SideBarIcon icon={<BsFillBellFill />} text="Notifcations" />
+          <SideBarIcon
+            icon={<BsFillBellFill />}
+            text="Notifications"
+            setDisplay={() => {
+              setShow(!show);
+            }}
+          />
+          {show && <NotificationBox userID={userID} />}
           <SideBarIcon
             icon={<BsFillGearFill />}
             text="Settings"

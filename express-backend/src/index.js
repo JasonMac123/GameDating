@@ -16,7 +16,7 @@ let userList = [];
 
 io.on("connection", (socket) => {
   socket.on("user_connected", (message) => {
-    userList.push({ id: socket.id, user: message.id });
+    userList.push({ id: socket.id, user: message.userID });
   });
   socket.on("disconnect", () => {
     const newList = userDisconnects(userList, socket.id);
