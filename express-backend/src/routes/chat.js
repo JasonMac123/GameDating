@@ -30,7 +30,9 @@ router.post("/send", (req, res) => {
     req.body.message
   ).then((data) => {
     res.json(data);
-    const findUserSocketID = findUser(req.list, 1);
+    console.log(req.list);
+    const findUserSocketID = findUser(req.list, data[0].receiving_user_id);
+    console.log(findUserSocketID);
     if (findUserSocketID) {
       req.io.to(findUserSocketID.id).emit("update_chat", data);
     }

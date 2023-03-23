@@ -17,7 +17,7 @@ const ChatNavBar = ({ chat, userID }) => {
           </>
         ) : (
           <>
-            <div className="flex flex-row pl-4">
+            <div className="rounded-full w-30 h-30 overflow-hidden">
               <img
                 src={chat.user1_coverpicture}
                 alt=""

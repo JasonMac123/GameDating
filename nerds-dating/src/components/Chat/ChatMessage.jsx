@@ -5,7 +5,7 @@ const ChatMessage = ({ message, users, details, userID }) => {
   const firstUser = users.first_user_id;
   return (
     <div
-      className={`flex h-16 w-full pb-4 ${
+      className={`flex h-fit w-full ${
         (firstUser !== userID && messagingUser === firstUser) ||
         messagingUser !== userID
           ? "justify-end"
@@ -14,7 +14,7 @@ const ChatMessage = ({ message, users, details, userID }) => {
     >
       {messagingUser === firstUser ? (
         firstUser === userID ? (
-          <div className="flex h-max w-full py-2">
+          <div className="flex h-fit w-full py-2">
             <div className="flex flex-col space-y-2 h-24 bg-slate-200">
               <div className="rounded-full w-12 h-12 overflow-hidden">
                 <img
@@ -30,7 +30,7 @@ const ChatMessage = ({ message, users, details, userID }) => {
             </div>
           </div>
         ) : (
-          <div className="flex h-16 space-x-4">
+          <div className="flex h-fit space-x-4">
             <div className="bg-red-500 text-white rounded-xl h-max py-4 px-4 break-all max-w-xs whitespace-prewrap">
               {message}
             </div>
@@ -47,7 +47,7 @@ const ChatMessage = ({ message, users, details, userID }) => {
           </div>
         )
       ) : messagingUser !== userID ? (
-        <div className="flex h-16 space-x-4">
+        <div className="flex h-fit space-x-4">
           <div className="bg-red-500 text-white rounded-xl h-max py-4 px-4 break-all max-w-xs whitespace-prewrap">
             {message}
           </div>
@@ -63,7 +63,7 @@ const ChatMessage = ({ message, users, details, userID }) => {
           </div>
         </div>
       ) : (
-        <div className="flex h-max w-1/2">
+        <div className="flex h-fit w-1/2">
           <div className="flex flex-col space-y-2 h-24 bg-slate-200">
             <div className="rounded-full w-12 h-12 overflow-hidden">
               <img
