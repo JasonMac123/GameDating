@@ -1,5 +1,8 @@
 import React, { useState } from "react";
 import axios from "axios";
+import FieldBlankError from "./FieldsBlankError";
+import NotAValidUser from "./NotAValidUser";
+import IncorrectPassword from "./IncorrectPassword";
 
 function Login(props) {
   const [user, setUser] = useState({
@@ -11,19 +14,28 @@ function Login(props) {
     setUser({ ...user, [event.target.name]: event.target.value });
   };
 
+  const [error, setError] = useState(0);
+
   const handleSubmit = (event) => {
     event.preventDefault();
     return axios.post("/api/login", user).then((result) => {
-      if (!result.data) {
-        console.log("no data")
+      console.log("hey")
+      if (result.data === 1) {
+        setError(1)
+      }
+      else if (result.data === 2) {
+        setError(2)
+      }
+      else if (result.data === 3) {
+        setError(3)
       }
       else {
-        console.log(result)
         props.setUserID(result.data.id);
         props.setDisplay(3);
       }
 
-    });
+    })
+
   };
 
   const handleRegister = (event) => {
@@ -52,6 +64,9 @@ function Login(props) {
                     </div>
                     <div class="bg-stone-500 rounded border-white border-8">
                       <form autoComplete="off" onSubmit={handleSubmit} class="md:mx-6 md:p-12">
+                        {error === 1 && (<FieldBlankError />)}
+                        {error === 2 && (<NotAValidUser />)}
+                        {error === 3 && (<IncorrectPassword />)}
                         <p class="mb-4">Please login to your account:</p>
                         <div class="relative mb-4" data-te-input-wrapper-init>
                           <input
