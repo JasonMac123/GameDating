@@ -9,7 +9,7 @@ const SideBarIcon = (props) => {
       {props.icon}
       <span
         className="absolute w-auto p-2 m-2 min-w-max left-20 rounded-md shadow-md
-       text-white bg-red-700 scale-0 text-xs font-bold group-hover:scale-100 transition-all ease-in"
+       text-white bg-red-700 scale-0 text-xs font-bold group-hover:scale-100 transition-all ease-in z-10 origin-left"
       >
         {props.text}
       </span>
