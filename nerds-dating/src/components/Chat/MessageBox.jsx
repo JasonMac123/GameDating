@@ -3,7 +3,7 @@ import ChatMessage from "./ChatMessage";
 import useMessageChat from "../../hooks/useMessageChat";
 import { FaLongArrowAltRight } from "react-icons/fa";
 import io from "socket.io-client";
-import { useEffect, useRef } from "react";
+import { useEffect } from "react";
 
 const MessageBox = ({ chat, userID }) => {
   const {
@@ -15,13 +15,13 @@ const MessageBox = ({ chat, userID }) => {
     messagesEndRef,
     scrollToBottom,
   } = useMessageChat(chat);
+
   useEffect(() => {
     const socket = io.connect("/");
     socket.emit("user_connected", { userID });
     socket.on("update_chat", (arg) => {
       if (chat.id === arg[0].chat_room_id) {
         setChatHistory((prev) => [...prev, arg[0]]);
-        scrollToBottom();
       }
     });
 
@@ -29,6 +29,10 @@ const MessageBox = ({ chat, userID }) => {
       socket.disconnect();
     };
   });
+
+  useEffect(() => {
+    scrollToBottom();
+  }, [chatHistory, scrollToBottom]);
 
   return (
     <div className="h-2/3">
