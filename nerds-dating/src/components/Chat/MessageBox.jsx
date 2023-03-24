@@ -4,6 +4,7 @@ import useMessageChat from "../../hooks/useMessageChat";
 import { FaLongArrowAltRight } from "react-icons/fa";
 import io from "socket.io-client";
 import { useEffect } from "react";
+import { motion, animatePresence, AnimatePresence } from "framer-motion";
 
 const MessageBox = ({ chat, userID }) => {
   const {
@@ -37,18 +38,27 @@ const MessageBox = ({ chat, userID }) => {
   return (
     <div className="h-2/3">
       <div className="overflow-y-auto space-y-1 bg-slate-200 p-4 h-full rounded-lg scroll-smooth">
-        {chatHistory.map((item) => {
-          return (
-            <ChatMessage
-              key={item.id}
-              message={item.message}
-              details={item}
-              users={chat}
-              userID={userID}
-            />
-          );
-        })}
-        <div ref={messagesEndRef}></div>
+        <AnimatePresence initial={false}>
+          {chatHistory.map((item) => {
+            return (
+              <motion.div
+                key={item.id}
+                positionTransition
+                initial={{ opacity: 0, y: 100 }}
+                animate={{ opacity: 1, y: 0 }}
+              >
+                <ChatMessage
+                  key={item.id}
+                  message={item.message}
+                  details={item}
+                  users={chat}
+                  userID={userID}
+                />
+              </motion.div>
+            );
+          })}
+          <div ref={messagesEndRef}></div>
+        </AnimatePresence>
       </div>
       <div className="pt-4 pb-4">
         <form
