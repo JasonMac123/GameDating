@@ -3,6 +3,7 @@ const express = require("express");
 const router = express.Router();
 const { getUsers } = require("../db/queries/login");
 const { getNotifications } = require("../db/queries/create_notifications");
+const { updateLocationById } = require("../db/queries/location")
 
 router.get("/:id", (req, res) => {
   console.log(req.params.id);
@@ -27,5 +28,15 @@ router.get("/notifications/:id", (req, res) => {
     res.json(data);
   });
 });
+
+router.put("/geo/:id", (req, res) => {
+  updateLocationById(req.body.latitude, req.body.longitude, req.params.id)
+  .then(results => {
+    res.json(results);
+  });
+})
+
+router.get("/geo/:id", (req, res) => {
+})
 
 module.exports = router;

@@ -16,6 +16,8 @@ function App() {
   const [userID, setUserID] = useState(0);
   const { potentialMatchList, setPotentialMatchList, next } = useCurrentUserMatches(userID);
   const { profile, setProfile} = useProfile(userID)
+  const [userLatitude, setUserLatitude] = useState("");
+  const [userLongitude, setUserLongitude] = useState("");
 
 
   return (
@@ -35,6 +37,10 @@ function App() {
         potentialMatches={potentialMatchList}
         discard={next}
         currentUser={userID}
+        userLatitude={userLatitude}
+        setUserLatitude={setUserLatitude}
+        userLongitude={userLongitude}
+        setUserLongitude={setUserLongitude}
       />}
       {/* {display === 77 && <Profile currentUserID={userID} />} */}
       {userID !== 0 && <SideBar setDisplay={setDisplay} userID={userID} />}

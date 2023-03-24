@@ -11,10 +11,46 @@ import {
   useTransform,
 } from "framer-motion"
 import MatchItems from "./MatchItems";
+import { useEffect, useState } from "react";
+import updateLocation from "../helpers/updateLocation";
 
 export default function Profile(props) {
   console.log(props);
   let side = 100;
+  function deg2rad(deg) {
+    return deg * (Math.PI/180)
+  }
+  function getDistanceFromLatLonInKm(lat1,lon1,lat2,lon2) {
+    var R = 6371; // Radius of the earth in km
+    var dLat = deg2rad(lat2-lat1);  // deg2rad below
+    var dLon = deg2rad(lon2-lon1); 
+    var a = 
+      Math.sin(dLat/2) * Math.sin(dLat/2) +
+      Math.cos(deg2rad(lat1)) * Math.cos(deg2rad(lat2)) * 
+      Math.sin(dLon/2) * Math.sin(dLon/2)
+      ; 
+    var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a)); 
+    var d = R * c; // Distance in km
+    return d;
+  }
+  
+
+  useEffect(()=>{
+    if ("geolocation" in navigator) {
+      navigator.geolocation.getCurrentPosition((position) => {
+        console.log("Here you are!")
+        console.log(position.coords.latitude, position.coords.longitude);
+  
+        props.setUserLatitude(position.coords.latitude);
+        props.setUserLongitude(position.coords.longitude);
+        updateLocation(position.coords.latitude, position.coords.longitude, props.currentUser)
+        .then(response => {
+          console.log("fromMatch")
+          console.log (response)})
+      });
+    }
+  }, [])
+  // (distance && distance)
   const wrapperVariants = {
     hidden: {
       opacity: 0,
@@ -35,12 +71,6 @@ export default function Profile(props) {
         duration: 0.5,
         ease: 'easeInOut' },
     },
-    // right: {
-    //   x: ['-100vh', '0vh'], 
-    //   transition: { 
-    //     times: 0.8,
-    //     ease: 'easeInOut' },
-    // },
     right: {
       x: ['0vh', '300vh', '-300vh', '0vh'], 
       transition: { 
@@ -96,6 +126,10 @@ export default function Profile(props) {
             <div className="flex bg-fuchsia-200 rounded-3xl justify-center text-6xl">
               {match.name}
             </div>
+           
+              {props.userLatitude !== "" &&  <div className="flex bg-fuchsia-200 rounded-3xl justify-center text-3xl"> {Math.round(getDistanceFromLatLonInKm(match.latitude, match.longitude, props.userLatitude, props.userLongitude))} km away! 
+              </div> }
+
             <div className="flex bg-fuchsia-200 grow rounded-3xl justify-center text-3xl">
               {match.summary}
             </div>
