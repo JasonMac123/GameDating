@@ -9,6 +9,7 @@ CREATE TABLE users (
   cover_picture VARCHAR(255) NOT NULL,
   gender_identity VARCHAR(255) NOT NULL,
   gender_preference VARCHAR(255) NOT NULL,
+  distance_limit VARCHAR(255) NOT NULL,
   summary VARCHAR(255) NOT NULL
 );
 

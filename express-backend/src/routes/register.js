@@ -22,6 +22,7 @@ router.post("/", (req, res) => {
     cover_picture: req.body.cover_picture,
     gender_identity: req.body.gender_identity,
     gender_preference: req.body.gender_preference,
+    distance_limit: req.body.distance_limit,
     summary: req.body.summary,
   };
 
@@ -36,8 +37,13 @@ router.post("/", (req, res) => {
       return res.json(2)
     }
 
-    else {return res.json(details)}
+    else {
+      addUser(details).then((data) => {
+        res.json(data)
+      })
+    }
   });
+
 
 });
 
