@@ -169,9 +169,11 @@ export default function Profile(props) {
               <motion.button
                 className="bg-orange-400 hover:text-red-500 text-white font-bold py-2 px-4 rounded-full text-4xl"
                 onClick={() => {
-                  addNewLike(props.currentUser, match.id, false).then(
-                    props.discard()
-                  )
+                  addNewLike(props.currentUser, match.id, false)
+                    .then(
+                      props.discard()
+                    )
+                    .catch(() => toast("Error processing your request.  Please try again later!"))
                   controls.start('left')
                 }}
               >
@@ -182,9 +184,11 @@ export default function Profile(props) {
                 className="bg-orange-400 text-white hover:text-red-500 font-bold py-2 px-4 rounded-full text-4xl"
                 onClick={() => {
                   addNewLike(props.currentUser, match.id, true);
-                  checkForMatch(props.currentUser, match, notify).then(
-                    props.discard()
-                  )
+                  checkForMatch(props.currentUser, match, notify)
+                    .then(
+                      props.discard()
+                    )
+                    .catch(() => toast("Error processing your request.  Please try again later!"))
                   controls.start('right')
                 }}
               >
@@ -235,9 +239,11 @@ export default function Profile(props) {
             <motion.button
               className="bg-orange-400 hover:text-red-500 text-white font-bold py-2 px-4 rounded-full text-4xl"
               onClick={() => {
-                addNewLike(props.currentUser, match.id, false).then(
-                  props.discard()
-                )
+                addNewLike(props.currentUser, match.id, false)
+                  .then(
+                    props.discard()
+                  )
+                  .catch(() => toast("Error processing your request.  Please try again later!"))
                 controls.start('left')
               }}
             >
@@ -247,9 +253,11 @@ export default function Profile(props) {
               className="bg-orange-400 text-white hover:text-red-500 font-bold py-2 px-4 rounded-full text-4xl"
               onClick={() => {
                 addNewLike(props.currentUser, match.id, true);
-                checkForMatch(props.currentUser, match, notify).then(
-                  props.discard()
-                )
+                checkForMatch(props.currentUser, match, notify)
+                  .then(
+                    props.discard()
+                  )
+                  .catch(() => toast("Error processing your request.  Please try again later!"))
                 controls.start('right')
               }}
             >
