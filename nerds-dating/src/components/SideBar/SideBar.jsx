@@ -10,7 +10,7 @@ import SideBarIcon from "./SideBarIcon";
 import { useState } from "react";
 import NotificationBox from "./NotificationBox";
 
-const NavBar = ({ setDisplay, userID }) => {
+const NavBar = ({ setDisplay, userID, setUserID }) => {
   const [show, setShow] = useState(false);
 
   return (
@@ -38,6 +38,7 @@ const NavBar = ({ setDisplay, userID }) => {
             text="Log out"
             setDisplay={() => {
               setDisplay(1);
+              setUserID(0)
             }}
           />
           <SideBarIcon
@@ -45,6 +46,7 @@ const NavBar = ({ setDisplay, userID }) => {
             text="Notifications"
             setDisplay={() => {
               setShow(!show);
+
             }}
           />
           {show && <NotificationBox userID={userID} />}
