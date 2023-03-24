@@ -42,13 +42,13 @@ export default function Profile(props) {
     //     ease: 'easeInOut' },
     // },
     right: {
-      x: ['0vh', '300vh', '0vh'], 
+      x: ['0vh', '300vh', '-300vh', '0vh'], 
       transition: { 
         times: 1.6,
         ease: 'easeInOut' },
     },
     left: {
-      x: ['0vh', '-300vh', '0vh'], 
+      x: ['0vh', '-300vh', '300vh', '0vh'], 
       transition: { 
         times: 1.6,
         ease: 'easeInOut' },
