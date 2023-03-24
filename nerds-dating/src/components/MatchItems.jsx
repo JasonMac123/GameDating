@@ -4,13 +4,15 @@ import {
   useMotionValue,
   useTransform,
 } from "framer-motion"
+import { AiTwotoneHeart } from "react-icons/ai";
+import { ImCross } from "react-icons/im";
 
 export default function MatchItems(props) {
 
   return (
     <motion.div
     className="flex w-screen"
-    animate={{ x: -side }}
+    animate={{ y: -200 }}
     transition={{stiffness: 100 }}
   >
 
@@ -35,7 +37,7 @@ export default function MatchItems(props) {
           onClick={() => {
             // addNewLike(props.currentUser, ${match.id}, false);
             // props.discard();
-            // side = -200;
+
           }}
         >
           <ImCross />
@@ -46,7 +48,7 @@ export default function MatchItems(props) {
             // addNewLike(props.currentUser, ${match.id}, true);
             // checkForMatch(props.currentUser, ${match}, notify)
             // props.discard();
-            // side = 200;
+
           }}
         >
           <AiTwotoneHeart />
