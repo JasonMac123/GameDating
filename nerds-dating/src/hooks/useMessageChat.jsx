@@ -1,9 +1,14 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import axios from "axios";
 
 const useMessageChat = (chat) => {
   const [message, setMessage] = useState("");
   const [chatHistory, setChatHistory] = useState([]);
+  const messagesEndRef = useRef(null);
+
+  const scrollToBottom = () => {
+    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+  };
 
   useEffect(() => {
     if (!chat.id) return;
@@ -24,10 +29,19 @@ const useMessageChat = (chat) => {
       .then((res) => {
         setChatHistory([...chatHistory, res.data[0]]);
         setMessage("");
+        scrollToBottom();
       });
   };
 
-  return { message, setMessage, chatHistory, setChatHistory, addMessage };
+  return {
+    message,
+    setMessage,
+    chatHistory,
+    setChatHistory,
+    addMessage,
+    messagesEndRef,
+    scrollToBottom,
+  };
 };
 
 export default useMessageChat;
