@@ -39,7 +39,7 @@ export default function Profile(props) {
     var d = R * c; // Distance in km
     return d;
   }
-
+  let filteredMatches = props.potentialMatches;
   useEffect(() => {
     if ("geolocation" in navigator) {
       navigator.geolocation.getCurrentPosition((position) => {
@@ -52,6 +52,11 @@ export default function Profile(props) {
           .then(response => {
             console.log("fromMatch")
             console.log(response)
+            filteredMatches = props.potentialMatches.filter(match => {
+              if (getDistanceFromLatLonInKm(match.latitude, match.longitude, props.userLatitude, props.userLongitude) < distanceFilter) {
+                return match;
+              }
+            })
           })
       });
     }
@@ -111,11 +116,13 @@ export default function Profile(props) {
       />
     })
   }
-  let filteredMatches = props.potentialMatches.filter(match => {
-    if (getDistanceFromLatLonInKm(match.latitude, match.longitude, props.userLatitude, props.userLongitude) < distanceFilter) {
-      return match;
-    }
-  })
+  // let filteredMatches = props.potentialMatches.filter(match => {
+  //   if (getDistanceFromLatLonInKm(match.latitude, match.longitude, props.userLatitude, props.userLongitude) < distanceFilter) {
+  //     return match;
+  //   }
+  // })
+
+
 
   const MatchMapper = (matches) => {
     for (let match of matches) {
@@ -321,93 +328,93 @@ export default function Profile(props) {
 
   return (
     <div className="flex flex-col h-screen bg-stone-100 justify-center items-center">
-        <div className="flex grow">
-          <AnimatePresence>
-            {filteredMatches?.length > 0 && (
-              // <motion.div
-              //   className="flex w-screen"
-              //   animate={{ x: -side }}
-              //   transition={{stiffness: 100 }}
-              // >
-              //   <div className="left-0 flex h-screen w-1/2 justify-center items-center ">
-              //     <img
-              //       className="object-scale-down max-w-lg max-h-96 p-2"
-              //       src={props.potentialMatches[0]?.cover_picture}
-              //       alt="Cover Pic"
-              //     />
-              //   </div>
-              //   <div className="flex flex-col  w-1/2 gap-2 py-16 pr-16" >
-              //     <div className="flex bg-fuchsia-200 rounded-3xl justify-center text-6xl">
-              //       {props.potentialMatches[0]?.name}
-              //     </div>
-              //     <div className="flex bg-fuchsia-200 grow rounded-3xl justify-center text-3xl">
-              //       {props.potentialMatches[0]?.summary}
-              //     </div>
-              //     <div className="flex  justify-between">
-              //       <motion.button
-              //         className="bg-orange-400 hover:text-red-500 text-white font-bold py-2 px-4 rounded-full text-4xl"
-              //         onClick={() => {
-              //           addNewLike(props.currentUser, props.potentialMatches[0]?.id, false);
-              //           props.discard();
-              //           side = -200;
-              //         }}
-              //       >
-              //         <ImCross />
-              //       </motion.button>
-              //       <motion.button
-              //         className="bg-orange-400 text-white hover:text-red-500 font-bold py-2 px-4 rounded-full text-4xl"
-              //         onClick={() => {
-              //           addNewLike(props.currentUser, props.potentialMatches[0]?.id, true);
-              //           checkForMatch(props.currentUser, props.potentialMatches[0], notify)
-              //           props.discard();
-              //           side = 200;
-              //         }}
-              //       >
-              //         <AiTwotoneHeart />
-              //       </motion.button>
-              //     </div>
-              //     <div>
-              //     </div>
-              //   </div>
-              // </motion.div>
-              <div>
-                {MatchMapper(filteredMatches)}
-                {/* {MatchItemsMapper(props.potentialMatches)} */}
-              </div>
-            )}
-          </ AnimatePresence>
-          <AnimatePresence>
-            {filteredMatches.length === 0 && (
-              <motion.div
-                className="flex flex-col justify-center items-center w-full"
-              // animate={{ y: -side }}
-              // transition={{
-              //   duration: 1.0,
-              //   stiffness: 50 }}
+      <div className="flex grow">
+        <AnimatePresence>
+          {filteredMatches?.length > 0 && (
+            // <motion.div
+            //   className="flex w-screen"
+            //   animate={{ x: -side }}
+            //   transition={{stiffness: 100 }}
+            // >
+            //   <div className="left-0 flex h-screen w-1/2 justify-center items-center ">
+            //     <img
+            //       className="object-scale-down max-w-lg max-h-96 p-2"
+            //       src={props.potentialMatches[0]?.cover_picture}
+            //       alt="Cover Pic"
+            //     />
+            //   </div>
+            //   <div className="flex flex-col  w-1/2 gap-2 py-16 pr-16" >
+            //     <div className="flex bg-fuchsia-200 rounded-3xl justify-center text-6xl">
+            //       {props.potentialMatches[0]?.name}
+            //     </div>
+            //     <div className="flex bg-fuchsia-200 grow rounded-3xl justify-center text-3xl">
+            //       {props.potentialMatches[0]?.summary}
+            //     </div>
+            //     <div className="flex  justify-between">
+            //       <motion.button
+            //         className="bg-orange-400 hover:text-red-500 text-white font-bold py-2 px-4 rounded-full text-4xl"
+            //         onClick={() => {
+            //           addNewLike(props.currentUser, props.potentialMatches[0]?.id, false);
+            //           props.discard();
+            //           side = -200;
+            //         }}
+            //       >
+            //         <ImCross />
+            //       </motion.button>
+            //       <motion.button
+            //         className="bg-orange-400 text-white hover:text-red-500 font-bold py-2 px-4 rounded-full text-4xl"
+            //         onClick={() => {
+            //           addNewLike(props.currentUser, props.potentialMatches[0]?.id, true);
+            //           checkForMatch(props.currentUser, props.potentialMatches[0], notify)
+            //           props.discard();
+            //           side = 200;
+            //         }}
+            //       >
+            //         <AiTwotoneHeart />
+            //       </motion.button>
+            //     </div>
+            //     <div>
+            //     </div>
+            //   </div>
+            // </motion.div>
+            <div>
+              {MatchMapper(filteredMatches)}
+              {/* {MatchItemsMapper(props.potentialMatches)} */}
+            </div>
+          )}
+        </ AnimatePresence>
+        <AnimatePresence>
+          {filteredMatches.length === 0 && (
+            <motion.div
+              className="flex flex-col justify-center items-center w-full"
+            // animate={{ y: -side }}
+            // transition={{
+            //   duration: 1.0,
+            //   stiffness: 50 }}
+            >
+              {"geolocation" in navigator && <form
+                className="flex flex-col top-0 justify-center items-center bg-fuchsia-200 rounded-3xl text-l h-16"
+                onSubmit={(event) => handleSubmit(event)}
               >
-                {"geolocation" in navigator && <form
-                  className="flex flex-col top-0 justify-center items-center bg-fuchsia-200 rounded-3xl text-l h-16"
-                  onSubmit={(event) => handleSubmit(event)}
-                >
-                  <label>
-                    Match me with people within:
-                    <input className="w-10" type="text" name="distance" />
-                    km
-                  </label>
-                  <div>
-                    <input className='bg-zinc-200' type="submit" value="Update" />
-                  </div>
-                </form>}
-                <img
-                  src="https://media.tenor.com/n6XKuq5mXkIAAAAC/jigglypuff-sad.gif"
-                  alt="Sad Jigglypuff"
-                ></img>
-                We do not have anymore potential matches for you at the moment, please
-                check back periodically for new potential matches.
-              </motion.div>
-            )}
-          </AnimatePresence>
-        </div>
+                <label>
+                  Match me with people within:
+                  <input className="w-10" type="text" name="distance" />
+                  km
+                </label>
+                <div>
+                  <input className='bg-zinc-200' type="submit" value="Update" />
+                </div>
+              </form>}
+              <img
+                src="https://media.tenor.com/n6XKuq5mXkIAAAAC/jigglypuff-sad.gif"
+                alt="Sad Jigglypuff"
+              ></img>
+              We do not have anymore potential matches for you at the moment, please
+              check back periodically for new potential matches.
+            </motion.div>
+          )}
+        </AnimatePresence>
+      </div>
     </div>
   );
 }
