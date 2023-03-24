@@ -31,12 +31,20 @@ export default function Profile(props) {
     },
     exit: {
       y: '-100vh',
-      transition: { ease: 'backOut' },
-    },
-    right: {
-      x: ['-100vh', '0vh'], 
       transition: { 
-        times: 0.8,
+        duration: 0.5,
+        ease: 'easeInOut' },
+    },
+    // right: {
+    //   x: ['-100vh', '0vh'], 
+    //   transition: { 
+    //     times: 0.8,
+    //     ease: 'easeInOut' },
+    // },
+    right: {
+      x: ['0vh', '300vh', '0vh'], 
+      transition: { 
+        times: 1.6,
         ease: 'easeInOut' },
     },
     left: {
@@ -51,10 +59,6 @@ export default function Profile(props) {
         duration: 1.0,
         ease: 'easeInOut'
       },
-    },
-    exit2: {
-      x: '100vh',
-      transition: { ease: 'easeInOut' },
     },
   };
   const controls = useAnimationControls();
@@ -305,10 +309,10 @@ export default function Profile(props) {
         {props.potentialMatches.length === 0 && (
           <motion.div
             className="flex flex-col justify-center items-center w-full"
-            animate={{ y: -side }}
-            transition={{
-              duration: 1.0,
-              stiffness: 50 }}
+            // animate={{ y: -side }}
+            // transition={{
+            //   duration: 1.0,
+            //   stiffness: 50 }}
           >
             <img
               src="https://media.tenor.com/n6XKuq5mXkIAAAAC/jigglypuff-sad.gif"
