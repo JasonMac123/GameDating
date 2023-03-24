@@ -13,6 +13,7 @@ const getCurrentInterests = (userID) => {
 
 const getMatches = (interests) => {
   // console.log(interests.gender_preference)
+
   let queryString = `SELECT interests.*,
   users.*,
   CASE WHEN strategy_games = $1 THEN 1 ELSE 0 END +
@@ -68,29 +69,31 @@ const getMatches = (interests) => {
   ORDER BY rank DESC
   
   ;`;
-
-  const userInterests = [
-    interests.strategy_games,
-    interests.cooking_games,
-    interests.puzzle_games,
-    interests.mmos,
-    interests.action_games,
-    interests.rpg_games,
-    interests.slice_of_life_anime,
-    interests.isekai_anime,
-    interests.shonen_anime,
-    interests.sports_anime,
-    interests.romance_anime,
-    interests.manga,
-    interests.books,
-    interests.comic_books,
-    interests.user_id,
-  ];
-  /*
-    userInterests.push(interests.gender_preference, interests.gender_identity)
-  */
-  return db.query(queryString, userInterests).then((res) => {
-    return res.rows;
+  if (interests) {
+    const userInterests = [
+      interests.strategy_games,
+      interests.cooking_games,
+      interests.puzzle_games,
+      interests.mmos,
+      interests.action_games,
+      interests.rpg_games,
+      interests.slice_of_life_anime,
+      interests.isekai_anime,
+      interests.shonen_anime,
+      interests.sports_anime,
+      interests.romance_anime,
+      interests.manga,
+      interests.books,
+      interests.comic_books,
+      interests.user_id,
+    ];
+    return db.query(queryString, userInterests).then((res) => {
+      return res.rows;
+    });
+  }
+  let emptyQuery = `select * from interests;`
+  return db.query(emptyQuery).then(() => {
+    return [];
   });
 };
 

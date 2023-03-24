@@ -14,7 +14,7 @@ import SideBar from "./components/SideBar/SideBar";
 function App() {
   const [display, setDisplay] = useState(1);
   const [userID, setUserID] = useState(0);
-  const { potentialMatchList, setPotentialMatchList, next } = useCurrentUserMatches(userID || 1);
+  const { potentialMatchList, setPotentialMatchList, next } = useCurrentUserMatches(userID);
   const { profile, setProfile} = useProfile(userID)
 
 
