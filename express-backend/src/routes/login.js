@@ -12,16 +12,16 @@ router.post("/", (req, res) => {
   const email = req.body.email;
   const password = req.body.password;
   if (!email || !password) {
-    console.log("Password and login fields cannot be blank")
+    // console.log("Password and login fields cannot be blank")
     return res.json(1);
   }
   getUserWithEmail(email).then((data) => {
     if (!data) {
-      console.log("no user")
+      // console.log("no user")
       return res.json(2)
     }
     if (bcrypt.compareSync(password, data.password) === false) {
-      console.log("Incorrect password")
+      // console.log("Incorrect password")
       return res.json(3)
     }
     return res.json(data);

@@ -26,13 +26,13 @@ router.post("/", (req, res) => {
   };
 
   if (!details.name|| !details.email || !details.password || !details.phone_number || !details.profile_picture || !details.cover_picture || !details.gender_identity || !details.gender_preference || !details.summary) {
-    console.log(req.body.name)
+    // console.log(req.body.name)
     return res.json(1);
   }
 
   getUserWithEmail(req.body.email).then((data) => {
     if (data) {
-      console.log("juniper")
+      // console.log("juniper")
       return res.json(2)
     }
 
