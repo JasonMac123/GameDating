@@ -58,17 +58,18 @@ export default function useCurrentUserMatches(id) {
   useEffect(() => {
     axios
       .get(`/api/match/${id}`)
-      // .then((res) => { setPotentialMatchList(res.data) })
-      .then((res) => {
-        axios.get(`api/users/geo/${id}`)
-          .then((userGeo) => {
-            let filteredList = res.data.filter((element) => {  
-              if(getDistanceFromLatLonInKm(element["latitude"], element["longitude"], userGeo.data[0].latitude, userGeo.data[0].longitude) < 50) {
-              return element;
-            }})
-            setPotentialMatchList(filteredList);
-          })
-      })
+      .then((res) => { setPotentialMatchList(res.data) })
+      // if we wish to implement a default value instead of user-input value the following code will filter for a value
+      // .then((res) => {
+      //   axios.get(`api/users/geo/${id}`)
+      //     .then((userGeo) => {
+      //       let filteredList = res.data.filter((element) => {  
+      //         if(getDistanceFromLatLonInKm(element["latitude"], element["longitude"], userGeo.data[0].latitude, userGeo.data[0].longitude) < 50) {
+      //         return element;
+      //       }})
+      //       setPotentialMatchList(filteredList);
+      //     })
+      // })
       .catch((e) => console.log(e));
   }, [id]);
 
