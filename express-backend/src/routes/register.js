@@ -22,22 +22,28 @@ router.post("/", (req, res) => {
     cover_picture: req.body.cover_picture,
     gender_identity: req.body.gender_identity,
     gender_preference: req.body.gender_preference,
+    distance_limit: req.body.distance_limit,
     summary: req.body.summary,
   };
 
   if (!details.name|| !details.email || !details.password || !details.phone_number || !details.profile_picture || !details.cover_picture || !details.gender_identity || !details.gender_preference || !details.summary) {
-    console.log(req.body.name)
+    // console.log(req.body.name)
     return res.json(1);
   }
 
   getUserWithEmail(req.body.email).then((data) => {
     if (data) {
-      console.log("juniper")
+      // console.log("juniper")
       return res.json(2)
     }
 
-    else {return res.json(details)}
+    else {
+      addUser(details).then((data) => {
+        res.json(data)
+      })
+    }
   });
+
 
 });
 

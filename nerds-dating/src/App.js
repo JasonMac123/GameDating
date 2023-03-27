@@ -19,7 +19,6 @@ function App() {
   const [userLatitude, setUserLatitude] = useState("");
   const [userLongitude, setUserLongitude] = useState("");
 
-
   return (
     <>
       {/* <div className="text-sky-400 text-2xl underline decoration-solid">Hi</div> */}
@@ -43,7 +42,13 @@ function App() {
         setUserLongitude={setUserLongitude}
       />}
       {/* {display === 77 && <Profile currentUserID={userID} />} */}
-      {userID !== 0 && <SideBar setDisplay={setDisplay} userID={userID} />}
+      {userID !== 0 && (
+        <SideBar
+          setDisplay={setDisplay}
+          userID={userID}
+          setUserID={setUserID}
+        />
+      )}
       {display === 1 && (
         <Login
           display={display}

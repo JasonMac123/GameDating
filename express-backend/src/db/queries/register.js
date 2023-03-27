@@ -2,8 +2,8 @@ const db = require("../index");
 
 const addUser = function (user) {
   const queryString =`
-    INSERT INTO users (name, email, password, phone_number, profile_picture, cover_picture, gender_identity, gender_preference, summary)
-    VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) 
+    INSERT INTO users (name, email, password, phone_number, profile_picture, cover_picture, gender_identity, gender_preference, distance_limit, summary)
+    VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10) 
     RETURNING *
     `;
   return db
@@ -16,6 +16,7 @@ const addUser = function (user) {
       user.cover_picture,
       user.gender_identity,
       user.gender_preference,
+      user.distance_limit,
       user.summary,
     ])
     .then((result) => {
