@@ -14,14 +14,24 @@ import MatchItems from "./MatchItems";
 import { useEffect, useState } from "react";
 import updateLocation from "../helpers/updateLocation";
 import { toast } from 'react-toastify';
+import removeFirst from "../helpers/removeFirst";
 
 export default function Profile(props) {
   console.log(props);
-  const [distanceFilter, setDistanceFilter] = useState(50)
+  const [filteredMatches, setFilteredMatches] = useState(props.potentialMatches)
   const handleSubmit = (event) => {
     event.preventDefault();
-    setDistanceFilter(event.target[0].value);
+    props.setDistanceFilter(event.target[0].value);
+    setFilteredMatches(props.potentialMatches.filter(match => {
+      if (getDistanceFromLatLonInKm(match.latitude, match.longitude, props.userLatitude, props.userLongitude) < event.target[0].value) {
+        return match;
+      }
+    }));
     toast(`Your distance preference have been changed to ${event.target[0].value}km`)
+  }
+  const handleLiking = (userID) => {
+    setFilteredMatches(removeFirst(filteredMatches));
+    props.removeUserByID(userID)
   }
   function deg2rad(deg) {
     return deg * (Math.PI / 180)
@@ -39,7 +49,6 @@ export default function Profile(props) {
     var d = R * c; // Distance in km
     return d;
   }
-  let filteredMatches = props.potentialMatches;
   useEffect(() => {
     if ("geolocation" in navigator) {
       navigator.geolocation.getCurrentPosition((position) => {
@@ -52,15 +61,16 @@ export default function Profile(props) {
           .then(response => {
             console.log("fromMatch")
             console.log(response)
-            filteredMatches = props.potentialMatches.filter(match => {
-              if (getDistanceFromLatLonInKm(match.latitude, match.longitude, props.userLatitude, props.userLongitude) < distanceFilter) {
+            setFilteredMatches(props.potentialMatches.filter(match => {
+              if (getDistanceFromLatLonInKm(match.latitude, match.longitude, props.userLatitude, props.userLongitude) < props.distanceFilter) {
                 return match;
               }
-            })
+            }))
           })
       });
     }
   }, [])
+
   // (distance && distance)
   const wrapperVariants = {
     hidden: {
@@ -116,11 +126,11 @@ export default function Profile(props) {
       />
     })
   }
-  filteredMatches = props.potentialMatches.filter(match => {
-    if (getDistanceFromLatLonInKm(match.latitude, match.longitude, props.userLatitude, props.userLongitude) < distanceFilter) {
-      return match;
-    }
-  })
+  // setFilteredMatches(props.potentialMatches.filter(match => {
+  //   if (getDistanceFromLatLonInKm(match.latitude, match.longitude, props.userLatitude, props.userLongitude) < distanceFilter) {
+  //     return match;
+  //   }
+  // }))
 
 
 
@@ -150,7 +160,7 @@ export default function Profile(props) {
 
             {props.userLatitude !== "" && <div className="flex bg-fuchsia-200 rounded-3xl justify-center text-3xl"> {Math.round(getDistanceFromLatLonInKm(match.latitude, match.longitude, props.userLatitude, props.userLongitude))} km away!
             </div>}
-            {"geolocation" in navigator && <form
+            {"geolocation" in navigator && props.userLatitude !== "" && <form
               className="flex flex-col top-0 justify-center items-center bg-fuchsia-200 rounded-3xl text-l"
               onSubmit={(event) => handleSubmit(event)}
             >
@@ -171,7 +181,7 @@ export default function Profile(props) {
                 onClick={() => {
                   addNewLike(props.currentUser, match.id, false)
                     .then(
-                      props.discard()
+                      handleLiking(match.id)
                     )
                     .catch(() => toast("Error processing your request.  Please try again later!"))
                   controls.start('left')
@@ -183,11 +193,11 @@ export default function Profile(props) {
               <motion.button
                 className="bg-orange-400 text-white hover:text-red-500 font-bold py-2 px-4 rounded-full text-4xl"
                 onClick={() => {
-                  addNewLike(props.currentUser, match.id, true);
-                  checkForMatch(props.currentUser, match, notify)
+                  addNewLike(props.currentUser, match.id, true)
                     .then(
-                      props.discard()
+                      handleLiking(match.id)
                     )
+                  checkForMatch(props.currentUser, match, notify)
                     .catch(() => toast("Error processing your request.  Please try again later!"))
                   controls.start('right')
                 }}
@@ -211,7 +221,7 @@ export default function Profile(props) {
       >
 
         <div className="left-0 flex h-screen w-1/2 justify-center items-center pl-16 ">
-          {"geolocation" in navigator && <form
+          {"geolocation" in navigator && props.userLatitude !== "" && <form
             className="flex flex-col top-0 justify-center items-center bg-fuchsia-200 rounded-3xl text-l"
             onSubmit={(event) => handleSubmit(event)}
           >
@@ -241,7 +251,7 @@ export default function Profile(props) {
               onClick={() => {
                 addNewLike(props.currentUser, match.id, false)
                   .then(
-                    props.discard()
+                    handleLiking(match.id)
                   )
                   .catch(() => toast("Error processing your request.  Please try again later!"))
                 controls.start('left')
@@ -252,11 +262,11 @@ export default function Profile(props) {
             <motion.button
               className="bg-orange-400 text-white hover:text-red-500 font-bold py-2 px-4 rounded-full text-4xl"
               onClick={() => {
-                addNewLike(props.currentUser, match.id, true);
-                checkForMatch(props.currentUser, match, notify)
+                addNewLike(props.currentUser, match.id, true)
                   .then(
-                    props.discard()
+                    handleLiking(match.id)
                   )
+                checkForMatch(props.currentUser, match, notify)
                   .catch(() => toast("Error processing your request.  Please try again later!"))
                 controls.start('right')
               }}
@@ -400,7 +410,7 @@ export default function Profile(props) {
             //   duration: 1.0,
             //   stiffness: 50 }}
             >
-              {"geolocation" in navigator && <form
+              {"geolocation" in navigator && props.userLatitude !== "" && <form
                 className="flex flex-col top-0 justify-center items-center bg-fuchsia-200 rounded-3xl text-l h-16"
                 onSubmit={(event) => handleSubmit(event)}
               >
