@@ -116,11 +116,11 @@ export default function Profile(props) {
       />
     })
   }
-  // let filteredMatches = props.potentialMatches.filter(match => {
-  //   if (getDistanceFromLatLonInKm(match.latitude, match.longitude, props.userLatitude, props.userLongitude) < distanceFilter) {
-  //     return match;
-  //   }
-  // })
+  filteredMatches = props.potentialMatches.filter(match => {
+    if (getDistanceFromLatLonInKm(match.latitude, match.longitude, props.userLatitude, props.userLongitude) < distanceFilter) {
+      return match;
+    }
+  })
 
 
 
