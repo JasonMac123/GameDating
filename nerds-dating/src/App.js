@@ -19,6 +19,7 @@ function App() {
   const { profile, setProfile} = useProfile(userID)
   const [userLatitude, setUserLatitude] = useState("");
   const [userLongitude, setUserLongitude] = useState("");
+  const [regID, setRegID] = useState(0);
 
   return (
     <>
@@ -69,6 +70,8 @@ function App() {
           setDisplay={setDisplay}
           userID={userID}
           setUserID={setUserID}
+          regID={regID}
+          setRegID={setRegID}
         />
       )}
       {display === 3 && (
@@ -77,6 +80,8 @@ function App() {
           setDisplay={setDisplay}
           userID={userID}
           setUserID={setUserID}
+          regID={regID}
+          setRegID={setRegID}
         />
       )}
       {display === 5 && <ChatDisplay userID={userID} />}

@@ -3,7 +3,7 @@ import axios from "axios";
 
 function Interests(props) {
   const [interests, setInterests] = useState({
-    userID: props.userID,
+    userID: props.userID || props.regID,
     strategy_games: false,
     cooking_games: false,
     puzzle_games: false,
@@ -28,6 +28,7 @@ function Interests(props) {
     event.preventDefault();
     return axios.post("/api/interests", interests).then((result) => {
       props.setDisplay(3);
+      props.setUserID(props.userID || props.regID)
     });
   };
 

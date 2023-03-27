@@ -10,7 +10,6 @@ import { toast } from 'react-toastify';
 import removeFirst from "../helpers/removeFirst";
 
 export default function Profile(props) {
-  props.useCurrentUserMatches(props.currentUser)
   const [filteredMatches, setFilteredMatches] = useState(props.potentialMatches)
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -42,6 +41,7 @@ export default function Profile(props) {
     var d = R * c; // Distance in km
     return d;
   }
+  props.useCurrentUserMatches(props.currentUser)
   useEffect(() => {
     if ("geolocation" in navigator) {
       navigator.geolocation.getCurrentPosition((position) => {
