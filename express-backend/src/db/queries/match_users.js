@@ -34,21 +34,21 @@ const getMatches = (interests) => {
   FROM interests
   JOIN users ON users.id = user_id
   WHERE user_id != $15`;
-  // comment out the below lines for now as we do not have too much test data
-  // if (interests.gender_preference === "M") {
-  //   queryString += `
-  //   AND gender_identity = 'M' `
-  // };
+  // comment out the below lines if database do not have too much test data
+  if (interests.gender_preference === "M") {
+    queryString += `
+    AND gender_identity = 'M' `
+  };
 
-  // if (interests.gender_preference === "F") {
-  //   queryString += `
-  //   AND gender_identity = 'F' `
-  // };
+  if (interests.gender_preference === "F") {
+    queryString += `
+    AND gender_identity = 'F' `
+  };
 
-  // queryString += `
-  // AND user_id NOT in (SELECT likes.receiving_user_id FROM likes WHERE giving_user_id = $15)
+  queryString += `
+  AND user_id NOT in (SELECT likes.receiving_user_id FROM likes WHERE giving_user_id = $15)
 
-  // `
+  `
 
   queryString += `
   AND
