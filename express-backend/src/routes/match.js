@@ -8,7 +8,8 @@ const { checkChatExists, addChat } = require("../db/queries/create_chat");
 const { addNotification } = require("../db/queries/create_notifications")
 
 router.post("/", (req, res) => {
-  checkChatExists(req.body.user1, req.body.user2).then((exists) => {
+  checkChatExists(req.body.user1, req.body.user2)
+  .then((exists) => {
     if (exists === false) {
       addChat(req.body.user1, req.body.user2).then((response) => {
         console.log("new chatroom created");
@@ -18,17 +19,20 @@ router.post("/", (req, res) => {
       }
       );
     }
-  });
+  }).catch(e => console.log(e));
 });
 
 router.get("/:id", (req, res) => {
   let interestsSet = {};
-  getCurrentInterests(req.params.id).then((data) => {
-    interestsSet = data;
-    getMatches(interestsSet).then((results) => {
-      res.json(results);
-    });
-  });
+    getCurrentInterests(req.params.id)
+    .then((data) => {
+      interestsSet = data;
+      getMatches(interestsSet)
+      .then((results) => {
+        res.json(results);
+      }).catch(e => console.log(e));
+    }).catch(e => console.log(e));
+
 });
 
 router.get("/", (req, res) => {

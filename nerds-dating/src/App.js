@@ -6,7 +6,7 @@ import ChatDisplay from "./components/Chat/ChatDisplay";
 import Login from "./components/Profile/Login";
 import Register from "./components/Profile/Register";
 import Interests from "./components/Profile/Interests";
-import { ToastContainer, toast } from "react-toastify";
+import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import useProfile from "./hooks/useProfile";
 import SideBar from "./components/SideBar/SideBar";
@@ -14,9 +14,10 @@ import SideBar from "./components/SideBar/SideBar";
 function App() {
   const [display, setDisplay] = useState(1);
   const [userID, setUserID] = useState(0);
-  const { potentialMatchList, setPotentialMatchList, next } =
-    useCurrentUserMatches(userID || 1);
-  const { profile, setProfile } = useProfile(userID);
+  const { potentialMatchList, setPotentialMatchList, next } = useCurrentUserMatches(userID);
+  const { profile, setProfile} = useProfile(userID)
+  const [userLatitude, setUserLatitude] = useState("");
+  const [userLongitude, setUserLongitude] = useState("");
 
   return (
     <>
@@ -31,13 +32,15 @@ function App() {
               <button className="flex px-64" onClick={()=>display === 6? setDisplay(77) : setDisplay(6)}>switch!</button>
       </div> */}
       <ToastContainer />
-      {display === 6 && (
-        <Match
-          potentialMatches={potentialMatchList}
-          discard={next}
-          currentUser={userID}
-        />
-      )}
+      {userID !== 0 && display === 6 && <Match
+        potentialMatches={potentialMatchList}
+        discard={next}
+        currentUser={userID}
+        userLatitude={userLatitude}
+        setUserLatitude={setUserLatitude}
+        userLongitude={userLongitude}
+        setUserLongitude={setUserLongitude}
+      />}
       {/* {display === 77 && <Profile currentUserID={userID} />} */}
       {userID !== 0 && (
         <SideBar
