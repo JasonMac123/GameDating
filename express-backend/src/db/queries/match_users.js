@@ -12,8 +12,6 @@ const getCurrentInterests = (userID) => {
 };
 
 const getMatches = (interests) => {
-  // console.log(interests.gender_preference)
-
   let queryString = `SELECT interests.*,
   users.*,
   CASE WHEN strategy_games = $1 THEN 1 ELSE 0 END +
@@ -35,7 +33,7 @@ const getMatches = (interests) => {
   JOIN users ON users.id = user_id
   WHERE user_id != $15`;
   // comment out the below lines if database do not have too much test data
-  // adding the validation for itnerests.gender_preference exists to avoid data errors
+  // adding the validation for interests.gender_preference exists to avoid data errors
   if (interests && interests.gender_preference === "M") {
     queryString += `
     AND gender_identity = 'M' `
