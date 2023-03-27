@@ -15,9 +15,11 @@ import { useEffect, useState } from "react";
 import updateLocation from "../helpers/updateLocation";
 import { toast } from 'react-toastify';
 import removeFirst from "../helpers/removeFirst";
+import useCurrentUserMatches from "../hooks/useCurrentUserMatches";
 
 export default function Profile(props) {
   console.log(props);
+  props.useCurrentUserMatches(props.currentUser)
   const [filteredMatches, setFilteredMatches] = useState(props.potentialMatches)
   const handleSubmit = (event) => {
     event.preventDefault();

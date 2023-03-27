@@ -35,6 +35,7 @@ function App() {
       <ToastContainer />
       {userID !== 0 && display === 6 && <Match
         potentialMatches={potentialMatchList}
+        useCurrentUserMatches={useCurrentUserMatches}
         setPotentialMatchList={setPotentialMatchList}
         discard={next}
         removeUserByID={removeUserByID}

@@ -198,7 +198,7 @@ function Register(props) {
                         </fieldset>
                       </div>
 
-                      <div className="relative mb-4" data-te-input-wrapper-init>
+                      {/* <div className="relative mb-4" data-te-input-wrapper-init>
                         <fieldset className="peer block min-h-[auto] bg-white w-full rounded border-0 bg-transparent py-[0.32rem] px-3 leading-[1.6]  transition-all duration-200 ease-linear">
                           <h4>Distance Limit for Matches:</h4>
                           <p>{user.distance_limit} km</p>
@@ -212,7 +212,7 @@ function Register(props) {
                             onChange={handleChange}
                           />
                         </fieldset>
-                      </div>
+                      </div> */}
 
                       {/* <div className="relative mb-4" data-te-input-wrapper-init>
                         <input
