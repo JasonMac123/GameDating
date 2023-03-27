@@ -14,7 +14,8 @@ import SideBar from "./components/SideBar/SideBar";
 function App() {
   const [display, setDisplay] = useState(1);
   const [userID, setUserID] = useState(0);
-  const { potentialMatchList, setPotentialMatchList, next } = useCurrentUserMatches(userID);
+  const [distanceFilter, setDistanceFilter] = useState(50);
+  const { potentialMatchList, setPotentialMatchList, next, removeUserByID } = useCurrentUserMatches(userID);
   const { profile, setProfile} = useProfile(userID)
   const [userLatitude, setUserLatitude] = useState("");
   const [userLongitude, setUserLongitude] = useState("");
@@ -34,12 +35,17 @@ function App() {
       <ToastContainer />
       {userID !== 0 && display === 6 && <Match
         potentialMatches={potentialMatchList}
+        useCurrentUserMatches={useCurrentUserMatches}
+        setPotentialMatchList={setPotentialMatchList}
         discard={next}
+        removeUserByID={removeUserByID}
         currentUser={userID}
         userLatitude={userLatitude}
         setUserLatitude={setUserLatitude}
         userLongitude={userLongitude}
         setUserLongitude={setUserLongitude}
+        distanceFilter={distanceFilter}
+        setDistanceFilter={setDistanceFilter}
       />}
       {/* {display === 77 && <Profile currentUserID={userID} />} */}
       {userID !== 0 && (

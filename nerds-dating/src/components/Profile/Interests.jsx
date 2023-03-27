@@ -27,7 +27,7 @@ function Interests(props) {
   const handleSubmit = (event) => {
     event.preventDefault();
     return axios.post("/api/interests", interests).then((result) => {
-      props.setDisplay(1);
+      props.setDisplay(3);
     });
   };
 
