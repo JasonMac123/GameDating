@@ -14,7 +14,7 @@ function App() {
   const [userID, setUserID] = useState(0);
   const [regID, setRegID] = useState(0);
   const [distanceFilter, setDistanceFilter] = useState(50);
-  const { potentialMatchList, setPotentialMatchList, next, removeUserByID } =
+  const { potentialMatchList, setPotentialMatchList, removeUserByID } =
     useCurrentUserMatches(userID);
   const [userLatitude, setUserLatitude] = useState("");
   const [userLongitude, setUserLongitude] = useState("");
@@ -27,7 +27,6 @@ function App() {
           potentialMatches={potentialMatchList}
           useCurrentUserMatches={useCurrentUserMatches}
           setPotentialMatchList={setPotentialMatchList}
-          discard={next}
           removeUserByID={removeUserByID}
           currentUser={userID}
           userLatitude={userLatitude}

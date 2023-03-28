@@ -1,22 +1,26 @@
 import { AiTwotoneHeart } from "react-icons/ai";
 import { ImCross } from "react-icons/im";
-import checkForMatch from "../helpers/checkForMatch";
-import addNewLike from "../helpers/addNewLikes";
-import notify from "../helpers/notifyMatch";
+import matchHelpers from "../helpers/matchHelpers";
 import { motion, AnimatePresence, useAnimationControls } from "framer-motion";
 import { useEffect, useState } from "react";
-import updateLocation from "../helpers/updateLocation";
 import { toast } from "react-toastify";
-import removeFirst from "../helpers/removeFirst";
 
 export default function Profile(props) {
   const [filteredMatches, setFilteredMatches] = useState(
     props.potentialMatches
   );
+  const {
+    notify,
+    addNewLike,
+    checkForMatch,
+    updateLocation,
+    removeFirst,
+    getDistanceFromLatLonInKm,
+  } = matchHelpers();
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    props.setDistanceFilter(event.target[0].value);
+    props.setDistanceFilter(Number(event.target[0].value));
     setFilteredMatches(
       props.potentialMatches.filter((match) => {
         if (
@@ -40,25 +44,6 @@ export default function Profile(props) {
     setFilteredMatches(removeFirst(filteredMatches));
     props.removeUserByID(userID);
   };
-
-  function deg2rad(deg) {
-    return deg * (Math.PI / 180);
-  }
-
-  function getDistanceFromLatLonInKm(lat1, lon1, lat2, lon2) {
-    var R = 6371; // Radius of the earth in km
-    var dLat = deg2rad(lat2 - lat1); // deg2rad below
-    var dLon = deg2rad(lon2 - lon1);
-    var a =
-      Math.sin(dLat / 2) * Math.sin(dLat / 2) +
-      Math.cos(deg2rad(lat1)) *
-        Math.cos(deg2rad(lat2)) *
-        Math.sin(dLon / 2) *
-        Math.sin(dLon / 2);
-    var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
-    var d = R * c; // Distance in km
-    return d;
-  }
 
   useEffect(() => {
     if ("geolocation" in navigator) {
@@ -238,7 +223,6 @@ export default function Profile(props) {
           className="flex w-screen"
           transition={{ stiffness: 100 }}
           variants={wrapperVariants}
-          // animate={controls}
           animate={{ y: -200 }}
           initial="start"
           exit="exit"
@@ -330,7 +314,7 @@ export default function Profile(props) {
                 please check back periodically for new potential matches.
               </div>
 
-              <div className="flex w-1/2">
+              <div className="flex w-3/5">
                 {"geolocation" in navigator && props.userLatitude !== "" && (
                   <form
                     className="flex flex-col top-0 justify-center items-center bg-fuchsia-200 rounded-3xl text-l h-16 w-full"
