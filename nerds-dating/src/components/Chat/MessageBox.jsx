@@ -4,7 +4,7 @@ import useMessageChat from "../../hooks/useMessageChat";
 import { FaLongArrowAltRight } from "react-icons/fa";
 import io from "socket.io-client";
 import { useEffect } from "react";
-import { motion, animatePresence, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 
 const MessageBox = ({ chat, userID }) => {
   const {

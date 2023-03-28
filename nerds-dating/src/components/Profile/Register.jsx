@@ -26,12 +26,10 @@ function Register(props) {
     event.preventDefault();
     return axios.post("/api/register", user).then((result) => {
       if (result.data === 1) {
-        setError(1)
-      }
-      else if (result.data === 2) {
-        setError(2)
-      }
-      else {
+        setError(1);
+      } else if (result.data === 2) {
+        setError(2);
+      } else {
         props.setRegID(result.data.id);
         props.setDisplay(3);
       }
@@ -46,11 +44,9 @@ function Register(props) {
   return (
     <section className="gradient-form h-full bg-zinc-300">
       <div className="container h-full p-10 mx-auto">
-        <div
-          className="g-6 flex h-full flex-wrap items-center justify-center text-neutral-800 dark:text-neutral-200">
+        <div className="g-6 flex h-full flex-wrap items-center justify-center text-neutral-800 dark:text-neutral-200">
           <div className="w-full">
-            <div
-              className="block rounded-lg bg-white shadow-lg dark:bg-neutral-800">
+            <div className="block rounded-lg bg-white shadow-lg dark:bg-neutral-800">
               <div className="g-0 rounded lg:flex lg:flex-wrap bg-stone-500">
                 <div className="px-4 md:px-0 lg:w-6/12">
                   <div className="md:mx-6 md:p-12">
@@ -60,10 +56,11 @@ function Register(props) {
                         src="https://media.discordapp.net/attachments/1083878227883331647/1089174129451737098/twiglet_one_color_stylish_symbol_of_man_and_woman_happy_with_ga_361b4ae6-6dff-4f94-b043-f7d222b8558e.png?width=660&height=660"
                         alt="logo"
                       />
-                      <h1 className='mt-1 mb-12 pb-1 text-xl font-semibold'>Gamers Only</h1>
+                      <h1 className="mt-1 mb-12 pb-1 text-xl font-semibold">
+                        Gamers Only
+                      </h1>
                     </div>
                     <form autoComplete="off" onSubmit={handleSubmit}>
-
                       <p className="mb-4">Please register an account:</p>
                       <div className="relative mb-4" data-te-input-wrapper-init>
                         <input
@@ -249,8 +246,8 @@ function Register(props) {
                         >
                           Sign up
                         </button>
-                        {error === 1 && (<FieldBlankError />)}
-                        {error === 2 && (<ExistingUser />)}
+                        {error === 1 && <FieldBlankError />}
+                        {error === 2 && <ExistingUser />}
                       </div>
 
                       <div className="items-center">
@@ -269,24 +266,28 @@ function Register(props) {
                           Login
                         </button>
                       </div>
-
                     </form>
                   </div>
                 </div>
                 <div
                   className="flex items-center rounded-b-lg lg:w-6/12 lg:rounded-r-lg lg:rounded-bl-none"
-                  style={{ background: "linear-gradient(to right, #ee7724, #d8363a, #dd3675, #b44593)" }}>
+                  style={{
+                    background:
+                      "linear-gradient(to right, #ee7724, #d8363a, #dd3675, #b44593)",
+                  }}
+                >
                   <div className="px-4 py-6 text-white md:mx-6 md:p-12">
                     <h4 className="mb-6 text-xl font-semibold">
-                      A place for gamers to find true love or just play some games together
+                      A place for gamers to find true love or just play some
+                      games together
                     </h4>
                     <p className="text-sm">
-                      Gamers only is a place for people who have a
-                      shared interest of games and nerd culture.
-                      It is a site designed to connect people who have similar
-                      interests so that you can chat about these topics and play games
-                      together. Whether you're looking for a romantic or platonic relationship
-                      is up to you!
+                      Gamers only is a place for people who have a shared
+                      interest of games and nerd culture. It is a site designed
+                      to connect people who have similar interests so that you
+                      can chat about these topics and play games together.
+                      Whether you're looking for a romantic or platonic
+                      relationship is up to you!
                     </p>
                   </div>
                 </div>
