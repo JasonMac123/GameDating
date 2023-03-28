@@ -3,23 +3,13 @@ import { ImCross } from "react-icons/im";
 import checkForMatch from "../helpers/checkForMatch";
 import addNewLike from "../helpers/addNewLikes";
 import notify from "../helpers/notifyMatch";
-import {
-  motion,
-  AnimatePresence,
-  useMotionValue,
-  useAnimationControls,
-  useTransform,
-} from "framer-motion"
-import MatchItems from "./MatchItems";
+import { motion, AnimatePresence, useAnimationControls } from "framer-motion"
 import { useEffect, useState } from "react";
 import updateLocation from "../helpers/updateLocation";
 import { toast } from 'react-toastify';
 import removeFirst from "../helpers/removeFirst";
-import useCurrentUserMatches from "../hooks/useCurrentUserMatches";
 
 export default function Profile(props) {
-  console.log(props);
-  props.useCurrentUserMatches(props.currentUser)
   const [filteredMatches, setFilteredMatches] = useState(props.potentialMatches)
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -51,18 +41,15 @@ export default function Profile(props) {
     var d = R * c; // Distance in km
     return d;
   }
+  props.useCurrentUserMatches(props.currentUser)
   useEffect(() => {
     if ("geolocation" in navigator) {
       navigator.geolocation.getCurrentPosition((position) => {
-        console.log("Here you are!")
         console.log(position.coords.latitude, position.coords.longitude);
-
         props.setUserLatitude(position.coords.latitude);
         props.setUserLongitude(position.coords.longitude);
         updateLocation(position.coords.latitude, position.coords.longitude, props.currentUser)
-          .then(response => {
-            console.log("fromMatch")
-            console.log(response)
+          .then(() => {
             setFilteredMatches(props.potentialMatches.filter(match => {
               if (getDistanceFromLatLonInKm(match.latitude, match.longitude, props.userLatitude, props.userLongitude) < props.distanceFilter) {
                 return match;
@@ -117,24 +104,6 @@ export default function Profile(props) {
     },
   };
   const controls = useAnimationControls();
-  // const MatchItemsMapper = (matches) => {
-  //   return matches.map((match) => {
-  //     return <MatchItems
-  //       key={match.index}
-  //       cover_picture={match.cover_picture}
-  //       name={match.name}
-  //       summary={match.summary}
-  //     />
-  //   })
-  // }
-  // setFilteredMatches(props.potentialMatches.filter(match => {
-  //   if (getDistanceFromLatLonInKm(match.latitude, match.longitude, props.userLatitude, props.userLongitude) < distanceFilter) {
-  //     return match;
-  //   }
-  // }))
-
-
-
   const MatchMapper = (matches) => {
     for (let match of matches) {
       if (matches.indexOf(match) === 0) {
@@ -296,27 +265,33 @@ export default function Profile(props) {
         <AnimatePresence>
           {filteredMatches.length === 0 && (
             <motion.div
-              className="flex flex-col justify-center items-center w-full"
+              className="flex flex-col justify-center items-center  w-full space-y-10 pl-36"
             >
-              {"geolocation" in navigator && props.userLatitude !== "" && <form
-                className="flex flex-col top-0 justify-center items-center bg-fuchsia-200 rounded-3xl text-l h-16"
-                onSubmit={(event) => handleSubmit(event)}
+              <div
+                className="flex"
               >
-                <label>
-                  Match me with people within:
-                  <input className="w-10" type="text" name="distance" />
-                  km
-                </label>
-                <div>
-                  <input className='bg-zinc-200' type="submit" value="Update" />
-                </div>
-              </form>}
-              <img
-                src="https://media.tenor.com/n6XKuq5mXkIAAAAC/jigglypuff-sad.gif"
-                alt="Sad Jigglypuff"
-              ></img>
-              We do not have anymore potential matches for you at the moment, please
-              check back periodically for new potential matches.
+                {"geolocation" in navigator && props.userLatitude !== "" && <form
+                  className="flex flex-col top-0 justify-center items-center bg-fuchsia-200 rounded-3xl text-l h-16"
+                  onSubmit={(event) => handleSubmit(event)}
+                >
+                  <label>
+                    Match me with people within:
+                    <input className="w-10" type="text" name="distance" />
+                    km
+                  </label>
+                  <div>
+                    <input className='bg-zinc-200' type="submit" value="Update" />
+                  </div>
+                </form>}
+              </div>
+              <div className="flex flex-col justify-center items-center  w-full space-y-10">
+                <img
+                  src="https://media.tenor.com/n6XKuq5mXkIAAAAC/jigglypuff-sad.gif"
+                  alt="Sad Jigglypuff"
+                ></img>
+                We do not have anymore potential matches for you at the moment, please
+                check back periodically for new potential matches.
+              </div>
             </motion.div>
           )}
         </AnimatePresence>

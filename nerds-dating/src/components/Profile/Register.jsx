@@ -32,7 +32,7 @@ function Register(props) {
         setError(2)
       }
       else {
-        props.setRegID(result.data.id)
+        props.setRegID(result.data.id);
         props.setDisplay(3);
       }
     });

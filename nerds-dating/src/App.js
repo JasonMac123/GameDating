@@ -20,6 +20,7 @@ function App() {
   const { profile, setProfile} = useProfile(userID)
   const [userLatitude, setUserLatitude] = useState("");
   const [userLongitude, setUserLongitude] = useState("");
+  const [regID, setRegID] = useState(0);
 
   return (
     <>
