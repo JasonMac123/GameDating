@@ -13,6 +13,7 @@ export default function Profile(props) {
   const [filteredMatches, setFilteredMatches] = useState(
     props.potentialMatches
   );
+
   const handleSubmit = (event) => {
     event.preventDefault();
     props.setDistanceFilter(event.target[0].value);
@@ -34,13 +35,16 @@ export default function Profile(props) {
       `Your distance preference have been changed to ${event.target[0].value}km`
     );
   };
+
   const handleLiking = (userID) => {
     setFilteredMatches(removeFirst(filteredMatches));
     props.removeUserByID(userID);
   };
+
   function deg2rad(deg) {
     return deg * (Math.PI / 180);
   }
+
   function getDistanceFromLatLonInKm(lat1, lon1, lat2, lon2) {
     var R = 6371; // Radius of the earth in km
     var dLat = deg2rad(lat2 - lat1); // deg2rad below
@@ -55,6 +59,7 @@ export default function Profile(props) {
     var d = R * c; // Distance in km
     return d;
   }
+
   props.useCurrentUserMatches(props.currentUser);
   useEffect(() => {
     if ("geolocation" in navigator) {
@@ -129,6 +134,7 @@ export default function Profile(props) {
       },
     },
   };
+  
   const controls = useAnimationControls();
   const MatchMapper = (matches) => {
     for (let match of matches) {
