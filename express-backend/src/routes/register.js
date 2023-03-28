@@ -39,12 +39,9 @@ router.post("/", (req, res) => {
 
     else {
       addUser(details).then((data) => {
-        updateLocationById(req.body.latitude, req.body.longitude, req.params.id).then(()=> {
           res.json(data)
-          })
         })
-      
-    }
+      }
   });
 
 
