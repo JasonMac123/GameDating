@@ -31,7 +31,7 @@ function Register(props) {
         setError(2);
       } else {
         props.setRegID(result.data.id);
-        props.setDisplay(5);
+        props.setDisplay(3);
       }
     });
   };

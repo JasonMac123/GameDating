@@ -28,7 +28,7 @@ function Login(props) {
       } else {
         props.setUserID(result.data.id);
         props.setRegID(result.data.id)
-        props.setDisplay(5);
+        props.setDisplay(6);
       }
     });
   };
