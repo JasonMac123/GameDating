@@ -51,6 +51,8 @@ function App() {
           setDisplay={setDisplay}
           userID={userID}
           setUserID={setUserID}
+          regID={regID}
+          setRegID={setRegID}
         />
       )}
       {display === 2 && (
