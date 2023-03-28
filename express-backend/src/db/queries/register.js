@@ -24,5 +24,3 @@ const addUser = function (user) {
 };
 
 module.exports = { addUser };
-
-// (name, email, password, phone_number, profile_picture, cover_picture, gender_identity, gender_preference, summary)

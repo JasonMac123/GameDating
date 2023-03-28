@@ -32,7 +32,6 @@ const getMatches = (interests) => {
   FROM interests
   JOIN users ON users.id = user_id
   WHERE user_id != $15`;
-  // comment out the below lines if database do not have too much test data
   // adding the validation for interests.gender_preference exists to avoid data errors
   if (interests && interests.gender_preference === "M") {
     queryString += `

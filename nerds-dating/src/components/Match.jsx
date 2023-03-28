@@ -4,11 +4,13 @@ import matchHelpers from "../helpers/matchHelpers";
 import { motion, AnimatePresence, useAnimationControls } from "framer-motion";
 import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
+import useCurrentUserMatches from "../hooks/useCurrentUserMatches";
 
 export default function Profile(props) {
-  const [filteredMatches, setFilteredMatches] = useState(
-    props.potentialMatches
+  const { potentialMatchList, removeUserByID } = useCurrentUserMatches(
+    props.currentUser
   );
+  const [filteredMatches, setFilteredMatches] = useState(potentialMatchList);
   const {
     notify,
     addNewLike,
@@ -22,7 +24,7 @@ export default function Profile(props) {
     event.preventDefault();
     props.setDistanceFilter(Number(event.target[0].value));
     setFilteredMatches(
-      props.potentialMatches.filter((match) => {
+      potentialMatchList.filter((match) => {
         if (
           getDistanceFromLatLonInKm(
             match.latitude,
@@ -42,7 +44,7 @@ export default function Profile(props) {
 
   const handleLiking = (userID) => {
     setFilteredMatches(removeFirst(filteredMatches));
-    props.removeUserByID(userID);
+    removeUserByID(userID);
   };
 
   useEffect(() => {
@@ -62,7 +64,7 @@ export default function Profile(props) {
           );
         }
         setFilteredMatches(
-          props.potentialMatches.filter((match) => {
+          potentialMatchList.filter((match) => {
             if (
               getDistanceFromLatLonInKm(
                 match.latitude,
@@ -77,7 +79,7 @@ export default function Profile(props) {
         );
       });
     }
-  }, [props.potentialMatches]);
+  }, [potentialMatchList]);
 
   const wrapperVariants = {
     hidden: {
