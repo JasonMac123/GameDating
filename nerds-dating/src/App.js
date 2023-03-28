@@ -14,6 +14,7 @@ import SideBar from "./components/SideBar/SideBar";
 function App() {
   const [display, setDisplay] = useState(1);
   const [userID, setUserID] = useState(0);
+  const [regID, setRegID] = useState(0);
   const [distanceFilter, setDistanceFilter] = useState(50);
   const { potentialMatchList, setPotentialMatchList, next, removeUserByID } = useCurrentUserMatches(userID);
   const { profile, setProfile} = useProfile(userID)
@@ -69,6 +70,8 @@ function App() {
           setDisplay={setDisplay}
           userID={userID}
           setUserID={setUserID}
+          regID={regID}
+          setRegID={setRegID}
         />
       )}
       {display === 3 && (
@@ -77,6 +80,8 @@ function App() {
           setDisplay={setDisplay}
           userID={userID}
           setUserID={setUserID}
+          regID={regID}
+          setRegID={setRegID}
         />
       )}
       {display === 5 && <ChatDisplay userID={userID} />}

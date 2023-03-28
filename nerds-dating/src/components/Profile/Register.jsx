@@ -13,7 +13,6 @@ function Register(props) {
     cover_picture: "",
     gender_identity: "",
     gender_preference: "",
-    distance_limit: 500,
     summary: "",
   });
 
@@ -33,7 +32,7 @@ function Register(props) {
         setError(2)
       }
       else {
-        props.setUserID(result.data.id);
+        props.setRegID(result.data.id)
         props.setDisplay(3);
       }
     });
@@ -133,13 +132,13 @@ function Register(props) {
 
                       <div className="relative mb-4" data-te-input-wrapper-init>
                         <fieldset className="peer block min-h-[auto] w-full bg-white rounded border-0 bg-transparent py-[0.32rem] px-3 leading-[1.6] transition-all duration-200 ease-linear">
-                          <h4>Please select your gender preference:</h4>
+                          <h4>Please select your gender identity:</h4>
                           <div>
                             <input
                               type="radio"
                               id="female"
                               name="gender_identity"
-                              value="female"
+                              value="F"
                               onClick={handleChange}
                             />
                             <label htmlFor="female">Female</label>
@@ -148,7 +147,7 @@ function Register(props) {
                               type="radio"
                               id="male"
                               name="gender_identity"
-                              value="male"
+                              value="M"
                               onClick={handleChange}
                             />
                             <label htmlFor="male">Male</label>
@@ -157,10 +156,10 @@ function Register(props) {
                               type="radio"
                               id="both"
                               name="gender_identity"
-                              value="both"
+                              value="O"
                               onClick={handleChange}
                             />
-                            <label htmlFor="both">Both</label>
+                            <label htmlFor="both">Other</label>
                           </div>
                         </fieldset>
                       </div>
@@ -172,7 +171,7 @@ function Register(props) {
                               type="radio"
                               id="female"
                               name="gender_preference"
-                              value="female"
+                              value="F"
                               onClick={handleChange}
                             />
                             <label htmlFor="female">Female</label>
@@ -181,7 +180,7 @@ function Register(props) {
                               type="radio"
                               id="male"
                               name="gender_preference"
-                              value="male"
+                              value="M"
                               onClick={handleChange}
                             />
                             <label htmlFor="male">Male</label>
@@ -190,7 +189,7 @@ function Register(props) {
                               type="radio"
                               id="both"
                               name="gender_preference"
-                              value="both"
+                              value="B"
                               onClick={handleChange}
                             />
                             <label htmlFor="both">Both</label>
