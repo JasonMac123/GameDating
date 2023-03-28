@@ -13,9 +13,8 @@ export default function useProfile(id) {
       .catch((e) => console.log(e));
   }, [id]);
 
-
   return {
     profile,
-    setProfile
-  }
+    setProfile,
+  };
 }

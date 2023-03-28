@@ -20,21 +20,16 @@ function Login(props) {
     event.preventDefault();
     return axios.post("/api/login", user).then((result) => {
       if (result.data === 1) {
-        setError(1)
-      }
-      else if (result.data === 2) {
-        setError(2)
-      }
-      else if (result.data === 3) {
-        setError(3)
-      }
-      else {
+        setError(1);
+      } else if (result.data === 2) {
+        setError(2);
+      } else if (result.data === 3) {
+        setError(3);
+      } else {
         props.setUserID(result.data.id);
         props.setDisplay(3);
       }
-
-    })
-
+    });
   };
 
   const handleRegister = (event) => {
@@ -47,8 +42,7 @@ function Login(props) {
       <div className="container h-full p-10 mx-auto">
         <div className="g-6 flex h-full flex-wrap items-center justify-center text-neutral-800 dark:text-neutral-200">
           <div className="w-full">
-            <div
-              className="block rounded-lg bg-stone-500 shadow-lg dark:bg-neutral-800">
+            <div className="block rounded-lg bg-stone-500 shadow-lg dark:bg-neutral-800">
               <div className="g-0 lg:flex lg:flex-wrap">
                 <div className="px-4 md:px-0 lg:w-6/12">
                   <div className="">
@@ -63,9 +57,16 @@ function Login(props) {
                       </h4>
                     </div>
                     <div className="bg-stone-500 rounded">
-                      <form autoComplete="off" onSubmit={handleSubmit} className="md:mx-6 md:p-12">
+                      <form
+                        autoComplete="off"
+                        onSubmit={handleSubmit}
+                        className="md:mx-6 md:p-12"
+                      >
                         <p className="mb-4">Please login to your account:</p>
-                        <div className="relative mb-4" data-te-input-wrapper-init>
+                        <div
+                          className="relative mb-4"
+                          data-te-input-wrapper-init
+                        >
                           <input
                             type="email"
                             className="peer block min-h-[auto] bg-white w-full rounded bg-transparent py-[0.32rem] px-3 leading-[1.6] outline-black transition-all duration-200 ease-linear"
@@ -105,9 +106,9 @@ function Login(props) {
                           >
                             Login
                           </button>
-                          {error === 1 && (<FieldBlankError />)}
-                          {error === 2 && (<NotAValidUser />)}
-                          {error === 3 && (<IncorrectPassword />)}
+                          {error === 1 && <FieldBlankError />}
+                          {error === 2 && <NotAValidUser />}
+                          {error === 3 && <IncorrectPassword />}
                         </div>
                         <div className="items-center">
                           <p className="mb-4">Don't have an account?</p>
@@ -138,15 +139,16 @@ function Login(props) {
                 >
                   <div className="px-4 py-6 text-white md:mx-6 md:p-12">
                     <h4 className="mb-6 text-xl font-semibold">
-                      A place for gamers to find true love or just play some games together
+                      A place for gamers to find true love or just play some
+                      games together
                     </h4>
                     <p className="text-sm">
-                      Gamers only is a place for people who have a
-                      shared interest of games and nerd culture.
-                      It is a site designed to connect people who have similar
-                      interests so that you can chat about these topics and play games
-                      together. Whether you're looking for a romantic or platonic relationship
-                      is up to you!
+                      Gamers only is a place for people who have a shared
+                      interest of games and nerd culture. It is a site designed
+                      to connect people who have similar interests so that you
+                      can chat about these topics and play games together.
+                      Whether you're looking for a romantic or platonic
+                      relationship is up to you!
                     </p>
                   </div>
                 </div>
