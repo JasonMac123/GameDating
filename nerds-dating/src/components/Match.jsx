@@ -330,10 +330,10 @@ export default function Profile(props) {
                 please check back periodically for new potential matches.
               </div>
 
-              <div className="flex">
+              <div className="flex w-1/2">
                 {"geolocation" in navigator && props.userLatitude !== "" && (
                   <form
-                    className="flex flex-col top-0 justify-center items-center bg-fuchsia-200 rounded-3xl text-l h-16"
+                    className="flex flex-col top-0 justify-center items-center bg-fuchsia-200 rounded-3xl text-l h-16 w-full"
                     onSubmit={(event) => handleSubmit(event)}
                   >
                     <label>
