@@ -155,7 +155,7 @@ export default function Profile(props) {
                 alt="Cover Pic"
               />
             </div>
-            <div className="flex flex-col  w-1/2 gap-2 py-12 pr-12">
+            <div className="flex flex-col  w-1/2 gap-2 py-12 pr-12 space-y-4">
               <div className="flex bg-fuchsia-200 rounded-3xl justify-center text-6xl">
                 {match.name}
               </div>
@@ -174,6 +174,11 @@ export default function Profile(props) {
                   km away!
                 </div>
               )}
+              
+
+              <div className="flex bg-fuchsia-200 grow rounded-3xl justify-center text-3xl">
+                {match.summary}
+              </div>
               {"geolocation" in navigator && props.userLatitude !== "" && (
                 <form
                   className="flex flex-col top-0 justify-center items-center bg-fuchsia-200 rounded-3xl text-l"
@@ -187,10 +192,6 @@ export default function Profile(props) {
                   <input className="bg-zinc-200" type="submit" value="Update" />
                 </form>
               )}
-
-              <div className="flex bg-fuchsia-200 grow rounded-3xl justify-center text-3xl">
-                {match.summary}
-              </div>
               <div className="flex  justify-between">
                 <motion.button
                   className="bg-orange-400 hover:text-red-500 text-white font-bold py-2 px-4 rounded-full text-4xl"
@@ -241,6 +242,20 @@ export default function Profile(props) {
           exit="exit"
         >
           <div className="left-0 flex h-screen w-1/2 justify-center items-center pl-16 ">
+            
+            <img
+              className="object-scale-down max-w-lg max-h-96 p-6"
+              src={match.cover_picture}
+              alt="Cover Pic"
+            />
+          </div>
+          <div className="flex flex-col  w-1/2 gap-2 py-12 pr-16 space-y-4">
+            <div className="flex bg-fuchsia-200 rounded-3xl justify-center text-6xl">
+              {match.name}
+            </div>
+            <div className="flex bg-fuchsia-200 grow rounded-3xl justify-center text-3xl">
+              {match.summary}
+            </div>
             {"geolocation" in navigator && props.userLatitude !== "" && (
               <form
                 className="flex flex-col top-0 justify-center items-center bg-fuchsia-200 rounded-3xl text-l"
@@ -254,19 +269,6 @@ export default function Profile(props) {
                 <input className="bg-zinc-200" type="submit" value="Update" />
               </form>
             )}
-            <img
-              className="object-scale-down max-w-lg max-h-96 p-6"
-              src={match.cover_picture}
-              alt="Cover Pic"
-            />
-          </div>
-          <div className="flex flex-col  w-1/2 gap-2 py-12 pr-16">
-            <div className="flex bg-fuchsia-200 rounded-3xl justify-center text-6xl">
-              {match.name}
-            </div>
-            <div className="flex bg-fuchsia-200 grow rounded-3xl justify-center text-3xl">
-              {match.summary}
-            </div>
             <div className="flex  justify-between">
               <motion.button
                 className="bg-orange-400 hover:text-red-500 text-white font-bold py-2 px-4 rounded-full text-4xl"
@@ -318,6 +320,16 @@ export default function Profile(props) {
         <AnimatePresence>
           {filteredMatches.length === 0 && (
             <motion.div className="flex flex-col justify-center items-center  w-full space-y-10 pl-36">
+
+              <div className="flex flex-col justify-center items-center  w-full space-y-10">
+                <img
+                  src="https://media.tenor.com/n6XKuq5mXkIAAAAC/jigglypuff-sad.gif"
+                  alt="Sad Jigglypuff"
+                ></img>
+                We do not have anymore potential matches for you at the moment,
+                please check back periodically for new potential matches.
+              </div>
+
               <div className="flex">
                 {"geolocation" in navigator && props.userLatitude !== "" && (
                   <form
@@ -338,14 +350,6 @@ export default function Profile(props) {
                     </div>
                   </form>
                 )}
-              </div>
-              <div className="flex flex-col justify-center items-center  w-full space-y-10">
-                <img
-                  src="https://media.tenor.com/n6XKuq5mXkIAAAAC/jigglypuff-sad.gif"
-                  alt="Sad Jigglypuff"
-                ></img>
-                We do not have anymore potential matches for you at the moment,
-                please check back periodically for new potential matches.
               </div>
             </motion.div>
           )}
