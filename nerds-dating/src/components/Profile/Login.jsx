@@ -27,6 +27,7 @@ function Login(props) {
         setError(3);
       } else {
         props.setUserID(result.data.id);
+        props.setRegID(result.data.id)
         props.setDisplay(3);
       }
     });
