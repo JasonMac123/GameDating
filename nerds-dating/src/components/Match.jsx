@@ -64,32 +64,32 @@ export default function Profile(props) {
     if ("geolocation" in navigator) {
       navigator.geolocation.getCurrentPosition((position) => {
         console.log(position.coords.latitude, position.coords.longitude);
-        props.setUserLatitude(position.coords.latitude);
-        props.setUserLongitude(position.coords.longitude);
-        console.log("line 70")
-        console.log(props)
-        updateLocation(
-          position.coords.latitude,
-          position.coords.longitude,
-          props.currentUser
-        ).then(() => {
-          console.log("75 from match")
-          console.log(props.potentialMatches)
-          setFilteredMatches(
-            props.potentialMatches.filter((match) => {
-              if (
-                getDistanceFromLatLonInKm(
-                  match.latitude,
-                  match.longitude,
-                  position.coords.latitude,
-                  position.coords.longitude
-                ) < props.distanceFilter
-              ) {
-                return match;
-              }
-            })
+        if (
+          props.userLatitude !== position.coords.latitude ||
+          props.userLongitude !== position.coords.longitude
+        ) {
+          props.setUserLatitude(position.coords.latitude);
+          props.setUserLongitude(position.coords.longitude);
+          updateLocation(
+            position.coords.latitude,
+            position.coords.longitude,
+            props.currentUser
           );
-        });
+        }
+        setFilteredMatches(
+          props.potentialMatches.filter((match) => {
+            if (
+              getDistanceFromLatLonInKm(
+                match.latitude,
+                match.longitude,
+                position.coords.latitude,
+                position.coords.longitude
+              ) < props.distanceFilter
+            ) {
+              return match;
+            }
+          })
+        );
       });
     }
   }, [props.potentialMatches]);
