@@ -60,26 +60,29 @@ export default function Profile(props) {
     return d;
   }
 
-  props.useCurrentUserMatches(props.currentUser);
   useEffect(() => {
     if ("geolocation" in navigator) {
       navigator.geolocation.getCurrentPosition((position) => {
         console.log(position.coords.latitude, position.coords.longitude);
         props.setUserLatitude(position.coords.latitude);
         props.setUserLongitude(position.coords.longitude);
+        console.log("line 70")
+        console.log(props)
         updateLocation(
           position.coords.latitude,
           position.coords.longitude,
           props.currentUser
         ).then(() => {
+          console.log("75 from match")
+          console.log(props.potentialMatches)
           setFilteredMatches(
             props.potentialMatches.filter((match) => {
               if (
                 getDistanceFromLatLonInKm(
                   match.latitude,
                   match.longitude,
-                  props.userLatitude,
-                  props.userLongitude
+                  position.coords.latitude,
+                  position.coords.longitude
                 ) < props.distanceFilter
               ) {
                 return match;
@@ -89,7 +92,7 @@ export default function Profile(props) {
         });
       });
     }
-  }, []);
+  }, [props.potentialMatches]);
 
   const wrapperVariants = {
     hidden: {
@@ -134,7 +137,7 @@ export default function Profile(props) {
       },
     },
   };
-  
+
   const controls = useAnimationControls();
   const MatchMapper = (matches) => {
     for (let match of matches) {
@@ -174,7 +177,6 @@ export default function Profile(props) {
                   km away!
                 </div>
               )}
-              
 
               <div className="flex bg-fuchsia-200 grow rounded-3xl justify-center text-3xl">
                 {match.summary}
@@ -242,7 +244,6 @@ export default function Profile(props) {
           exit="exit"
         >
           <div className="left-0 flex h-screen w-1/2 justify-center items-center pl-16 ">
-            
             <img
               className="object-scale-down max-w-lg max-h-96 p-6"
               src={match.cover_picture}
@@ -320,7 +321,6 @@ export default function Profile(props) {
         <AnimatePresence>
           {filteredMatches.length === 0 && (
             <motion.div className="flex flex-col justify-center items-center  w-full space-y-10 pl-36">
-
               <div className="flex flex-col justify-center items-center  w-full space-y-10">
                 <img
                   src="https://media.tenor.com/n6XKuq5mXkIAAAAC/jigglypuff-sad.gif"
