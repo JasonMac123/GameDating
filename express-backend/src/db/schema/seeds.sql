@@ -55,11 +55,14 @@ VALUES (1, 2, true),
 (3, 1, true),
 (3, 2, false),
 (1, 4, true),
-(4, 1, true);
+(4, 1, true),
+(13, 17, true),
+(17, 13, true);
 
 INSERT INTO chat_rooms (first_user_id, second_user_id)
 VALUES (1, 2),
-(4, 1);
+(4, 1),
+(13, 17)
 
 INSERT INTO messages (messaging_user_id, receiving_user_id, chat_room_id, message)
 VALUES (1, 2, 1, 'hi, do you play any FPS?'),
@@ -68,3 +71,6 @@ VALUES (1, 2, 1, 'hi, do you play any FPS?'),
 (1, 2, 1, 'you will never know what you like'),
 (4, 1, 2, 'hello, can you see this'),
 (1, 4, 2, 'ya i can');
+(13, 17, 3, 'Hey There!'),
+(13, 17, 3, 'Do you play pokemon?'),
+(17, 13, 3, 'My favourite game is pokemon');
